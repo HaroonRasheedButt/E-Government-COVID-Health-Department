@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "patient")
-public class PatientHistory {
+public class PatientReport {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column

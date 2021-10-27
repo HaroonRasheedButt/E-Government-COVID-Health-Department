@@ -52,8 +52,8 @@ public class Patient {
     @Column
     private String province;
     
-    @OneToMany(targetEntity = PatientHistory.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PatientHistory> covidReports = new ArrayList<PatientHistory>();
+    @OneToMany(targetEntity = PatientReport.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PatientReport> covidReports = new ArrayList<PatientReport>();
     
     @OneToMany(targetEntity = PatientVaccination.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PatientVaccination> covidVaccines = new ArrayList<PatientVaccination>();
