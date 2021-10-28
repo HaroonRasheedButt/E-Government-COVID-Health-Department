@@ -31,9 +31,61 @@ public class PatientReport {
     
 	
 	@Column(nullable = true)
-    private String createdDate;
+    private Date createdDate;
     @Column(nullable = true)
-    private String updatedDate;
+    private Date updatedDate;
     @Column
     private boolean status;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public Date getTestDate() {
+		return testDate;
+	}
+	public void setTestDate(Date testDate) {
+		this.testDate = testDate;
+	}
+	public String getTestResults() {
+		return testResults;
+	}
+	public void setTestResults(String testResults) {
+		this.testResults = testResults;
+	}
+	public Hospital getHospital() {
+		return hospital;
+	}
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
+	}
+	public Lab getLab() {
+		return lab;
+	}
+	public void setLab(Lab lab) {
+		this.lab = lab;
+	}
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+    
+    
+    
+    
 }

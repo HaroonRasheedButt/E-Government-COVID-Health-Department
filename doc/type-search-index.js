@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"com.example.EGovt_CovidHealthApp.Controller","l":"AdminController"},{"l":"All Classes","u":"allclasses-index.html"}];updateSearchResults();

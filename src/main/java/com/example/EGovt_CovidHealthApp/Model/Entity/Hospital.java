@@ -1,5 +1,6 @@
 package com.example.EGovt_CovidHealthApp.Model.Entity;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,9 +31,9 @@ public class Hospital {
     @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = true)
-    private String createdDate;
+    private Date createdDate;
     @Column(nullable = true)
-    private String updatedDate;
+    private Date updatedDate;
     @Column
     private boolean status;
     @Column
@@ -56,4 +57,126 @@ public class Hospital {
     
     @OneToMany(targetEntity = MobileVaccineCar.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MobileVaccineCar> mobileVaccineCars = new ArrayList<MobileVaccineCar>();
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public int getTotalNumberOfBeds() {
+		return totalNumberOfBeds;
+	}
+
+	public void setTotalNumberOfBeds(int totalNumberOfBeds) {
+		this.totalNumberOfBeds = totalNumberOfBeds;
+	}
+
+	public int getTotalNumberOfVentilators() {
+		return totalNumberOfVentilators;
+	}
+
+	public void setTotalNumberOfVentilators(int totalNumberOfVentilators) {
+		this.totalNumberOfVentilators = totalNumberOfVentilators;
+	}
+
+	public int getAvailableNumberOfBeds() {
+		return availableNumberOfBeds;
+	}
+
+	public void setAvailableNumberOfBeds(int availableNumberOfBeds) {
+		this.availableNumberOfBeds = availableNumberOfBeds;
+	}
+
+	public int getAvailableNumberOfVentilators() {
+		return availableNumberOfVentilators;
+	}
+
+	public void setAvailableNumberOfVentilators(int availableNumberOfVentilators) {
+		this.availableNumberOfVentilators = availableNumberOfVentilators;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public List<CovidTest> getCovidTests() {
+		return covidTests;
+	}
+
+	public void setCovidTests(List<CovidTest> covidTests) {
+		this.covidTests = covidTests;
+	}
+
+	public List<MobileVaccineCar> getMobileVaccineCars() {
+		return mobileVaccineCars;
+	}
+
+	public void setMobileVaccineCars(List<MobileVaccineCar> mobileVaccineCars) {
+		this.mobileVaccineCars = mobileVaccineCars;
+	}
+    
+    
 }

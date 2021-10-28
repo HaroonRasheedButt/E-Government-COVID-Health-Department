@@ -1,12 +1,9 @@
 package com.example.EGovt_CovidHealthApp.Service;
 
-import java.sql.SQLClientInfoException;
 import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
 import com.example.EGovt_CovidHealthApp.Repostiory.PatientRepository;
 
@@ -36,9 +33,10 @@ public class PatientService {
 			return ResponseEntity.ok().body(patientRepository.save(patient));
 		}catch (Exception e) {
 			// TODO: handle exception
-			return new ResponseEntity("Unable to add patient to database", HttpStatus.OK);
+			return new ResponseEntity("Unable to add patient to database", HttpStatus.BAD_REQUEST);
 		}
 		
 	}
+	
 	
 }
