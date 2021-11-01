@@ -7,13 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "covid_test")
 public class CovidTest {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +28,9 @@ public class CovidTest {
     private Date updatedDate;
     @Column
     private boolean status;
+    
+    
+    
 	public long getId() {
 		return id;
 	}

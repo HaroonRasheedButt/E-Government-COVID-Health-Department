@@ -5,24 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-
-//import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "hospital")
 public class Hospital {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -51,13 +45,24 @@ public class Hospital {
     @Column
     private String province;
     
-    @OneToMany(targetEntity = CovidTest.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "hospitalId")
+    public List<Patient> getPatients() {
+		return patients;
+	}
+
+	public void setPatients(List<Patient> patients) {
+		this.patients = patients;
+	}
+
+	@OneToMany(targetEntity = Patient.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Patient> patients = new ArrayList<Patient>();
+    
+    @OneToMany(targetEntity = CovidTest.class, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<CovidTest> covidTests = new ArrayList<CovidTest>();
     
-    @OneToMany(targetEntity = MobileVaccineCar.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(targetEntity = MobileVaccineCar.class, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<MobileVaccineCar> mobileVaccineCars = new ArrayList<MobileVaccineCar>();
-
+    
+    
 	public long getId() {
 		return id;
 	}

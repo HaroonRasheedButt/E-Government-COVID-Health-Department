@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,14 +18,16 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.example.EGovt_CovidHealthApp.Authorization;
+import com.example.EGovt_CovidHealthApp.Util.AuthorizationUtil;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Company;
+import com.example.EGovt_CovidHealthApp.Model.Entity.Hospital;
 import com.example.EGovt_CovidHealthApp.Service.AdminService;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author Haroon Rasheed
+ * @version 1.1
  */
 @EnableSwagger2
 @RestController
@@ -51,7 +52,7 @@ public class AdminController {
 
 			throws Exception {
 		try {
-			Authorization.authorized(authToken);
+			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
 			LOG.info("Unable to Authorize : " + e.getMessage());
 			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
@@ -74,7 +75,7 @@ public class AdminController {
 	public ResponseEntity<Company> addCompany(@RequestHeader("Authorization") Optional<String> authToken,
 			@RequestBody Company company) throws Exception {
 		try {
-			Authorization.authorized(authToken);
+			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
 			LOG.info("Unable to Authorize : " + e.getMessage());
 			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
@@ -98,7 +99,7 @@ public class AdminController {
 	public ResponseEntity<Company> updateCompany(@RequestHeader("Authorization") Optional<String> authToken,
 			@RequestBody Company company) throws Exception {
 		try {
-			Authorization.authorized(authToken);
+			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
 			LOG.info("Unable to Authorize : " + e.getMessage());
 			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
@@ -122,7 +123,7 @@ public class AdminController {
 	public ResponseEntity<String> deleteCompany(@RequestHeader("Authorization") Optional<String> authToken,
 			@RequestBody List<Company> companies) throws Exception {
 		try {
-			Authorization.authorized(authToken);
+			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
 			LOG.info("Unable to Authorize : " + e.getMessage());
 			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
@@ -133,4 +134,79 @@ public class AdminController {
 		return adminService.deleteCompany(companies);
 	}
 
+	//-----------------------------------------Admin Controller for Hospital Oeprations
+	
+
+    /**
+     * @creationDate 28 October 2021
+     * @description This function adds a hospital in database.
+     * @param Optional String:  the authorization token
+     * @param Hospital: A hospital object to be added
+     * @throws Exception the exception
+     * @return Response Entity of type Hospital
+     **/
+	@PostMapping("/hospital/addHospital")
+	public ResponseEntity<Hospital> addHospital(@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestBody Hospital hospital) throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+
+		return adminService.addHospital(hospital);
+	}
+
+    /**
+     * @creationDate 28 October 2021
+     * @description This function updates a hospital in database.
+     * @param Optional String:  the authorization token
+     * @param Hospital: A hospital object to be added
+     * @throws Exception the exception
+     * @return Response Entity of type Hospital
+     **/
+	@PutMapping("/hospital/updateHospital")
+	public ResponseEntity<Hospital> updateHospital(@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestBody Hospital hospital) throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+
+		return adminService.updateHospital(hospital);
+	}
+
+    /**
+     * @creationDate 28 October 2021
+     * @description This function updates a hospital in database.
+     * @param Optional String:  the authorization token
+     * @param Path Variable : The id of
+     * @throws Exception the exception
+     * @return Response Entity of type String
+     **/
+	@DeleteMapping("/hospital/deleteHospital")
+	public ResponseEntity<String> deleteHospital(@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestBody List<Hospital> hopitals) throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+		return adminService.deleteHospital(hopitals);
+	}
+	
+	
 }

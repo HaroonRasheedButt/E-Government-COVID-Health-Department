@@ -1,5 +1,7 @@
 package com.example.EGovt_CovidHealthApp.Model.Entity;
 
+import lombok.Data;
+
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -8,34 +10,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Data;
-
 @Data
 @Entity
-public class MobileVaccineCar {
-
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	@Column(nullable = false)
-	private String name;
-	@Column(nullable = false)
-	private String location;
-	@Column(nullable = false)
-	private String contactNumber;
-	@Column(nullable = false)
-	private String carRegistrationNumber;
+public class Permission {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false, unique = true)
+    private String name;
     @Column(nullable = true)
     private Date createdDate;
     @Column(nullable = true)
     private Date updatedDate;
-    @Column
+    @Column(nullable = false)
     private boolean status;
-    
-    
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -43,24 +35,6 @@ public class MobileVaccineCar {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
-	public String getContactNumber() {
-		return contactNumber;
-	}
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
-	public String getCarRegistrationNumber() {
-		return carRegistrationNumber;
-	}
-	public void setCarRegistrationNumber(String carRegistrationNumber) {
-		this.carRegistrationNumber = carRegistrationNumber;
 	}
 	public Date getCreatedDate() {
 		return createdDate;
@@ -80,5 +54,6 @@ public class MobileVaccineCar {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+    
     
 }

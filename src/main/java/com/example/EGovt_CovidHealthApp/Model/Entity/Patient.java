@@ -3,6 +3,7 @@ package com.example.EGovt_CovidHealthApp.Model.Entity;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,16 +11,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import lombok.Data;
 
 
 @Data
 @Entity
-@Table(name = "patient")
 public class Patient {
 	public Patient() {
 		super();
@@ -58,13 +56,29 @@ public class Patient {
 	private String province;
 	@Column
 	private String postalCode;
-
+	
 	@OneToMany(targetEntity = PatientReport.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name="patientId")
-	private List<PatientReport> covidReports = new ArrayList<PatientReport>();
+    private List<PatientReport> covidReports = new ArrayList<PatientReport>();
+    
+    @OneToMany(targetEntity = PatientVaccination.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PatientVaccination> covidVaccines = new ArrayList<PatientVaccination>();
+    
+	
+	public List<PatientReport> getCovidReports() {
+		return covidReports;
+	}
 
-	@OneToMany(targetEntity = PatientVaccination.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<PatientVaccination> covidVaccines = new ArrayList<PatientVaccination>();
+	public void setCovidReports(List<PatientReport> covidReports) {
+		this.covidReports = covidReports;
+	}
+
+	public List<PatientVaccination> getCovidVaccines() {
+		return covidVaccines;
+	}
+
+	public void setCovidVaccines(List<PatientVaccination> covidVaccines) {
+		this.covidVaccines = covidVaccines;
+	}
 
 	public long getId() {
 		return id;
@@ -194,21 +208,21 @@ public class Patient {
 		this.postalCode = postalCode;
 	}
 
-	public List<PatientReport> getCovidReports() {
-		return covidReports;
-	}
-
-	public void setCovidReports(List<PatientReport> covidReports) {
-		this.covidReports = covidReports;
-	}
-
-	public List<PatientVaccination> getCovidVaccines() {
-		return covidVaccines;
-	}
-
-	public void setCovidVaccines(List<PatientVaccination> covidVaccines) {
-		this.covidVaccines = covidVaccines;
-	}
+//	public List<PatientReport> getCovidReports() {
+//		return covidReports;
+//	}
+//
+//	public void setCovidReports(List<PatientReport> covidReports) {
+//		this.covidReports = covidReports;
+//	}
+//
+//	public List<PatientVaccination> getCovidVaccines() {
+//		return covidVaccines;
+//	}
+//
+//	public void setCovidVaccines(List<PatientVaccination> covidVaccines) {
+//		this.covidVaccines = covidVaccines;
+//	}
 
 	
 }

@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.EGovt_CovidHealthApp.Model.Entity.PatientReport;
+import com.example.EGovt_CovidHealthApp.Model.Entity.Admin;
 
 @Repository
-public interface PatientReportRepository extends JpaRepository<PatientReport, Long> {
-	List<PatientReport> findAllByStatusTrue();
+public interface AdminRepository extends JpaRepository<Admin, Long>{
+	List<Admin> findAllByStatusTrue();
+
 }
