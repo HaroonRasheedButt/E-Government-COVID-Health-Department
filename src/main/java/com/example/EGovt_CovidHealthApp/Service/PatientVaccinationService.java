@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.example.EGovt_CovidHealthApp.Model.Entity.Hospital;
+import com.example.EGovt_CovidHealthApp.Model.Entity.PatientReport;
 import com.example.EGovt_CovidHealthApp.Model.Entity.PatientVaccination;
 import com.example.EGovt_CovidHealthApp.Repostiory.PatientVaccinationRepository;
 import com.example.EGovt_CovidHealthApp.Util.DateTimeUtil;
@@ -18,22 +18,24 @@ import com.example.EGovt_CovidHealthApp.Util.DateTimeUtil;
 @Service
 public class PatientVaccinationService {
 	private final PatientVaccinationRepository patientVaccinationRepository;
-    private static final Logger LOG = LogManager.getLogger(AdminService.class);
+	private static final Logger LOG = LogManager.getLogger(AdminService.class);
 
 	public PatientVaccinationService(PatientVaccinationRepository patientVaccinationRepository) {
-			this.patientVaccinationRepository = patientVaccinationRepository;
-		}
+		this.patientVaccinationRepository = patientVaccinationRepository;
+	}
 
-    /**
-     * @creationDate 31st October 2021
-     * @description This function gets all the patientVaccinations details in database.
-     * @param N/A
-     * @throws Exception the exception
-     * @return Response Entity of type PatientVaccination
-     **/
+	/**
+	 * @creationDate 31st October 2021
+	 * @description This function gets all the patientVaccinations details in
+	 *              database.
+	 * @param N/A
+	 * @throws Exception the exception
+	 * @return Response Entity of type PatientVaccination
+	 **/
 	public ResponseEntity<List<PatientVaccination>> getAllPatientVaccinations() {
 		try {
-			Optional<List<PatientVaccination>> patientVaccinations = Optional.of(patientVaccinationRepository.findAllByStatusTrue());
+			Optional<List<PatientVaccination>> patientVaccinations = Optional
+					.of(patientVaccinationRepository.findAllByStatusTrue());
 			if (patientVaccinations.isPresent()) {
 				LOG.info("PatientVaccinations successfully Retrieved : " + patientVaccinations.get());
 				return ResponseEntity.ok().body(patientVaccinations.get());
@@ -44,76 +46,72 @@ public class PatientVaccinationService {
 		} catch (Exception e) {
 			// TODO: handle exception
 			LOG.info("Exception caught while retrieving patientVaccinations data : \n" + e.getMessage());
-			return new ResponseEntity("Error retrieving all patientVaccinations!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("Error retrieving all patientVaccinations!\n" + e.getMessage(),
+					HttpStatus.BAD_REQUEST);
 		}
 
 	}
 
-    /**
-     * @creationDate 31st October 2021
-     * @description This function adds a patientVaccination in database.
-     * @param PatientVaccination: A patientVaccination object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type PatientVaccination
-     **/
-	public ResponseEntity<PatientVaccination> addPatientVaccination(PatientVaccination patientVaccination, long patientId) {
+	/**
+	 * @creationDate 31st October 2021
+	 * @description This function adds a patientVaccination in database.
+	 * @param PatientVaccination: A patientVaccination object to be added
+	 * @throws Exception the exception
+	 * @return Response Entity of type PatientVaccination
+	 **/
+	public PatientVaccination addPatientVaccination(PatientVaccination patientVaccination) throws Exception {
 		try {
 			patientVaccination.setCreatedDate(DateTimeUtil.getDate());
 			patientVaccination.setStatus(true);
-//			patientVaccination.setHospital(hospital);
-			patientVaccinationRepository.save(patientVaccination);
+			patientVaccination.setVaccinatedDate(DateTimeUtil.getDate());
 			LOG.info("PatientVaccinations successfully added to the database: " + patientVaccination);
-			return ResponseEntity.ok().body(patientVaccination);
-		}catch (PropertyValueException e) {
+			return patientVaccination;
+		} catch (PropertyValueException e) {
 			LOG.info("The syntax of the patientVaccination object is invalid : " + patientVaccination + e.getMessage());
-			return new ResponseEntity("Please send a valid object to add into the databse!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		catch (Exception e) {
-			// TODO: handle exception
-			LOG.info("Error while saving the patientVaccination object to database  : " + patientVaccination + e.getMessage());
-			return new ResponseEntity("Error adding a patientVaccination into database!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-	}
-
-    /**
-     * @creationDate 31st October 2021
-     * @description This function updates a patientVaccination in database.
-     * @param PatientVaccination: A patientVaccination object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type PatientVaccination
-     **/
-	public ResponseEntity<PatientVaccination> updatePatientVaccination(PatientVaccination patientVaccination) {
-		try {
-			Optional<PatientVaccination> exists = patientVaccinationRepository.findById(patientVaccination.getId());
-			if (exists.isPresent()) {
-				patientVaccination.setUpdatedDate(DateTimeUtil.getDate());
-				patientVaccinationRepository.save(patientVaccination);
-				LOG.info("PatientVaccinations successfully updated in the database: " + patientVaccination);
-				return ResponseEntity.ok().body(patientVaccination);
-			} else {
-				LOG.info("Copmany could not be updated because the compnay id could not be found  : " );
-				return new ResponseEntity("Compnay of this id does not exist. Please update a existing record!",
-						HttpStatus.ACCEPTED);
-			}
-
-		}catch (PropertyValueException e) {
-			LOG.info("The syntax of the patientVaccination object is invalid : " + patientVaccination + e.getMessage());
-			return new ResponseEntity("Please send a valid object to update from the databse!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+			throw new PropertyValueException("Please send a valid object to add into the databse!\n" + e.getMessage(),
+					PatientReport.class.getClass().getName(), this.toString());
 		} catch (Exception e) {
 			// TODO: handle exception
 			LOG.info("Error while saving the patientVaccination object to database  : " + patientVaccination + e.getMessage());
-			return new ResponseEntity("Error updating patientVaccination!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+			throw new Exception("Error adding a patientVaccination into database!\n" + e.getMessage());
 		}
 	}
-	
+
 	/**
-     * @creationDate 31st October 2021
-     * @description This function deletes a patientVaccination in database by changing its status to false.
-     * @param Path Variable : The id of the the patientVaccination to be deleted
-     * @throws Exception the exception
-     * @return Response Entity of type String
-     **/
-	public ResponseEntity<String> deletePatientVaccination(List<PatientVaccination> patientVaccinations){
+	 * @creationDate 31st October 2021
+	 * @description This function updates a patientVaccination in database.
+	 * @param PatientVaccination: A patientVaccination object to be added
+	 * @throws Exception the exception
+	 * @return Response Entity of type PatientVaccination
+	 **/
+	public PatientVaccination updatePatientVaccination(PatientVaccination patientVaccination) throws Exception {
+		try {
+			
+				patientVaccination.setUpdatedDate(DateTimeUtil.getDate());
+				LOG.info("PatientVaccinations successfully updated in the database: " + patientVaccination);
+				return patientVaccination;
+			
+
+		}catch (PropertyValueException e) {
+			LOG.info("The syntax of the patientVaccination object is invalid : " + patientVaccination + e.getMessage());
+			throw new PropertyValueException("Please send a valid object to add into the databse!\n" + e.getMessage(),
+					PatientReport.class.getClass().getName(), this.toString());
+		} catch (Exception e) {
+			// TODO: handle exception
+			LOG.info("Error while saving the patient Vaccination object to database  : " + patientVaccination + e.getMessage());
+			throw new Exception("Error adding a patient Vaccination into database!\n" + e.getMessage());
+		}
+	}
+
+	/**
+	 * @creationDate 31st October 2021
+	 * @description This function deletes a patientVaccination in database by
+	 *              changing its status to false.
+	 * @param Path Variable : The id of the the patientVaccination to be deleted
+	 * @throws Exception the exception
+	 * @return Response Entity of type String
+	 **/
+	public ResponseEntity<String> deletePatientVaccination(List<PatientVaccination> patientVaccinations) {
 		try {
 			for (PatientVaccination patientVaccination : patientVaccinations) {
 				patientVaccination.setStatus(false);
@@ -121,11 +119,12 @@ public class PatientVaccinationService {
 			}
 			LOG.info("Compnaies deleted successfully bu turning their status to false!");
 			return ResponseEntity.ok().body("patientVaccinations successfully deleted");
-		}catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			LOG.info("Error while deleting the patientVaccination object from database  : " + e.getMessage());
-			return new ResponseEntity("Error while deleting patientVaccinations!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("Error while deleting patientVaccinations!\n" + e.getMessage(),
+					HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 }

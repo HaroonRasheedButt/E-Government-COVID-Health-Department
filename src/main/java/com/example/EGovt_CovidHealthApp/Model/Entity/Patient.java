@@ -1,6 +1,8 @@
 package com.example.EGovt_CovidHealthApp.Model.Entity;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.joda.time.DateTime;
 
 import lombok.Data;
 
@@ -33,7 +37,7 @@ public class Patient {
 	@Column(nullable = false)
 	private String password;
 	@Column(nullable = true)
-	private Date createdDate;
+	private LocalDateTime createdDate;
 	@Column(nullable = true)
 	private Date updatedDate;
 	@Column
@@ -112,11 +116,11 @@ public class Patient {
 		this.password = password;
 	}
 
-	public Date getCreatedDate() {
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
 	}
 

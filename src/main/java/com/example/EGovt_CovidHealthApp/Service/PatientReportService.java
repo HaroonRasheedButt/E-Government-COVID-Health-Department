@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.example.EGovt_CovidHealthApp.Model.Entity.Hospital;
 import com.example.EGovt_CovidHealthApp.Model.Entity.PatientReport;
 import com.example.EGovt_CovidHealthApp.Repostiory.PatientReportRepository;
 import com.example.EGovt_CovidHealthApp.Util.DateTimeUtil;
@@ -56,22 +55,21 @@ public class PatientReportService {
      * @throws Exception the exception
      * @return Response Entity of type PatientReport
      **/
-	public ResponseEntity<PatientReport> addPatientReport(PatientReport patientReport, long patientId, long hospitalId) {
+	public PatientReport addPatientReport(PatientReport patientReport) throws Exception {
 		try {
 			patientReport.setCreatedDate(DateTimeUtil.getDate());
 			patientReport.setStatus(true);
-//			patientReport.setHospital(hospital);
-			patientReportRepository.save(patientReport);
+//			patientReportRepository.save(patientReport);
 			LOG.info("PatientReports successfully added to the database: " + patientReport);
-			return ResponseEntity.ok().body(patientReport);
+			return (patientReport);
 		}catch (PropertyValueException e) {
 			LOG.info("The syntax of the patientReport object is invalid : " + patientReport + e.getMessage());
-			return new ResponseEntity("Please send a valid object to add into the databse!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+			throw new PropertyValueException("Please send a valid object to add into the databse!\n" + e.getMessage(), PatientReport.class.getClass().getName(), this.toString());
 		}
 		catch (Exception e) {
 			// TODO: handle exception
 			LOG.info("Error while saving the patientReport object to database  : " + patientReport + e.getMessage());
-			return new ResponseEntity("Error adding a patientReport into database!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+			throw new Exception("Error adding a patientReport into database!\n" + e.getMessage());
 		}
 	}
 
@@ -82,27 +80,25 @@ public class PatientReportService {
      * @throws Exception the exception
      * @return Response Entity of type PatientReport
      **/
-	public ResponseEntity<PatientReport> updatePatientReport(PatientReport patientReport) {
+	public PatientReport updatePatientReport(PatientReport patientReport) throws Exception {
 		try {
 			Optional<PatientReport> exists = patientReportRepository.findById(patientReport.getId());
 			if (exists.isPresent()) {
 				patientReport.setUpdatedDate(DateTimeUtil.getDate());
-				patientReportRepository.save(patientReport);
 				LOG.info("PatientReports successfully updated in the database: " + patientReport);
-				return ResponseEntity.ok().body(patientReport);
+				return patientReport;
 			} else {
-				LOG.info("Copmany could not be updated because the compnay id could not be found  : " );
-				return new ResponseEntity("Compnay of this id does not exist. Please update a existing record!",
-						HttpStatus.ACCEPTED);
+				LOG.info("PatientReport could not be updated because the compnay id could not be found  : " );
+				throw new Exception("PatientReport of this id does not exist in database!\n" );
 			}
 
 		}catch (PropertyValueException e) {
 			LOG.info("The syntax of the patientReport object is invalid : " + patientReport + e.getMessage());
-			return new ResponseEntity("Please send a valid object to update from the databse!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+			throw new PropertyValueException("Please send a valid object to add into the databse!\n" + e.getMessage(), PatientReport.class.getClass().getName(), this.toString());
 		} catch (Exception e) {
 			// TODO: handle exception
 			LOG.info("Error while saving the patientReport object to database  : " + patientReport + e.getMessage());
-			return new ResponseEntity("Error updating patientReport!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+			throw new Exception("Error updating a patientReport into database!\n" + e.getMessage());
 		}
 	}
 	
@@ -119,7 +115,7 @@ public class PatientReportService {
 				patientReport.setStatus(false);
 				patientReportRepository.save(patientReport);
 			}
-			LOG.info("Compnaies deleted successfully bu turning their status to false!");
+			LOG.info("Compnaies deleted successfully by turning their status to false!");
 			return ResponseEntity.ok().body("patientReports successfully deleted");
 		}catch (Exception e) {
 			// TODO: handle exception

@@ -2,14 +2,11 @@ package com.example.EGovt_CovidHealthApp.Model.Entity;
 
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 import lombok.Data;
 
@@ -22,10 +19,6 @@ public class PatientVaccination {
     private String vaccineName;
     @Column
     private Date vaccinatedDate;
-//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-//    private Hospital hospital;
-//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-//    private Lab lab;
 	@Column
     private int totalDoses;
     @Column(nullable = true)
@@ -34,6 +27,8 @@ public class PatientVaccination {
     private Date updatedDate;
     @Column
     private boolean status;
+    
+    
 	public long getId() {
 		return id;
 	}
@@ -52,18 +47,6 @@ public class PatientVaccination {
 	public void setVaccinatedDate(Date vaccinatedDate) {
 		this.vaccinatedDate = vaccinatedDate;
 	}
-//	public Hospital getHospital() {
-//		return hospital;
-//	}
-//	public void setHospital(Hospital hospital) {
-//		this.hospital = hospital;
-//	}
-//	public Lab getLab() {
-//		return lab;
-//	}
-//	public void setLab(Lab lab) {
-//		this.lab = lab;
-//	}
 	public int getTotalDoses() {
 		return totalDoses;
 	}

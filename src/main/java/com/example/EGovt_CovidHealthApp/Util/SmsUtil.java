@@ -12,23 +12,7 @@ public class SmsUtil {
     private static final String ACCOUNT_SID = "AC81d02d144295cdbec7e24bd18e361909";
     private static final String AUTH_TOKEN = "366746fa03de81a25ea921190cb77f57";
     private static final String fromNumber = "+19803006396";
-    
 
-
-//    public static String sendSms(String toNumber, String message) {
-//        try {
-//            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-//            Message.creator(new PhoneNumber(toNumber), new PhoneNumber(fromNumber), message).create();
-//            return ("Successfully sent");
-//        }
-//        catch (AuthenticationException e) {
-//            return("Authentication error while sending message to the contact number! \n" + e.getMessage());
-//        }
-//        catch (Exception e) {
-//            return ("Unable to send sms\n" + e.getMessage());
-//        }
-//    }
-//    
     
     /**
      * @description Sends an SMS string to user which is a token to verify the user.

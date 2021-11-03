@@ -17,8 +17,6 @@ import com.example.EGovt_CovidHealthApp.Util.MailUtil;
 import com.example.EGovt_CovidHealthApp.Util.SmsUtil;
 import com.example.EGovt_CovidHealthApp.Util.TokenGenerationUtil;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
-import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
-import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Token;
 import com.example.EGovt_CovidHealthApp.Repostiory.PatientRepository;
 import com.example.EGovt_CovidHealthApp.Repostiory.TokenRepository;
@@ -51,7 +49,7 @@ public class PatientService {
 	 **/
 	public ResponseEntity<List<Patient>> getAllPatients() {
 		try {
-			Optional<List<Patient>> patients = Optional.of(patientRepository.findAllByStatusTrue());
+			Optional<List<Patient>> patients = Optional.of(patientRepository.findAllByStatusTrueOrderByCreatedDateDesc());
 			if (patients.isPresent()) {
 				LOG.info("Patients successfully Retrieved : " + patients.get());
 				return ResponseEntity.ok().body(patients.get());
@@ -104,7 +102,7 @@ public class PatientService {
 		MailUtil mailUtil = new MailUtil(javaMailSender);
 
 		try {
-			patient.setCreatedDate(DateTimeUtil.getDate());
+//			patient.setCreatedDate(DateTimeUtil.getSystemDefaultTimeZone());
 			patient.setStatus(false);
 
 			token.setSmsToken(TokenGenerationUtil.generateToken());

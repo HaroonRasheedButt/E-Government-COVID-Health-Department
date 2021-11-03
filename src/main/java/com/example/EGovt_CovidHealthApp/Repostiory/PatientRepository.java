@@ -11,4 +11,7 @@ import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long>{
 	List<Patient> findAllByStatusTrue();
+	List<Patient> findAllByStatusTrueOrderByCreatedDateDesc();
+	Patient findByCnic(String cnic);
+	
 }

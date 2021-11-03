@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
@@ -37,6 +38,9 @@ public class Lab {
     @Column
     private String province; 
     
+    @ManyToMany(targetEntity = Patient.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private List<Patient> patients = new ArrayList<Patient>();
+    
     @OneToMany(targetEntity = CovidTest.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CovidTest> covidTests = new ArrayList<CovidTest>();
 
@@ -50,6 +54,14 @@ public class Lab {
 
 	public String getName() {
 		return name;
+	}
+
+	public List<Patient> getPatients() {
+		return patients;
+	}
+
+	public void setPatients(List<Patient> patients) {
+		this.patients = patients;
 	}
 
 	public void setName(String name) {

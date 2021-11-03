@@ -1,6 +1,5 @@
 package com.example.EGovt_CovidHealthApp.Model.Entity;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
