@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 
 import com.example.EGovt_CovidHealthApp.Util.AuthorizationUtil;
+import com.netflix.servo.tag.Tag;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
+import com.example.EGovt_CovidHealthApp.Model.Interface.Tags;
 import com.example.EGovt_CovidHealthApp.Service.PatientService;
 
 /**
@@ -64,6 +66,56 @@ public class PatientController {
 
 	/**
 	 * @creationDate 29 October 2021
+	 * @description This function retrieves all the patients which are saved in
+	 *              database.
+	 * @param Optional String: the authorization token
+	 * @throws Exception the exception
+	 * @return list of patients
+	 **/
+	@GetMapping("/patient/getAllPatients")
+	public ResponseEntity<Patient> getPatientById(@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestHeader("patientId") long patientId)
+
+			throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+		return patientService.getPatientById(patientId);
+	}
+
+	/**
+	 * @creationDate 29 October 2021
+	 * @description This function retrieves all the patients which are saved in
+	 *              database.
+	 * @param Optional String: the authorization token
+	 * @throws Exception the exception
+	 * @return list of patients
+	 **/
+	@GetMapping("/patient/getAllPatients")
+	public ResponseEntity<Patient> getPatientByCnic(@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestHeader("patientCnic") String patientCnic)
+
+			throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+		return patientService.getPatientByCnic(patientCnic);
+	}
+
+	/**
+	 * @creationDate 29 October 2021
 	 * @description This function adds a patient in database.
 	 * @param Optional String: the authorization token
 	 * @param Patient: A patient object to be added
@@ -84,33 +136,107 @@ public class PatientController {
 		}
 		return patientService.addPatient(patient);
 	}
-	
-	
-	 /**
-     * Verify patient response entity.
-     *
-     * @param authToken  the auth token
-     * @param patientId     the patient id
-     * @param smsToken   the sms token
-     * @param emailToken the email token
-     * @return the response entity
-     * @throws Exception the exception
-     */
-    @GetMapping("/verifyPatient")
-    public ResponseEntity<String> verifyPatient(@RequestHeader("Authorization") Optional<String> authToken,
-                                             @RequestHeader long patientId,
-                                             @RequestHeader String smsToken,
-                                             @RequestHeader String emailToken) throws Exception {
-        try {
-        	AuthorizationUtil.authorized(authToken);
-        } catch (HttpClientErrorException e) {
-            LOG.info("Unable to Authorize : " + e.getMessage());
-            if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-                return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-                return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-        }
-        return patientService.verifyPatient(patientId, smsToken, emailToken);
-    }
+
+	/**
+	 * Verify patient response entity.
+	 *
+	 * @param authToken  the auth token
+	 * @param patientId  the patient id
+	 * @param smsToken   the SMS token
+	 * @param emailToken the email token
+	 * @return the response entity
+	 * @throws Exception the exception
+	 */
+	@GetMapping("/verifyPatient")
+	public ResponseEntity<String> verifyPatient(@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestHeader long patientId, @RequestHeader String smsToken, @RequestHeader String emailToken)
+			throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+		return patientService.verifyPatient(patientId, smsToken, emailToken);
+	}
+
+	/**
+	 * @creationDate 29 October 2021
+	 * @description This function checks if a patient has COVID based on their CNIC
+	 *              from database.
+	 * @param Optional String: the authorization token
+	 * @throws Exception the exception
+	 * @return boolean: patient status
+	 **/
+	@GetMapping("/covid/status")
+	public ResponseEntity<Boolean> checkPatientCovidStatus(@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestHeader("patientCnic") String patientCnic)
+
+			throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+		return patientService.checkPatientCovidStatus(patientCnic);
+	}
+
+	/**
+	 * @creationDate 29 October 2021
+	 * @description This function checks if a patient has COVID based on their CNIC
+	 *              from database.
+	 * @param Optional String: the authorization token
+	 * @throws Exception the exception
+	 * @return boolean: patient status
+	 **/
+	@GetMapping("/vaccine/status")
+	public ResponseEntity<Boolean> checkPatientVaccinationStatus(
+			@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestHeader("patientCnic") String patientCnic)
+
+			throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+		return patientService.checkPatientVaccinationStatus(patientCnic);
+	}
+
+	/*-------------------------TAlha API calling to check feign client.....getting Tags------------*/
+	/**
+	 * @creationDate 29 October 2021
+	 * @description This function retrieves all the patients which are saved in
+	 *              database.
+	 * @param Optional String: the authorization token
+	 * @throws Exception the exception
+	 * @return list of patients
+	 **/
+	@GetMapping("/getTags")
+	public ResponseEntity<List<Tags>> getTags(@RequestHeader("Authorization") Optional<String> authToken)
+
+			throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+		return patientService.getTags();
+	}
 
 }

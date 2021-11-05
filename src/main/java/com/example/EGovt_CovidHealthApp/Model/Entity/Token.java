@@ -1,6 +1,6 @@
 package com.example.EGovt_CovidHealthApp.Model.Entity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,9 +20,9 @@ public class Token {
 	@Column(nullable = false)
 	private String userType;
 	@Column(nullable = false)
-	private Timestamp createdDate;
+	private Date createdDate;
 	@Column
-	private Timestamp verifyingDate;
+	private Date verifyingDate;
 	@Column(nullable = false)
 	private String smsToken;
 	@Column(nullable = false)
@@ -48,16 +48,16 @@ public class Token {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-	public Timestamp getverifyingDate() {
+	public Date getverifyingDate() {
 		return verifyingDate;
 	}
-	public void setverifyingDate(Timestamp expiryDate) {
+	public void setverifyingDate(Date expiryDate) {
 		this.verifyingDate = expiryDate;
 	}
-	public Timestamp getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
-	public void setCreatedDate(Timestamp createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 	public String getSmsToken() {

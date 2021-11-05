@@ -18,9 +18,9 @@ import com.example.EGovt_CovidHealthApp.Util.SmsUtil;
 import com.example.EGovt_CovidHealthApp.Util.TokenGenerationUtil;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Token;
+import com.example.EGovt_CovidHealthApp.Model.Interface.Tags;
 import com.example.EGovt_CovidHealthApp.Repostiory.PatientRepository;
 import com.example.EGovt_CovidHealthApp.Repostiory.TokenRepository;
-
 
 /**
  * @author Haroon Rasheed
@@ -31,13 +31,24 @@ public class PatientService {
 	private final JavaMailSender javaMailSender;
 	private final PatientRepository patientRepository;
 	private final TokenRepository tokenRepository;
+	private final FeignClientCheck feignClientCheck;
 	private static final Logger LOG = LogManager.getLogger(PatientService.class);
 
 	public PatientService(JavaMailSender javaMailSender, PatientRepository patientRepository,
-			TokenRepository tokenRepository) {
+			TokenRepository tokenRepository, FeignClientCheck feignClientCheck) {
 		this.patientRepository = patientRepository;
+		this.feignClientCheck = feignClientCheck;
 		this.javaMailSender = javaMailSender;
 		this.tokenRepository = tokenRepository;
+	}
+
+	public ResponseEntity<List<Tags>> getTags() {
+		try {
+			return feignClientCheck.getTags("40dc498b-e837-4fa9-8e53-c1d51e01af15");
+		} catch (Exception e) {
+
+			return null;
+		}
 	}
 
 	/**
@@ -49,7 +60,8 @@ public class PatientService {
 	 **/
 	public ResponseEntity<List<Patient>> getAllPatients() {
 		try {
-			Optional<List<Patient>> patients = Optional.of(patientRepository.findAllByStatusTrueOrderByCreatedDateDesc());
+			Optional<List<Patient>> patients = Optional
+					.of(patientRepository.findAllByStatusTrueOrderByCreatedDateDesc());
 			if (patients.isPresent()) {
 				LOG.info("Patients successfully Retrieved : " + patients.get());
 				return ResponseEntity.ok().body(patients.get());
@@ -64,7 +76,7 @@ public class PatientService {
 		}
 
 	}
-	
+
 	/**
 	 * @creationDate 1st November 2021
 	 * @description This function gets a patient based on an id from database.
@@ -86,9 +98,7 @@ public class PatientService {
 			LOG.info("Exception caught in get all patient. Unable to get all patients.");
 			return new ResponseEntity("Unable to get patient by id\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-
 	}
-
 
 	/**
 	 * @creationDate 29 October 2021
@@ -102,7 +112,7 @@ public class PatientService {
 		MailUtil mailUtil = new MailUtil(javaMailSender);
 
 		try {
-//			patient.setCreatedDate(DateTimeUtil.getSystemDefaultTimeZone());
+			patient.setCreatedDate(DateTimeUtil.getDate());
 			patient.setStatus(false);
 
 			token.setSmsToken(TokenGenerationUtil.generateToken());
@@ -138,12 +148,12 @@ public class PatientService {
 	}
 
 	/**
-     * @creationDate 28 October 2021
-     * @description This function updates a patient in database.
-     * @param Patient: A patient object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type Patient
-     **/
+	 * @creationDate 28 October 2021
+	 * @description This function updates a patient in database.
+	 * @param Patient: A patient object to be added
+	 * @throws Exception the exception
+	 * @return Response Entity of type Patient
+	 **/
 	public ResponseEntity<Patient> updatePatient(Patient patient) {
 		try {
 			Optional<Patient> exists = patientRepository.findById(patient.getId());
@@ -153,22 +163,22 @@ public class PatientService {
 				LOG.info("Patients successfully updated in the database: " + patient);
 				return ResponseEntity.ok().body(patient);
 			} else {
-				LOG.info("Copmany could not be updated because the compnay id could not be found  : " );
+				LOG.info("Copmany could not be updated because the compnay id could not be found  : ");
 				return new ResponseEntity("Compnay of this id does not exist. Please update a existing record!",
 						HttpStatus.ACCEPTED);
 			}
 
-		}catch (PropertyValueException e) {
+		} catch (PropertyValueException e) {
 			LOG.info("The syntax of the patient object is invalid : " + patient + e.getMessage());
-			return new ResponseEntity("Please send a valid object to update from the databse!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("Please send a valid object to update from the databse!\n" + e.getMessage(),
+					HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			// TODO: handle exception
 			LOG.info("Error while saving the patient object to database  : " + patient + e.getMessage());
 			return new ResponseEntity("Error updating copmany!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	
+
 	/**
 	 * @return String which is a confirmation if the patient is verified or not.
 	 * @author Haroon Rasheed
@@ -183,7 +193,7 @@ public class PatientService {
 					.ofNullable(tokenRepository.findByUserIdAndSmsTokenAndEmailToken(patientId, smsToken, emailToken));
 			if (token.isPresent()) {
 				LOG.info("SMS and Email token are correct !\n ");
-				Timestamp patientVerifyingDate = DateTimeUtil.getTimestamp();
+				java.util.Date patientVerifyingDate = DateTimeUtil.getDate();
 				token.get().setverifyingDate(patientVerifyingDate);
 
 				long creatingMins = token.get().getCreatedDate().getMinutes();
@@ -226,4 +236,84 @@ public class PatientService {
 			return new ResponseEntity("Unable to verify patient\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
+
+	/**
+	 * @creationDate 1st November 2021
+	 * @description This function gets a patient based on their CNIC from database.
+	 * @param N/A
+	 * @throws Exception the exception
+	 * @return Response Entity of type Patient
+	 **/
+	public ResponseEntity<Patient> getPatientByCnic(String patientCnic) {
+		try {
+			Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnic(patientCnic));
+			if (patient.isPresent()) {
+				LOG.info("Patient found by id.");
+				return ResponseEntity.ok().body(patient.get());
+			} else {
+				LOG.info("Patient not found");
+				return new ResponseEntity("Patient Not Found", HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
+			LOG.info("Exception caught in get all patient. Unable to get all patients.");
+			return new ResponseEntity("Unable to get patient by id\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	/**
+	 * @creationDate 1st November 2021
+	 * @description This function checks if a patient has COVID based on their CNIC from database.
+	 * @param N/A
+	 * @throws Exception the exception
+	 * @return boolean: patient status
+	 **/
+	public ResponseEntity<Boolean> checkPatientCovidStatus(String patientCnic) throws Exception {
+		try {
+			Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnic(patientCnic));
+			if (patient.isPresent()) {
+				LOG.info("Patient found by cnic.");
+				if (patient.get().isHasCovid())
+					return ResponseEntity.ok().body(true);
+				else
+					return ResponseEntity.ok().body(false);
+			} else {
+				LOG.info("Patient not found");
+				return ResponseEntity.ok().body(false);
+			}
+		} catch (Exception e) {
+			LOG.info("Exception caught in finding a patient. Unable to find patient by their CNIC..");
+			throw new Exception(
+					"Exception caught while checking patient COVID status/ PLease try again later!" + e.getMessage());
+		}
+	}
+
+
+	/**
+	 * @creationDate 1st November 2021
+	 * @description This function checks if a patient has been vaccinated based on their CNIC from database.
+	 * @param N/A
+	 * @throws Exception the exception
+	 * @return boolean: patient status
+	 **/
+	public ResponseEntity<Boolean> checkPatientVaccinationStatus(String patientCnic) throws Exception {
+		try {
+			Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnic(patientCnic));
+			if (patient.isPresent()) {
+				LOG.info("Patient found by cnic.");
+				if (patient.get().isVaccinated())
+					return ResponseEntity.ok().body(true);
+				else
+					return ResponseEntity.ok().body(false);
+			} else {
+				LOG.info("Patient not found");
+				return ResponseEntity.ok().body(false);
+			}
+		} catch (Exception e) {
+			LOG.info("Exception caught in finding a patient. Unable to dind patient by their CNIC.");
+			throw new Exception(
+					"Exception caught while checking patient Vaccination status/ PLease try again later!" + e.getMessage());
+		}
+	}
+
+
 }
