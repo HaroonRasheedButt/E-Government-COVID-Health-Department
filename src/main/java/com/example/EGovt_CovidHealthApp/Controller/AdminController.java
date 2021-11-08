@@ -21,6 +21,7 @@ import org.apache.logging.log4j.Logger;
 import com.example.EGovt_CovidHealthApp.Util.AuthorizationUtil;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Company;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Hospital;
+import com.example.EGovt_CovidHealthApp.Model.Entity.Lab;
 import com.example.EGovt_CovidHealthApp.Service.AdminService;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -141,7 +142,7 @@ public class AdminController {
      * @creationDate 28 October 2021
      * @description This function adds a hospital in database.
      * @param Optional String:  the authorization token
-     * @param Hospital: A hospital object to be added
+     * @param Hospitalabpital object to be added
      * @throws Exception the exception
      * @return Response Entity of type Hospital
      **/
@@ -209,4 +210,77 @@ public class AdminController {
 	}
 	
 	
+//-----------------------------------------Admin Controller for Lab Oeprations
+	
+
+    /**
+     * @creationDate 28 October 2021
+     * @description This function adds a lab in database.
+     * @param Optional String:  the authorization token
+     * @param Lab: A lab object to be added
+     * @throws Exception the exception
+     * @return Response Entity of type Lab
+     **/
+	@PostMapping("/lab/addLab")
+	public ResponseEntity<Lab> addLab(@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestBody Lab lab) throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+
+		return adminService.addLab(lab);
+	}
+
+    /**
+     * @creationDate 28 October 2021
+     * @description This function updates a lab in database.
+     * @param Optional String:  the authorization token
+     * @param Lab: A lab object to be added
+     * @throws Exception the exception
+     * @return Response Entity of type Lab
+     **/
+	@PutMapping("/lab/updateLab")
+	public ResponseEntity<Lab> updateLab(@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestBody Lab lab) throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+
+		return adminService.updateLab(lab);
+	}
+
+    /**
+     * @creationDate 28 October 2021
+     * @description This function updates a lab in database.
+     * @param Optional String:  the authorization token
+     * @param Path Variable : The id of
+     * @throws Exception the exception
+     * @return Response Entity of type String
+     **/
+	@DeleteMapping("/hospital/deleteLab")
+	public ResponseEntity<String> deleteLab(@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestBody List<Lab> hopitals) throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+		return adminService.deleteLab(hopitals);
+	}
 }

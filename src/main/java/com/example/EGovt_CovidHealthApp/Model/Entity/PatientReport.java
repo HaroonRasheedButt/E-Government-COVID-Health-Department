@@ -15,14 +15,13 @@ import lombok.Data;
 public class PatientReport {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column
+	@Column(nullable = false)
 	private Date testDate;
-	@Column
+	@Column(nullable = false)
 	private String testResults;
-	
-	@Column(nullable = true)
+	@Column
     private Date createdDate;
-    @Column(nullable = true)
+    @Column
     private Date updatedDate;
     @Column
     private boolean status;

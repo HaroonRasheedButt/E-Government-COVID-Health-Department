@@ -1,6 +1,7 @@
 package com.example.EGovt_CovidHealthApp.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -28,7 +29,7 @@ public class HospitalService {
 	private final PatientService patientService;
 	private final PatientReportService patientReportService;
 	private final PatientVaccinationService patientVaccinationService;
-	private static final Logger LOG = LogManager.getLogger(AdminService.class);
+	private static final Logger LOG = LogManager.getLogger(HospitalService.class);
 
 	public HospitalService(HospitalRepository hospitalRepository, PatientReportService patientReportService,
 			PatientVaccinationService patientVaccinationService, PatientService patientService,
@@ -50,7 +51,7 @@ public class HospitalService {
 	 **/
 	public ResponseEntity<List<Hospital>> getAllHospitals() {
 		try {
-			Optional<List<Hospital>> hospitals = Optional.of(hospitalRepository.findAllByStatusTrue());
+			Optional<List<Hospital>> hospitals = Optional.of(hospitalRepository.findAllByStatusTrueOrderByCreatedDateDesc());
 			if (hospitals.isPresent()) {
 				LOG.info("Hospitals successfully Retrieved : " + hospitals.get());
 				return ResponseEntity.ok().body(hospitals.get());
@@ -159,6 +160,8 @@ public class HospitalService {
 	public ResponseEntity<String> deleteHospital(List<Hospital> hospitals) {
 		try {
 			for (Hospital hospital : hospitals) {
+				if(Objects.isNull(hospital.getId()))
+					return new ResponseEntity("Please provide the ID of hospital, having email : "+ hospital.getEmail(),HttpStatus.PARTIAL_CONTENT);
 				hospital.setStatus(false);
 				hospitalRepository.save(hospital);
 			}
@@ -189,12 +192,12 @@ public class HospitalService {
 				if (patient.isPresent()) {
 					// this will set the created date and status of patient Report
 					patientReport = patientReportService.addPatientReport(patientReport);
-					patient.get().getCovidReports().add(patientReport);
+					patient.get().getPatientReports().add(patientReport);
 
 					if (patientReport.getTestResults().toLowerCase().equals("positive")) {
-						patient.get().setHasCovid(true);
+						patient.get().setCovid(true);
 					} else if (patientReport.getTestResults().toLowerCase().equals("negative")) {
-						patient.get().setHasCovid(false);
+						patient.get().setCovid(false);
 					}
 					patient = Optional.of(patientService.updatePatient(patient.get()).getBody());
 					List<Patient> patientsOfHospital = hospital.get().getPatients();
@@ -243,7 +246,7 @@ public class HospitalService {
 
 					// this will set the created date and status of patient Report
 					patientVaccination = patientVaccinationService.addPatientVaccination(patientVaccination);
-					patient.get().getCovidVaccines().add(patientVaccination);
+					patient.get().getPatientVaccination().add(patientVaccination);
 					patient.get().setVaccinated(true);
 					patient = Optional.of(patientService.updatePatient(patient.get()).getBody());
 					List<Patient> patientsOfHospital = hospital.get().getPatients();

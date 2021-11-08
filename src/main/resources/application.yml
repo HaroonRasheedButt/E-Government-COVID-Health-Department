@@ -2,7 +2,7 @@ spring:
   application:
     name: e-health
 server:
-  port: 8082
+  port: 8080
 eureka:
   instance:
     preferIpAddress: true
@@ -10,4 +10,4 @@ eureka:
     lease-expiration-duration-in-seconds: 20
   client:
     serviceUrl:
-      defaultZone: http://192.168.10.11:8761/eureka
+      defaultZone: http://192.168.10.8:8761/eureka

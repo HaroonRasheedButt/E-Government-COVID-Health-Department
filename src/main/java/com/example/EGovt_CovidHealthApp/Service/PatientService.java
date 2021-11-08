@@ -31,25 +31,25 @@ public class PatientService {
 	private final JavaMailSender javaMailSender;
 	private final PatientRepository patientRepository;
 	private final TokenRepository tokenRepository;
-	private final FeignClientCheck feignClientCheck;
+//	private final FeignClientCheck feignClientCheck;
 	private static final Logger LOG = LogManager.getLogger(PatientService.class);
 
 	public PatientService(JavaMailSender javaMailSender, PatientRepository patientRepository,
-			TokenRepository tokenRepository, FeignClientCheck feignClientCheck) {
+			TokenRepository tokenRepository) {
 		this.patientRepository = patientRepository;
-		this.feignClientCheck = feignClientCheck;
+//		this.feignClientCheck = feignClientCheck;
 		this.javaMailSender = javaMailSender;
 		this.tokenRepository = tokenRepository;
 	}
 
-	public ResponseEntity<List<Tags>> getTags() {
-		try {
-			return feignClientCheck.getTags("40dc498b-e837-4fa9-8e53-c1d51e01af15");
-		} catch (Exception e) {
-
-			return null;
-		}
-	}
+//	public ResponseEntity<List<Tags>> getTags() {
+//		try {
+//			return feignClientCheck.getTags("40dc498b-e837-4fa9-8e53-c1d51e01af15");
+//		} catch (Exception e) {
+//
+//			return null;
+//		}
+//	}
 
 	/**
 	 * @creationDate 29 October 2021
@@ -114,7 +114,8 @@ public class PatientService {
 		try {
 			patient.setCreatedDate(DateTimeUtil.getDate());
 			patient.setStatus(false);
-
+			patient.setAlive(true);
+			
 			token.setSmsToken(TokenGenerationUtil.generateToken());
 			SmsUtil.sendSms(patient.getContactNum(), token.getSmsToken());
 
@@ -272,7 +273,7 @@ public class PatientService {
 			Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnic(patientCnic));
 			if (patient.isPresent()) {
 				LOG.info("Patient found by cnic.");
-				if (patient.get().isHasCovid())
+				if (patient.get().isCovid())
 					return ResponseEntity.ok().body(true);
 				else
 					return ResponseEntity.ok().body(false);

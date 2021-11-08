@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 
 import com.example.EGovt_CovidHealthApp.Model.Entity.Lab;
@@ -20,6 +22,12 @@ import com.example.EGovt_CovidHealthApp.Model.Entity.PatientVaccination;
 import com.example.EGovt_CovidHealthApp.Service.LabService;
 import com.example.EGovt_CovidHealthApp.Util.AuthorizationUtil;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+
+@EnableSwagger2
+@RestController
+@RequestMapping("/lab")
 public class LabController {
 
 	private static final Logger LOG = LogManager.getLogger(LabController.class);

@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.PropertyValueException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.example.EGovt_CovidHealthApp.Model.Entity.Lab;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
@@ -17,6 +18,7 @@ import com.example.EGovt_CovidHealthApp.Repostiory.LabRepository;
 import com.example.EGovt_CovidHealthApp.Repostiory.PatientRepository;
 import com.example.EGovt_CovidHealthApp.Util.DateTimeUtil;
 
+@Service
 public class LabService {
 
 	private final LabRepository labRepository;
@@ -184,12 +186,12 @@ public class LabService {
 				if (patient.isPresent()) {
 					// this will set the created date and status of patient Report
 					patientReport = patientReportService.addPatientReport(patientReport);
-					patient.get().getCovidReports().add(patientReport);
+					patient.get().getPatientReports().add(patientReport);
 
 					if (patientReport.getTestResults().toLowerCase().equals("positive")) {
-						patient.get().setHasCovid(true);
+						patient.get().setCovid(true);
 					} else if (patientReport.getTestResults().toLowerCase().equals("negative")) {
-						patient.get().setHasCovid(false);
+						patient.get().setCovid(false);
 					}
 
 					patient = Optional.of(patientService.updatePatient(patient.get()).getBody());
@@ -237,7 +239,7 @@ public class LabService {
 
 					// this will set the created date and status of patient Report
 					patientVaccination = patientVaccinationService.addPatientVaccination(patientVaccination);
-					patient.get().getCovidVaccines().add(patientVaccination);
+					patient.get().getPatientVaccination().add(patientVaccination);
 					patient.get().setVaccinated(true);
 					patient = Optional.of(patientService.updatePatient(patient.get()).getBody());
 					List<Patient> patientsOfLab = lab.get().getPatients();

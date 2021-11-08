@@ -34,51 +34,36 @@ public class Patient {
 	private String password;
 	@Column(nullable = true)
 	private Date createdDate;
-	@Column(nullable = true)
+	@Column
 	private Date updatedDate;
 	@Column
 	private boolean status;
+	@Column(nullable = false)
+	private boolean isAlive;
 	@Column
-	private boolean hasCovid;
+	private boolean isCovid;
 	@Column
 	private boolean isVaccinated;
 	@Column(nullable = false)
 	private String contactNum;
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String cnic;
 	@Column(nullable = false)
 	private int age;
-	@Column
+	@Column(nullable = false)
 	private String address;
-	@Column
-	private String currentCity;
-	@Column
+	@Column(nullable = false)
+	private String city;
+	@Column(nullable = false)
 	private String province;
 	@Column
 	private String postalCode;
 	
 	@OneToMany(targetEntity = PatientReport.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PatientReport> covidReports = new ArrayList<PatientReport>();
+    private List<PatientReport> patientReports = new ArrayList<PatientReport>();
     
     @OneToMany(targetEntity = PatientVaccination.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PatientVaccination> covidVaccines = new ArrayList<PatientVaccination>();
-    
-	
-	public List<PatientReport> getCovidReports() {
-		return covidReports;
-	}
-
-	public void setCovidReports(List<PatientReport> covidReports) {
-		this.covidReports = covidReports;
-	}
-
-	public List<PatientVaccination> getCovidVaccines() {
-		return covidVaccines;
-	}
-
-	public void setCovidVaccines(List<PatientVaccination> covidVaccines) {
-		this.covidVaccines = covidVaccines;
-	}
+    private List<PatientVaccination> patientVaccination = new ArrayList<PatientVaccination>();
 
 	public long getId() {
 		return id;
@@ -136,12 +121,20 @@ public class Patient {
 		this.status = status;
 	}
 
-	public boolean isHasCovid() {
-		return hasCovid;
+	public boolean isAlive() {
+		return isAlive;
 	}
 
-	public void setHasCovid(boolean hasCovid) {
-		this.hasCovid = hasCovid;
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
+
+	public boolean isCovid() {
+		return isCovid;
+	}
+
+	public void setCovid(boolean isCovid) {
+		this.isCovid = isCovid;
 	}
 
 	public boolean isVaccinated() {
@@ -184,12 +177,12 @@ public class Patient {
 		this.address = address;
 	}
 
-	public String getCurrentCity() {
-		return currentCity;
+	public String getCity() {
+		return city;
 	}
 
-	public void setCurrentCity(String currentCity) {
-		this.currentCity = currentCity;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getProvince() {
@@ -208,21 +201,21 @@ public class Patient {
 		this.postalCode = postalCode;
 	}
 
-//	public List<PatientReport> getCovidReports() {
-//		return covidReports;
-//	}
-//
-//	public void setCovidReports(List<PatientReport> covidReports) {
-//		this.covidReports = covidReports;
-//	}
-//
-//	public List<PatientVaccination> getCovidVaccines() {
-//		return covidVaccines;
-//	}
-//
-//	public void setCovidVaccines(List<PatientVaccination> covidVaccines) {
-//		this.covidVaccines = covidVaccines;
-//	}
+	public List<PatientReport> getPatientReports() {
+		return patientReports;
+	}
+
+	public void setPatientReports(List<PatientReport> patientReports) {
+		this.patientReports = patientReports;
+	}
+
+	public List<PatientVaccination> getPatientVaccination() {
+		return patientVaccination;
+	}
+
+	public void setPatientVaccination(List<PatientVaccination> patientVaccination) {
+		this.patientVaccination = patientVaccination;
+	}
 
 	
 }

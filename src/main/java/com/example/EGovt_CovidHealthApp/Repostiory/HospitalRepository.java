@@ -11,5 +11,6 @@ import com.example.EGovt_CovidHealthApp.Model.Entity.Hospital;
 @Repository
 public interface HospitalRepository extends JpaRepository<Hospital, Long>{
 	List<Hospital> findAllByStatusTrue();
-
+	Hospital findByEmailAndPassword(String email, String password);
+	List<Hospital> findAllByStatusTrueOrderByCreatedDateDesc();
 }

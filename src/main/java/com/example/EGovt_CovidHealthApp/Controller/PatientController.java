@@ -16,12 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 
 import com.example.EGovt_CovidHealthApp.Util.AuthorizationUtil;
-import com.netflix.servo.tag.Tag;
+//import com.netflix.servo.tag.Tag;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
-import com.example.EGovt_CovidHealthApp.Model.Interface.Tags;
 import com.example.EGovt_CovidHealthApp.Service.PatientService;
 
 /**
@@ -48,7 +47,7 @@ public class PatientController {
 	 * @throws Exception the exception
 	 * @return list of patients
 	 **/
-	@GetMapping("/patient/getAllPatients")
+	@GetMapping("/getAllPatients")
 	public ResponseEntity<List<Patient>> getAllPatients(@RequestHeader("Authorization") Optional<String> authToken)
 
 			throws Exception {
@@ -72,7 +71,7 @@ public class PatientController {
 	 * @throws Exception the exception
 	 * @return list of patients
 	 **/
-	@GetMapping("/patient/getAllPatients")
+	@GetMapping("/getPatientById")
 	public ResponseEntity<Patient> getPatientById(@RequestHeader("Authorization") Optional<String> authToken,
 			@RequestHeader("patientId") long patientId)
 
@@ -97,7 +96,7 @@ public class PatientController {
 	 * @throws Exception the exception
 	 * @return list of patients
 	 **/
-	@GetMapping("/patient/getAllPatients")
+	@GetMapping("/getPatientByCnic")
 	public ResponseEntity<Patient> getPatientByCnic(@RequestHeader("Authorization") Optional<String> authToken,
 			@RequestHeader("patientCnic") String patientCnic)
 
@@ -122,7 +121,7 @@ public class PatientController {
 	 * @throws Exception the exception
 	 * @return Response Entity of type Patient
 	 **/
-	@PostMapping("/patient/addPatient")
+	@PostMapping("/addPatient")
 	public ResponseEntity<Patient> addPatient(@RequestHeader("Authorization") Optional<String> authToken,
 			@RequestBody Patient patient) throws Exception {
 		try {
@@ -168,6 +167,7 @@ public class PatientController {
 	 * @description This function checks if a patient has COVID based on their CNIC
 	 *              from database.
 	 * @param Optional String: the authorization token
+	 * @param String: the patient's CNIC
 	 * @throws Exception the exception
 	 * @return boolean: patient status
 	 **/
@@ -193,6 +193,7 @@ public class PatientController {
 	 * @description This function checks if a patient has COVID based on their CNIC
 	 *              from database.
 	 * @param Optional String: the authorization token
+	 * @param String: the patient's CNIC
 	 * @throws Exception the exception
 	 * @return boolean: patient status
 	 **/
@@ -214,29 +215,29 @@ public class PatientController {
 		return patientService.checkPatientVaccinationStatus(patientCnic);
 	}
 
-	/*-------------------------TAlha API calling to check feign client.....getting Tags------------*/
-	/**
-	 * @creationDate 29 October 2021
-	 * @description This function retrieves all the patients which are saved in
-	 *              database.
-	 * @param Optional String: the authorization token
-	 * @throws Exception the exception
-	 * @return list of patients
-	 **/
-	@GetMapping("/getTags")
-	public ResponseEntity<List<Tags>> getTags(@RequestHeader("Authorization") Optional<String> authToken)
-
-			throws Exception {
-		try {
-			AuthorizationUtil.authorized(authToken);
-		} catch (HttpClientErrorException e) {
-			LOG.info("Unable to Authorize : " + e.getMessage());
-			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-		}
-		return patientService.getTags();
-	}
+	/*-------------------------Talha API calling to check feign client.....getting Tags------------*/
+//	/**
+//	 * @creationDate 29 October 2021
+//	 * @description This function retrieves all the patients which are saved in
+//	 *              database.
+//	 * @param Optional String: the authorization token
+//	 * @throws Exception the exception
+//	 * @return list of patients
+//	 **/
+//	@GetMapping("/getTags")
+//	public ResponseEntity<List<Tags>> getTags(@RequestHeader("Authorization") Optional<String> authToken)
+//
+//			throws Exception {
+//		try {
+//			AuthorizationUtil.authorized(authToken);
+//		} catch (HttpClientErrorException e) {
+//			LOG.info("Unable to Authorize : " + e.getMessage());
+//			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+//				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+//			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+//				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+//		}
+//		return patientService.getTags();
+//	}
 
 }

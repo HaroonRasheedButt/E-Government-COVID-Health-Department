@@ -25,6 +25,8 @@ public class Lab {
 	private String name;
     @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
+    private String password;
     @Column(nullable = true)
     private Date createdDate;
     @Column(nullable = true)

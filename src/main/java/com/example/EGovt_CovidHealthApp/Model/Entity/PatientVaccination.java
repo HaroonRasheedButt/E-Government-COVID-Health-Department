@@ -15,11 +15,11 @@ import lombok.Data;
 public class PatientVaccination {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-    @Column
+    @Column(nullable = false)
     private String vaccineName;
-    @Column
+    @Column(nullable = false)
     private Date vaccinatedDate;
-	@Column
+	@Column(nullable = false)
     private int totalDoses;
     @Column(nullable = true)
     private Date createdDate;

@@ -1,6 +1,7 @@
 package com.example.EGovt_CovidHealthApp.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -32,7 +33,7 @@ public class CompanyService {
      **/
 	public ResponseEntity<List<Company>> getAllCompanies() {
 		try {
-			Optional<List<Company>> companies = Optional.of(companyRepository.findAllByStatusTrue());
+			Optional<List<Company>> companies = Optional.of(companyRepository.findAllByStatusTrueOrderByCreatedDateDesc());
 			if (companies.isPresent()) {
 				LOG.info("Companies successfully Retrieved : " + companies.get());
 				return ResponseEntity.ok().body(companies.get());
@@ -115,6 +116,8 @@ public class CompanyService {
 	public ResponseEntity<String> deleteCompany(List<Company> companies){
 		try {
 			for (Company company : companies) {
+				if(Objects.isNull(company.getId()))
+					return new ResponseEntity("Please provide the ID of company, having Id : "+ company.getId(),HttpStatus.PARTIAL_CONTENT);
 				company.setStatus(false);
 				companyRepository.save(company);
 			}

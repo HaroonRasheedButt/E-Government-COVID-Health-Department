@@ -19,12 +19,15 @@ import lombok.Data;
 @Data
 @Entity
 public class Hospital {
+	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column
 	private String name;
     @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
+    private String password;
     @Column(nullable = true)
     private Date createdDate;
     @Column(nullable = true)
@@ -183,6 +186,13 @@ public class Hospital {
 	public void setMobileVaccineCars(List<MobileVaccineCar> mobileVaccineCars) {
 		this.mobileVaccineCars = mobileVaccineCars;
 	}
-    
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
     
 }
