@@ -22,6 +22,7 @@ import com.example.EGovt_CovidHealthApp.Util.AuthorizationUtil;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Company;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Hospital;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Lab;
+import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
 import com.example.EGovt_CovidHealthApp.Service.AdminService;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -135,14 +136,14 @@ public class AdminController {
 		return adminService.deleteCompany(companies);
 	}
 
-	//-----------------------------------------Admin Controller for Hospital Oeprations
+	//-----------------------------------------Admin Controller for Hospital Operations
 	
 
     /**
      * @creationDate 28 October 2021
      * @description This function adds a hospital in database.
      * @param Optional String:  the authorization token
-     * @param Hospitalabpital object to be added
+     * @param Hospitapatientpital object to be added
      * @throws Exception the exception
      * @return Response Entity of type Hospital
      **/
@@ -210,7 +211,7 @@ public class AdminController {
 	}
 	
 	
-//-----------------------------------------Admin Controller for Lab Oeprations
+//-----------------------------------------Admin Controller for Lab Operations
 	
 
     /**
@@ -269,9 +270,9 @@ public class AdminController {
      * @throws Exception the exception
      * @return Response Entity of type String
      **/
-	@DeleteMapping("/hospital/deleteLab")
+	@DeleteMapping("/lab/deleteLab")
 	public ResponseEntity<String> deleteLab(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody List<Lab> hopitals) throws Exception {
+			@RequestBody List<Lab> labs) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -281,6 +282,57 @@ public class AdminController {
 			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
 				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
 		}
-		return adminService.deleteLab(hopitals);
+		return adminService.deleteLab(labs);
 	}
+	
+	
+	//----------------Admin Patient Operations-----//
+	 /**
+     * @creationDate 28 October 2021
+     * @description This function updates a patient in database.
+     * @param Optional String:  the authorization token
+     * @param Patient: A patient object to be added
+     * @throws Exception the exception
+     * @return Response Entity of type Patient
+     **/
+	@PutMapping("/patient/updatePatient")
+	public ResponseEntity<Patient> updatePatient(@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestBody Patient patient) throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+
+		return adminService.updatePatient(patient);
+	}
+	
+	
+	 /**
+     * @creationDate 28 October 2021
+     * @description This function deletes a patient in database.
+     * @param Optional String:  the authorization token
+     * @param Path Variable : The id of
+     * @throws Exception the exception
+     * @return Response Entity of type String
+     **/
+	@DeleteMapping("/patient/deletePatient")
+	public ResponseEntity<String> deletePatient(@RequestHeader("Authorization") Optional<String> authToken,
+			@RequestBody List<Patient> patients) throws Exception {
+		try {
+			AuthorizationUtil.authorized(authToken);
+		} catch (HttpClientErrorException e) {
+			LOG.info("Unable to Authorize : " + e.getMessage());
+			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
+			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
+				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
+		}
+		return adminService.deletePatient(patients);
+	}
+	
 }

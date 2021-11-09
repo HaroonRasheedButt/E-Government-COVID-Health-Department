@@ -213,8 +213,8 @@ public class AdminService {
 	 * @throws Exception the exception
 	 * @return Response Entity of type String
 	 **/
-	public ResponseEntity<String> deleteLab(List<Lab> companies) {
-		return labService.deleteLab(companies);
+	public ResponseEntity<String> deleteLab(List<Lab> labs) {
+		return labService.deleteLab(labs);
 	}
 	
 }

@@ -182,7 +182,7 @@ public class LabService {
 		try {
 			Optional<Lab> lab = labRepository.findById(labId);
 			if (lab.isPresent()) {
-				Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnic(patientCnic));
+				Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
 				if (patient.isPresent()) {
 					// this will set the created date and status of patient Report
 					patientReport = patientReportService.addPatientReport(patientReport);
@@ -234,7 +234,7 @@ public class LabService {
 		try {
 			Optional<Lab> lab = labRepository.findById(labId);
 			if (lab.isPresent()) {
-				Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnic(patientCnic));
+				Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
 				if (patient.isPresent()) {
 
 					// this will set the created date and status of patient Report

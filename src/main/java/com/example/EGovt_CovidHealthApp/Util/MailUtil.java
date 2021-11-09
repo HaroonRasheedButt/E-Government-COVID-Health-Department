@@ -32,8 +32,8 @@ public class MailUtil {
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(recipientEmail, recipientEmail);
-        msg.setSubject("Verification Token for User Registration");
-        msg.setText(emailMessage);
+        msg.setSubject("Verification Token for E-Health User Registration");
+        msg.setText("\nYour verification token for E health Registration is : \n"+emailMessage);
 
         javaMailSender.send(msg);
         return ResponseEntity.ok().body("successfully sent");

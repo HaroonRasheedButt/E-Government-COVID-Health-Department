@@ -188,7 +188,7 @@ public class HospitalService {
 		try {
 			Optional<Hospital> hospital = hospitalRepository.findById(hospitalId);
 			if (hospital.isPresent()) {
-				Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnic(patientCnic));
+				Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
 				if (patient.isPresent()) {
 					// this will set the created date and status of patient Report
 					patientReport = patientReportService.addPatientReport(patientReport);
@@ -241,7 +241,7 @@ public class HospitalService {
 		try {
 			Optional<Hospital> hospital = hospitalRepository.findById(hospitalId);
 			if (hospital.isPresent()) {
-				Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnic(patientCnic));
+				Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
 				if (patient.isPresent()) {
 
 					// this will set the created date and status of patient Report

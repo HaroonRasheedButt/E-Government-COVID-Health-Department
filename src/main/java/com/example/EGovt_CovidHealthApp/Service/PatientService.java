@@ -1,6 +1,5 @@
 package com.example.EGovt_CovidHealthApp.Service;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -247,7 +246,7 @@ public class PatientService {
 	 **/
 	public ResponseEntity<Patient> getPatientByCnic(String patientCnic) {
 		try {
-			Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnic(patientCnic));
+			Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
 			if (patient.isPresent()) {
 				LOG.info("Patient found by id.");
 				return ResponseEntity.ok().body(patient.get());
@@ -270,7 +269,7 @@ public class PatientService {
 	 **/
 	public ResponseEntity<Boolean> checkPatientCovidStatus(String patientCnic) throws Exception {
 		try {
-			Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnic(patientCnic));
+			Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
 			if (patient.isPresent()) {
 				LOG.info("Patient found by cnic.");
 				if (patient.get().isCovid())
@@ -298,7 +297,7 @@ public class PatientService {
 	 **/
 	public ResponseEntity<Boolean> checkPatientVaccinationStatus(String patientCnic) throws Exception {
 		try {
-			Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnic(patientCnic));
+			Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
 			if (patient.isPresent()) {
 				LOG.info("Patient found by cnic.");
 				if (patient.get().isVaccinated())
@@ -310,7 +309,7 @@ public class PatientService {
 				return ResponseEntity.ok().body(false);
 			}
 		} catch (Exception e) {
-			LOG.info("Exception caught in finding a patient. Unable to dind patient by their CNIC.");
+			LOG.info("Exception caught in finding a patient. Unable to find patient by their CNIC.");
 			throw new Exception(
 					"Exception caught while checking patient Vaccination status/ PLease try again later!" + e.getMessage());
 		}

@@ -41,8 +41,13 @@ public class LoginService {
 				Optional<Patient> patient = Optional
 						.ofNullable(patientRepository.findByEmailAndPassword(email, password));
 				if (patient.isPresent()) {
-					LOG.info("Patient has been logged in...");
-					return ResponseEntity.ok().body(patient.get());
+					if (patient.get().isStatus()) {
+						LOG.info("Patient has been logged in...");
+						return ResponseEntity.ok().body(patient.get());
+					} else {
+						LOG.info("Patient has not been verified yet...");
+						return ResponseEntity.ok().body("Please Verify yourself first...");
+					}
 				} else {
 					LOG.info("Patient credentials are wrong...");
 					return ResponseEntity.ok().body("wrong email or password for user type Patient..");

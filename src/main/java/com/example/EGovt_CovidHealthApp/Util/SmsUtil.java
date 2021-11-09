@@ -22,7 +22,7 @@ public class SmsUtil {
      * @return the string
      */
     public static ResponseEntity<String> sendSms(String contactNumber, String smsToken) {
-        String message = "Your SmS Verification token for user registration is:\n" + smsToken;
+        String message = "Your SmS Verification token for E-Health user registration is:\n" + smsToken;
         try {
             String toNumber = contactNumber;
             String response;

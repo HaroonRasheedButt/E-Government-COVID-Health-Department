@@ -133,6 +133,12 @@ public class Lab {
 	public void setCovidTests(List<CovidTest> covidTests) {
 		this.covidTests = covidTests;
 	}
-    
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
     
 }
