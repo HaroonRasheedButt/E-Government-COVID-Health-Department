@@ -114,7 +114,7 @@ public class PatientService {
 			patient.setCreatedDate(DateTimeUtil.getDate());
 			patient.setStatus(false);
 			patient.setAlive(true);
-			
+
 			token.setSmsToken(TokenGenerationUtil.generateToken());
 			SmsUtil.sendSms(patient.getContactNum(), token.getSmsToken());
 
@@ -136,12 +136,13 @@ public class PatientService {
 			return ResponseEntity.ok().body(patient);
 		} catch (PropertyValueException e) {
 
-			LOG.info("The syntax of the patient object is invalid : " + patient);
+			LOG.info("The syntax of the patient object is invalid. Some null properties can not be added to databse "
+					+ patient);
 			return new ResponseEntity("Please send a valid object to add into the databse!\n" + e.getMessage(),
 					HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			// TODO: handle exception
-			LOG.info("Error generated while savinf the patient into the database : " + patient + "\n" + e.getMessage());
+			LOG.info("Error generated while saving the patient into the database : " + patient + "\n" + e.getMessage());
 			return new ResponseEntity("Error adding a patient into database!\n" + e.getMessage(),
 					HttpStatus.BAD_REQUEST);
 		}
@@ -262,7 +263,8 @@ public class PatientService {
 
 	/**
 	 * @creationDate 1st November 2021
-	 * @description This function checks if a patient has COVID based on their CNIC from database.
+	 * @description This function checks if a patient has COVID based on their CNIC
+	 *              from database.
 	 * @param N/A
 	 * @throws Exception the exception
 	 * @return boolean: patient status
@@ -287,10 +289,10 @@ public class PatientService {
 		}
 	}
 
-
 	/**
 	 * @creationDate 1st November 2021
-	 * @description This function checks if a patient has been vaccinated based on their CNIC from database.
+	 * @description This function checks if a patient has been vaccinated based on
+	 *              their CNIC from database.
 	 * @param N/A
 	 * @throws Exception the exception
 	 * @return boolean: patient status
@@ -310,10 +312,9 @@ public class PatientService {
 			}
 		} catch (Exception e) {
 			LOG.info("Exception caught in finding a patient. Unable to find patient by their CNIC.");
-			throw new Exception(
-					"Exception caught while checking patient Vaccination status/ PLease try again later!" + e.getMessage());
+			throw new Exception("Exception caught while checking patient Vaccination status/ PLease try again later!"
+					+ e.getMessage());
 		}
 	}
-
 
 }

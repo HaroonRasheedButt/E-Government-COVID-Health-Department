@@ -11,4 +11,6 @@ import com.example.EGovt_CovidHealthApp.Model.Entity.Company;
 public interface CompanyRepository extends JpaRepository<Company, Long>{
 	List<Company> findAllByStatusTrue();
 	List<Company> findAllByStatusTrueOrderByCreatedDateDesc();
+	Company findByNameIgnoreCaseAndStatusTrue(String name);
+	
 }

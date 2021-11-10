@@ -51,7 +51,8 @@ public class HospitalService {
 	 **/
 	public ResponseEntity<List<Hospital>> getAllHospitals() {
 		try {
-			Optional<List<Hospital>> hospitals = Optional.of(hospitalRepository.findAllByStatusTrueOrderByCreatedDateDesc());
+			Optional<List<Hospital>> hospitals = Optional
+					.of(hospitalRepository.findAllByStatusTrueOrderByCreatedDateDesc());
 			if (hospitals.isPresent()) {
 				LOG.info("Hospitals successfully Retrieved : " + hospitals.get());
 				return ResponseEntity.ok().body(hospitals.get());
@@ -160,8 +161,10 @@ public class HospitalService {
 	public ResponseEntity<String> deleteHospital(List<Hospital> hospitals) {
 		try {
 			for (Hospital hospital : hospitals) {
-				if(Objects.isNull(hospital.getId()))
-					return new ResponseEntity("Please provide the ID of hospital, having email : "+ hospital.getEmail(),HttpStatus.PARTIAL_CONTENT);
+				if (Objects.isNull(hospital.getId()))
+					return new ResponseEntity(
+							"Please provide the ID of hospital, having email : " + hospital.getEmail(),
+							HttpStatus.PARTIAL_CONTENT);
 				hospital.setStatus(false);
 				hospitalRepository.save(hospital);
 			}
@@ -300,10 +303,11 @@ public class HospitalService {
 	}
 
 	// -----------------------------Mobile Vaccine Cars
-	
+
 	/**
 	 * @creationDate 31st October 2021
-	 * @description This function gets the list of mobileVaccineCar againsta  aprticular hospital.
+	 * @description This function gets the list of mobileVaccineCar againsta
+	 *              aprticular hospital.
 	 * @param long: a hospital id
 	 * @throws Exception the exception
 	 * @return Response Entity of List of type MobileVaccineCar
@@ -325,7 +329,7 @@ public class HospitalService {
 					HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	/**
 	 * @creationDate 31st October 2021
 	 * @description This function updates a Mobile Vaccine Car in database.
@@ -333,20 +337,22 @@ public class HospitalService {
 	 * @throws Exception the exception
 	 * @return Response Entity of type MobileVaccineCar
 	 **/
-	public ResponseEntity<List<MobileVaccineCar>> updateMobileVaccineCar(MobileVaccineCar mobileVaccineCar, long hospitalId) {
+	public ResponseEntity<List<MobileVaccineCar>> updateMobileVaccineCar(MobileVaccineCar mobileVaccineCar,
+			long hospitalId) {
 		try {
 			Optional<Hospital> hospital = hospitalRepository.findById(hospitalId);
 			if (hospital.isPresent()) {
 				Optional<MobileVaccineCar> existingCar = mobileVaccineCarRepository.findById(mobileVaccineCar.getId());
-				if(existingCar.isPresent()) {
+				if (existingCar.isPresent()) {
 					mobileVaccineCar.setUpdatedDate(DateTimeUtil.getDate());
 					mobileVaccineCarRepository.save(mobileVaccineCar);
 					hospital.get().getMobileVaccineCars().add(mobileVaccineCar);
 					hospital = Optional.of(updateHospital(hospital.get()).getBody());
 					return ResponseEntity.ok().body(hospital.get().getMobileVaccineCars());
-				}else {
+				} else {
 					LOG.info("The Mobile vaccine car of this id does not exist. Please enter a valid ID.");
-					return new ResponseEntity("The Mobile vaccine car of this id does not exist. Please enter a valid ID.",
+					return new ResponseEntity(
+							"The Mobile vaccine car of this id does not exist. Please enter a valid ID.",
 							HttpStatus.NOT_FOUND);
 				}
 			} else {
@@ -369,7 +375,8 @@ public class HospitalService {
 	 * @throws Exception the exception
 	 * @return Response Entity of type MobileVaccineCar
 	 **/
-	public ResponseEntity<List<MobileVaccineCar>> addMobileVaccineCar(MobileVaccineCar mobileVaccineCar, long hospitalId) {
+	public ResponseEntity<List<MobileVaccineCar>> addMobileVaccineCar(MobileVaccineCar mobileVaccineCar,
+			long hospitalId) {
 		try {
 			Optional<Hospital> hospital = hospitalRepository.findById(hospitalId);
 			if (hospital.isPresent()) {
@@ -391,6 +398,4 @@ public class HospitalService {
 		}
 	}
 
-
 }
-

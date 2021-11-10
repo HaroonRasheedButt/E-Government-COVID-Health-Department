@@ -15,6 +15,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -334,5 +335,6 @@ public class AdminController {
 		}
 		return adminService.deletePatient(patients);
 	}
+	
 	
 }

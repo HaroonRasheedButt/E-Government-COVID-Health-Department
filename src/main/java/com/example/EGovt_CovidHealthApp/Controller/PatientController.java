@@ -3,6 +3,7 @@ package com.example.EGovt_CovidHealthApp.Controller;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -17,11 +18,10 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import com.example.EGovt_CovidHealthApp.Util.AuthorizationUtil;
 //import com.netflix.servo.tag.Tag;
-
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
 import com.example.EGovt_CovidHealthApp.Service.PatientService;
+
 
 /**
  * @author Haroon Rasheed
@@ -214,7 +214,7 @@ public class PatientController {
 		}
 		return patientService.checkPatientVaccinationStatus(patientCnic);
 	}
-
+	
 	/*-------------------------Talha API calling to check feign client.....getting Tags------------*/
 //	/**
 //	 * @creationDate 29 October 2021

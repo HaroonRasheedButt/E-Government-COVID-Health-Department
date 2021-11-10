@@ -129,7 +129,35 @@ public class CompanyService {
 			return new ResponseEntity("Error while deleting companies!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	
+	/**
+     * @creationDate 28 October 2021
+     * @description This function gets all the companies details in database.
+     * @param N/A
+     * @throws Exception the exception
+     * @return Response Entity of type Company
+     **/
+	public ResponseEntity<Company> findCompanyByName(String name) {
+		try {
+			Optional<Company> company = Optional.of(companyRepository.findByNameIgnoreCaseAndStatusTrue(name));
+			if (company.isPresent()) {
+				LOG.info("Company successfully Retrieved : " + company.get());
+				return ResponseEntity.ok().body(company.get());
+			} else {
+				LOG.info("Copmany by this name could not found in the database: " + company.get());
+				return new ResponseEntity("Company Not Found", HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			LOG.info("Exception caught while retrieving copmany data : \n" + e.getMessage());
+			return new ResponseEntity("Error retrieving a company!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
 
+	}
+	
+	
+	
 	/**
      * @creationDate 28 October 2021
      * @description This function deletes a company in database by changing its status to false.
