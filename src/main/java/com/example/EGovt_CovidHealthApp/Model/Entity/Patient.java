@@ -11,6 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 import java.util.Date;
 
@@ -25,10 +30,14 @@ public class Patient {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column
+	@NotBlank(message = "name can not be null / empty")
 	private String name;
 	@Column(nullable = false, unique = true)
+	@Email
+	@NotBlank(message = "email can not be null / empty")
 	private String email;
 	@Column(nullable = false)
+	@NotBlank(message = "password can not be null / empty")
 	private String password;
 	@Column(nullable = true)
 	private Date createdDate;
@@ -43,16 +52,22 @@ public class Patient {
 	@Column
 	private boolean isVaccinated;
 	@Column(nullable = false)
+	@NotBlank(message="contact number can not be empty or null")
 	private String contactNum;
 	@Column(nullable = false, unique = true)
 	private String cnic;
 	@Column(nullable = false)
+	@Min(value=1)
+	@Positive(message = "Age needs to be positive")
+    @Digits(fraction = 0, integer = 3, message="age can not be greater than 3 digits")
 	private int age;
 	@Column(nullable = false)
 	private String address;
 	@Column(nullable = false)
+	@NotBlank(message="city number can not be empty or null")
 	private String city;
 	@Column(nullable = false)
+	@NotBlank(message="province can not be empty or null")
 	private String province;
 	@Column
 	private String postalCode;

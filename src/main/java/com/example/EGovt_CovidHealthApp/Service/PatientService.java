@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.PropertyValueException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,7 +18,6 @@ import com.example.EGovt_CovidHealthApp.Util.SmsUtil;
 import com.example.EGovt_CovidHealthApp.Util.TokenGenerationUtil;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
 import com.example.EGovt_CovidHealthApp.Model.Entity.Token;
-import com.example.EGovt_CovidHealthApp.Model.Interface.Tags;
 import com.example.EGovt_CovidHealthApp.Repostiory.PatientRepository;
 import com.example.EGovt_CovidHealthApp.Repostiory.TokenRepository;
 
@@ -30,15 +30,18 @@ public class PatientService {
 	private final JavaMailSender javaMailSender;
 	private final PatientRepository patientRepository;
 	private final TokenRepository tokenRepository;
+	private final PatientReportService patientReportService;
+
 //	private final FeignClientCheck feignClientCheck;
 	private static final Logger LOG = LogManager.getLogger(PatientService.class);
 
 	public PatientService(JavaMailSender javaMailSender, PatientRepository patientRepository,
-			TokenRepository tokenRepository) {
+			TokenRepository tokenRepository, PatientReportService patientReportService) {
 		this.patientRepository = patientRepository;
 //		this.feignClientCheck = feignClientCheck;
 		this.javaMailSender = javaMailSender;
 		this.tokenRepository = tokenRepository;
+		this.patientReportService = patientReportService;
 	}
 
 //	public ResponseEntity<List<Tags>> getTags() {
@@ -139,6 +142,11 @@ public class PatientService {
 			LOG.info("The syntax of the patient object is invalid. Some null properties can not be added to databse "
 					+ patient);
 			return new ResponseEntity("Please send a valid object to add into the databse!\n" + e.getMessage(),
+					HttpStatus.BAD_REQUEST);
+		} catch (ConstraintViolationException e) {
+			// TODO: handle exception
+			LOG.info("Error.... Duplicate entry for a unique value!! : " + patient + "\n" + e.getMessage());
+			return new ResponseEntity("Error adding a patient into database!\n" + e.getMessage(),
 					HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			// TODO: handle exception

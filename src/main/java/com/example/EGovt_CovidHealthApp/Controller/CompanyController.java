@@ -1,6 +1,5 @@
 package com.example.EGovt_CovidHealthApp.Controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;

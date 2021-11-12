@@ -3,10 +3,13 @@ package com.example.EGovt_CovidHealthApp.Controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +30,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @RestController
+@Validated
 @RequestMapping("/lab")
 public class LabController {
 
@@ -72,7 +76,7 @@ public class LabController {
 	public ResponseEntity<Lab> addPatientReport(@RequestHeader("Authorization") Optional<String> authToken,
 			@PathVariable(value = "labId") long labId,
 			@PathVariable(value = "patientCnic") String patientCnic,
-			@RequestBody PatientReport patientReport) throws Exception {
+			@Valid @RequestBody PatientReport patientReport) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -98,7 +102,7 @@ public class LabController {
 	public ResponseEntity<Lab> addPatientVaccination(@RequestHeader("Authorization") Optional<String> authToken,
 			@PathVariable(value = "labId") long labId,
 			@PathVariable(value = "patientCnic") String patientCnic,
-			@RequestBody PatientVaccination patientVaccination) throws Exception {
+			@Valid @RequestBody PatientVaccination patientVaccination) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {

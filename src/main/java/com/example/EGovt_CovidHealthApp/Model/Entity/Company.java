@@ -7,21 +7,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 @Entity
 public class Company {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
+	@NotEmpty
 	private String name;
 	@Column(nullable = false)
+	@Min(value=2)
+	@Positive
+    @Digits(fraction = 0, integer = 10)
 	private int totalEmployees;
 	@Column(nullable = false)
+	@PositiveOrZero
+    @Digits(fraction = 0, integer = 10)
 	private int vaccinatedEmployees;
 	@Column(nullable = true)
+	@PositiveOrZero
+    @Digits(fraction = 0, integer = 10)
 	private int nonVaccinatedEmployees;
 	@Column(nullable = true)
+	@PositiveOrZero
+    @Digits(fraction = 4, integer = 10)
 	private double vaccinationPercentage;
     @Column(nullable = true)
     private Date createdDate;

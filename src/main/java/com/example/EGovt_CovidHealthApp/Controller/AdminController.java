@@ -2,6 +2,7 @@ package com.example.EGovt_CovidHealthApp.Controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +36,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @EnableSwagger2
 @RestController
+@Validated
 @RequestMapping("/admin")
 public class AdminController {
 	private static final Logger LOG = LogManager.getLogger(AdminController.class);
@@ -43,13 +46,14 @@ public class AdminController {
 		this.adminService = adminService;
 	}
 
-    /**
-     * @creationDate 28 October 2021
-     * @description This function retrieves all the companies which are saved in database.
-     * @param Optional String:  the authorization token
-     * @throws Exception the exception
-     * @return list of companies
-     **/
+	/**
+	 * @creationDate 28 October 2021
+	 * @description This function retrieves all the companies which are saved in
+	 *              database.
+	 * @param Optional String: the authorization token
+	 * @throws Exception the exception
+	 * @return list of companies
+	 **/
 	@GetMapping("/company/getAllcompanies")
 	public ResponseEntity<List<Company>> getAllCompanies(@RequestHeader("Authorization") Optional<String> authToken)
 
@@ -66,17 +70,17 @@ public class AdminController {
 		return adminService.getAllCompanies();
 	}
 
-    /**
-     * @creationDate 28 October 2021
-     * @description This function adds a company in database.
-     * @param Optional String:  the authorization token
-     * @param Company: A company object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type Company
-     **/
+	/**
+	 * @creationDate 28 October 2021
+	 * @description This function adds a company in database.
+	 * @param Optional String: the authorization token
+	 * @param Company: A company object to be added
+	 * @throws Exception the exception
+	 * @return Response Entity of type Company
+	 **/
 	@PostMapping("/company/addCompany")
 	public ResponseEntity<Company> addCompany(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody Company company) throws Exception {
+			@Valid @RequestBody Company company) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -86,21 +90,20 @@ public class AdminController {
 			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
 				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
 		}
-
 		return adminService.addCompany(company);
 	}
 
-    /**
-     * @creationDate 28 October 2021
-     * @description This function updates a company in database.
-     * @param Optional String:  the authorization token
-     * @param Company: A company object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type Company
-     **/
+	/**
+	 * @creationDate 28 October 2021
+	 * @description This function updates a company in database.
+	 * @param Optional String: the authorization token
+	 * @param Company: A company object to be added
+	 * @throws Exception the exception
+	 * @return Response Entity of type Company
+	 **/
 	@PutMapping("/company/updateCompany")
 	public ResponseEntity<Company> updateCompany(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody Company company) throws Exception {
+			@Valid @RequestBody Company company) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -110,21 +113,20 @@ public class AdminController {
 			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
 				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
 		}
-
 		return adminService.updateCompany(company);
 	}
 
-    /**
-     * @creationDate 28 October 2021
-     * @description This function updates a company in database.
-     * @param Optional String:  the authorization token
-     * @param Path Variable : The id of
-     * @throws Exception the exception
-     * @return Response Entity of type String
-     **/
+	/**
+	 * @creationDate 28 October 2021
+	 * @description This function updates a company in database.
+	 * @param Optional String: the authorization token
+	 * @param Path     Variable : The id of
+	 * @throws Exception the exception
+	 * @return Response Entity of type String
+	 **/
 	@DeleteMapping("/company/deleteCompany")
 	public ResponseEntity<String> deleteCompany(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody List<Company> companies) throws Exception {
+			@Valid @RequestBody List<Company> companies) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -137,20 +139,20 @@ public class AdminController {
 		return adminService.deleteCompany(companies);
 	}
 
-	//-----------------------------------------Admin Controller for Hospital Operations
-	
+	// -----------------------------------------Admin Controller for Hospital
+	// Operations
 
-    /**
-     * @creationDate 28 October 2021
-     * @description This function adds a hospital in database.
-     * @param Optional String:  the authorization token
-     * @param Hospitapatientpital object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type Hospital
-     **/
+	/**
+	 * @creationDate 28 October 2021
+	 * @description This function adds a hospital in database.
+	 * @param Optional            String: the authorization token
+	 * @param Hospitapatientpital object to be added
+	 * @throws Exception the exception
+	 * @return Response Entity of type Hospital
+	 **/
 	@PostMapping("/hospital/addHospital")
 	public ResponseEntity<Hospital> addHospital(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody Hospital hospital) throws Exception {
+			@Valid @RequestBody Hospital hospital) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -160,21 +162,20 @@ public class AdminController {
 			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
 				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
 		}
-
 		return adminService.addHospital(hospital);
 	}
 
-    /**
-     * @creationDate 28 October 2021
-     * @description This function updates a hospital in database.
-     * @param Optional String:  the authorization token
-     * @param Hospital: A hospital object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type Hospital
-     **/
+	/**
+	 * @creationDate 28 October 2021
+	 * @description This function updates a hospital in database.
+	 * @param Optional  String: the authorization token
+	 * @param Hospital: A hospital object to be added
+	 * @throws Exception the exception
+	 * @return Response Entity of type Hospital
+	 **/
 	@PutMapping("/hospital/updateHospital")
 	public ResponseEntity<Hospital> updateHospital(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody Hospital hospital) throws Exception {
+			@Valid @RequestBody Hospital hospital) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -188,17 +189,17 @@ public class AdminController {
 		return adminService.updateHospital(hospital);
 	}
 
-    /**
-     * @creationDate 28 October 2021
-     * @description This function updates a hospital in database.
-     * @param Optional String:  the authorization token
-     * @param Path Variable : The id of
-     * @throws Exception the exception
-     * @return Response Entity of type String
-     **/
+	/**
+	 * @creationDate 28 October 2021
+	 * @description This function updates a hospital in database.
+	 * @param Optional String: the authorization token
+	 * @param Path     Variable : The id of
+	 * @throws Exception the exception
+	 * @return Response Entity of type String
+	 **/
 	@DeleteMapping("/hospital/deleteHospital")
 	public ResponseEntity<String> deleteHospital(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody List<Hospital> hopitals) throws Exception {
+			@Valid @RequestBody List<Hospital> hopitals) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -210,22 +211,20 @@ public class AdminController {
 		}
 		return adminService.deleteHospital(hopitals);
 	}
-	
-	
-//-----------------------------------------Admin Controller for Lab Operations
-	
 
-    /**
-     * @creationDate 28 October 2021
-     * @description This function adds a lab in database.
-     * @param Optional String:  the authorization token
-     * @param Lab: A lab object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type Lab
-     **/
+//-----------------------------------------Admin Controller for Lab Operations
+
+	/**
+	 * @creationDate 28 October 2021
+	 * @description This function adds a lab in database.
+	 * @param Optional String: the authorization token
+	 * @param Lab:     A lab object to be added
+	 * @throws Exception the exception
+	 * @return Response Entity of type Lab
+	 **/
 	@PostMapping("/lab/addLab")
 	public ResponseEntity<Lab> addLab(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody Lab lab) throws Exception {
+			@Valid @RequestBody Lab lab) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -239,17 +238,17 @@ public class AdminController {
 		return adminService.addLab(lab);
 	}
 
-    /**
-     * @creationDate 28 October 2021
-     * @description This function updates a lab in database.
-     * @param Optional String:  the authorization token
-     * @param Lab: A lab object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type Lab
-     **/
+	/**
+	 * @creationDate 28 October 2021
+	 * @description This function updates a lab in database.
+	 * @param Optional String: the authorization token
+	 * @param Lab:     A lab object to be added
+	 * @throws Exception the exception
+	 * @return Response Entity of type Lab
+	 **/
 	@PutMapping("/lab/updateLab")
 	public ResponseEntity<Lab> updateLab(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody Lab lab) throws Exception {
+			@Valid @RequestBody Lab lab) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -263,17 +262,17 @@ public class AdminController {
 		return adminService.updateLab(lab);
 	}
 
-    /**
-     * @creationDate 28 October 2021
-     * @description This function updates a lab in database.
-     * @param Optional String:  the authorization token
-     * @param Path Variable : The id of
-     * @throws Exception the exception
-     * @return Response Entity of type String
-     **/
+	/**
+	 * @creationDate 28 October 2021
+	 * @description This function updates a lab in database.
+	 * @param Optional String: the authorization token
+	 * @param Path     Variable : The id of
+	 * @throws Exception the exception
+	 * @return Response Entity of type String
+	 **/
 	@DeleteMapping("/lab/deleteLab")
 	public ResponseEntity<String> deleteLab(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody List<Lab> labs) throws Exception {
+			@Valid @RequestBody List<Lab> labs) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -285,20 +284,19 @@ public class AdminController {
 		}
 		return adminService.deleteLab(labs);
 	}
-	
-	
-	//----------------Admin Patient Operations-----//
-	 /**
-     * @creationDate 28 October 2021
-     * @description This function updates a patient in database.
-     * @param Optional String:  the authorization token
-     * @param Patient: A patient object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type Patient
-     **/
+
+	// ----------------Admin Patient Operations-----//
+	/**
+	 * @creationDate 28 October 2021
+	 * @description This function updates a patient in database.
+	 * @param Optional String: the authorization token
+	 * @param Patient: A patient object to be added
+	 * @throws Exception the exception
+	 * @return Response Entity of type Patient
+	 **/
 	@PutMapping("/patient/updatePatient")
 	public ResponseEntity<Patient> updatePatient(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody Patient patient) throws Exception {
+			@Valid @RequestBody Patient patient) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -311,19 +309,18 @@ public class AdminController {
 
 		return adminService.updatePatient(patient);
 	}
-	
-	
-	 /**
-     * @creationDate 28 October 2021
-     * @description This function deletes a patient in database.
-     * @param Optional String:  the authorization token
-     * @param Path Variable : The id of
-     * @throws Exception the exception
-     * @return Response Entity of type String
-     **/
+
+	/**
+	 * @creationDate 28 October 2021
+	 * @description This function deletes a patient in database.
+	 * @param Optional String: the authorization token
+	 * @param Path     Variable : The id of
+	 * @throws Exception the exception
+	 * @return Response Entity of type String
+	 **/
 	@DeleteMapping("/patient/deletePatient")
 	public ResponseEntity<String> deletePatient(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody List<Patient> patients) throws Exception {
+			@Valid @RequestBody List<Patient> patients) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -335,6 +332,7 @@ public class AdminController {
 		}
 		return adminService.deletePatient(patients);
 	}
-	
-	
+
+
+
 }

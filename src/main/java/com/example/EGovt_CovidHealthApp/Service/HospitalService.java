@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.PropertyValueException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -110,6 +111,11 @@ public class HospitalService {
 			LOG.info("The syntax of the hospital object is invalid : " + hospital + e.getMessage());
 			return new ResponseEntity("Please send a valid object to add into the databse!\n" + e.getMessage(),
 					HttpStatus.BAD_REQUEST);
+		}catch (ConstraintViolationException e) {
+			// TODO: handle exception
+			LOG.info("Error.... Duplicate entry for a unique value!! : " + hospital + "\n" + e.getMessage());
+			return new ResponseEntity("Error adding a patient into database!\n" + e.getMessage(),
+					HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			// TODO: handle exception
 			LOG.info("Error while saving the hospital object to database  : " + hospital + e.getMessage());
@@ -189,7 +195,7 @@ public class HospitalService {
 	public ResponseEntity<Hospital> addPatientReport(PatientReport patientReport, String patientCnic, long hospitalId) {
 
 		try {
-			Optional<Hospital> hospital = hospitalRepository.findById(hospitalId);
+			Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
 			if (hospital.isPresent()) {
 				Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
 				if (patient.isPresent()) {
@@ -231,6 +237,52 @@ public class HospitalService {
 					HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	/**
+	 * @creationDate 1st November 2021
+	 * @description This function gets a patient based on their CNIC from database.
+	 * @param N/A
+	 * @throws Exception the exception
+	 * @return Response Entity of type Patient
+	 **/
+	public ResponseEntity<Patient> updatePatientReport(String patientCnic, PatientReport patientReport) {
+		try {
+			Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
+			if (patient.isPresent()) {
+				Integer index = patientReportExistsInPatient(patient.get().getPatientReports(), patientReport.getId());
+				if (index >= 0) {
+					patientReport = patientReportService.updatePatientReport(patientReport);
+					patient.get().getPatientReports().set(index, patientReport);
+					patientRepository.save(patient.get());
+					return patientService.getPatientByCnic(patientCnic);
+				} else {
+					return new ResponseEntity("The Report does not belong to this patient", HttpStatus.NOT_FOUND);
+				}
+			} else {
+				return new ResponseEntity("The patient of this cnic does not exist", HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity("Error while updating patient report.", HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	/**
+	 * Checks if the given report id is a report of the patient or not
+	 * @param patientReprots
+	 * @param patientReportId
+	 * @return Integer showing 
+	 */
+	private Integer patientReportExistsInPatient(List<PatientReport> patientReprots, long patientReportId) {
+		Integer index = 0;
+		for (PatientReport patientReport : patientReprots) {
+			if (patientReportId == patientReport.getId())
+				return index;
+			index++;
+			}
+			
+		return -1;
+	}
+	
 
 	/**
 	 * @creationDate 31st October 2021
@@ -242,12 +294,12 @@ public class HospitalService {
 	public ResponseEntity<Hospital> addPatientVaccination(PatientVaccination patientVaccination, String patientCnic,
 			long hospitalId) {
 		try {
-			Optional<Hospital> hospital = hospitalRepository.findById(hospitalId);
+			Optional<Hospital> hospital =  Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
 			if (hospital.isPresent()) {
 				Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
 				if (patient.isPresent()) {
 
-					// this will set the created date and status of patient Report
+					// This will set the created date and status of patient Report
 					patientVaccination = patientVaccinationService.addPatientVaccination(patientVaccination);
 					patient.get().getPatientVaccination().add(patientVaccination);
 					patient.get().setVaccinated(true);
@@ -283,6 +335,51 @@ public class HospitalService {
 					HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	/**
+	 * @creationDate 1st November 2021
+	 * @description This function gets a patient based on their CNIC from database.
+	 * @param N/A
+	 * @throws Exception the exception
+	 * @return Response Entity of type Patient
+	 **/
+	public ResponseEntity<Patient> updatePatientVaccination(String patientCnic, PatientVaccination patientVaccination) {
+		try {
+			Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
+			if (patient.isPresent()) {
+				Integer index = patientVaccinationExistsInPatient(patient.get().getPatientVaccination(), patientVaccination.getId());
+				if (index >= 0) {
+					patientVaccination = patientVaccinationService.updatePatientVaccination(patientVaccination);
+					patient.get().getPatientVaccination().set(index, patientVaccination);
+					return patientService.getPatientByCnic(patientCnic);
+				} else {
+					return new ResponseEntity("The Report does not belong to this patient", HttpStatus.NOT_FOUND);
+				}
+			} else {
+				return new ResponseEntity("The patient of this cnic does not exist", HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity("Error while updating patient report.", HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	/**
+	 * Checks if the patient vaccination exist in patient or not
+	 * @param patientVaccinations
+	 * @param patientVaccinationId
+	 * @return
+	 */
+	private Integer patientVaccinationExistsInPatient(List<PatientVaccination> patientVaccinations, long patientVaccinationId) {
+		Integer index = 0;
+		for (PatientVaccination patientReport : patientVaccinations) {
+			if (patientVaccinationId == patientReport.getId())
+				return index;
+			index++;
+			}
+			
+		return -1;
+	}
+	
 
 	/**
 	 * Checks if the patient id already exist in the hospital or not
@@ -302,19 +399,17 @@ public class HospitalService {
 		return -1;
 	}
 
-	// -----------------------------Mobile Vaccine Cars
 
 	/**
 	 * @creationDate 31st October 2021
-	 * @description This function gets the list of mobileVaccineCar againsta
-	 *              aprticular hospital.
+	 * @description This function gets the list of mobileVaccineCar against a particular hospital.
 	 * @param long: a hospital id
 	 * @throws Exception the exception
 	 * @return Response Entity of List of type MobileVaccineCar
 	 **/
 	public ResponseEntity<List<MobileVaccineCar>> getMobileVaccineCars(long hospitalId) {
 		try {
-			Optional<Hospital> hospital = hospitalRepository.findById(hospitalId);
+			Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
 			if (hospital.isPresent()) {
 				return ResponseEntity.ok().body(hospital.get().getMobileVaccineCars());
 			} else {
@@ -340,7 +435,7 @@ public class HospitalService {
 	public ResponseEntity<List<MobileVaccineCar>> updateMobileVaccineCar(MobileVaccineCar mobileVaccineCar,
 			long hospitalId) {
 		try {
-			Optional<Hospital> hospital = hospitalRepository.findById(hospitalId);
+			Optional<Hospital> hospital =  Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
 			if (hospital.isPresent()) {
 				Optional<MobileVaccineCar> existingCar = mobileVaccineCarRepository.findById(mobileVaccineCar.getId());
 				if (existingCar.isPresent()) {
@@ -378,7 +473,7 @@ public class HospitalService {
 	public ResponseEntity<List<MobileVaccineCar>> addMobileVaccineCar(MobileVaccineCar mobileVaccineCar,
 			long hospitalId) {
 		try {
-			Optional<Hospital> hospital = hospitalRepository.findById(hospitalId);
+			Optional<Hospital> hospital =  Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
 			if (hospital.isPresent()) {
 				mobileVaccineCar.setCreatedDate(DateTimeUtil.getDate());
 				mobileVaccineCar.setStatus(true);

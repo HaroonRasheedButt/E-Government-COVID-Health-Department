@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 import lombok.Data;
 
@@ -16,10 +20,14 @@ public class PatientVaccination {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
     @Column(nullable = false)
+	@NotBlank(message = "vaccine name can not be null/empty")
     private String vaccineName;
     @Column(nullable = false)
     private Date vaccinatedDate;
 	@Column(nullable = false)
+	@Min(value=1)
+	@Positive(message = "num of doses need to be positive")
+    @Digits(fraction = 0, integer = 3, message="num of doeses can not be greater than 3 digits")
     private int totalDoses;
     @Column(nullable = true)
     private Date createdDate;

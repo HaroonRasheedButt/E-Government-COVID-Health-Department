@@ -3,11 +3,13 @@ package com.example.EGovt_CovidHealthApp.Controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,11 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 
 import com.example.EGovt_CovidHealthApp.Util.AuthorizationUtil;
-//import com.netflix.servo.tag.Tag;
+
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
 import com.example.EGovt_CovidHealthApp.Service.PatientService;
-
 
 /**
  * @author Haroon Rasheed
@@ -29,6 +31,7 @@ import com.example.EGovt_CovidHealthApp.Service.PatientService;
  */
 @EnableSwagger2
 @RestController
+@Validated
 @RequestMapping("/patient")
 public class PatientController {
 
@@ -123,7 +126,7 @@ public class PatientController {
 	 **/
 	@PostMapping("/addPatient")
 	public ResponseEntity<Patient> addPatient(@RequestHeader("Authorization") Optional<String> authToken,
-			@RequestBody Patient patient) throws Exception {
+			@Valid @RequestBody Patient patient) throws Exception {
 		try {
 			AuthorizationUtil.authorized(authToken);
 		} catch (HttpClientErrorException e) {
@@ -167,7 +170,7 @@ public class PatientController {
 	 * @description This function checks if a patient has COVID based on their CNIC
 	 *              from database.
 	 * @param Optional String: the authorization token
-	 * @param String: the patient's CNIC
+	 * @param String:  the patient's CNIC
 	 * @throws Exception the exception
 	 * @return boolean: patient status
 	 **/
@@ -193,7 +196,7 @@ public class PatientController {
 	 * @description This function checks if a patient has COVID based on their CNIC
 	 *              from database.
 	 * @param Optional String: the authorization token
-	 * @param String: the patient's CNIC
+	 * @param String:  the patient's CNIC
 	 * @throws Exception the exception
 	 * @return boolean: patient status
 	 **/
@@ -214,30 +217,5 @@ public class PatientController {
 		}
 		return patientService.checkPatientVaccinationStatus(patientCnic);
 	}
-	
-	/*-------------------------Talha API calling to check feign client.....getting Tags------------*/
-//	/**
-//	 * @creationDate 29 October 2021
-//	 * @description This function retrieves all the patients which are saved in
-//	 *              database.
-//	 * @param Optional String: the authorization token
-//	 * @throws Exception the exception
-//	 * @return list of patients
-//	 **/
-//	@GetMapping("/getTags")
-//	public ResponseEntity<List<Tags>> getTags(@RequestHeader("Authorization") Optional<String> authToken)
-//
-//			throws Exception {
-//		try {
-//			AuthorizationUtil.authorized(authToken);
-//		} catch (HttpClientErrorException e) {
-//			LOG.info("Unable to Authorize : " + e.getMessage());
-//			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-//				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-//			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-//				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-//		}
-//		return patientService.getTags();
-//	}
 
 }

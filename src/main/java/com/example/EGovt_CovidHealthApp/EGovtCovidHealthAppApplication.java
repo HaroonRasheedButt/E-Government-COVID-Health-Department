@@ -12,5 +12,4 @@ public class EGovtCovidHealthAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EGovtCovidHealthAppApplication.class, args);
 	}
-
 }

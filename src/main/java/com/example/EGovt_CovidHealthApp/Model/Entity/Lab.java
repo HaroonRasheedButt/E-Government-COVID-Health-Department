@@ -13,7 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
@@ -22,10 +23,14 @@ public class Lab {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column
+	@NotBlank
 	private String name;
     @Column(nullable = false, unique = true)
+	@Email
+	@NotBlank(message="name should not be empty / null")
     private String email;
     @Column(nullable = false)
+	@NotBlank(message="password should not be empty / null")
     private String password;
     @Column(nullable = true)
     private Date createdDate;
@@ -34,11 +39,14 @@ public class Lab {
     @Column
     private boolean status;
     @Column
+	@NotBlank(message="address should not be empty / null")
     private String address;
     @Column
+	@NotBlank(message="city should not be empty / null")
     private String city;
     @Column
-    private String province; 
+	@NotBlank(message="province should not be empty / null")
+    private String province;
     
     @ManyToMany(targetEntity = Patient.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<Patient> patients = new ArrayList<Patient>();
