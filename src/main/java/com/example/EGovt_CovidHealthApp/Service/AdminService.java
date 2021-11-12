@@ -39,7 +39,6 @@ public class AdminService {
 	/**
 	 * @creationDate 28 October 2021
 	 * @description This function gets all the companies details in database.
-	 * @param N/A
 	 * @throws Exception the exception
 	 * @return Response Entity of type Company
 	 **/
@@ -50,7 +49,7 @@ public class AdminService {
 	/**
 	 * @creationDate 28 October 2021
 	 * @description This function adds a company in database.
-	 * @param Company: A company object to be added
+	 * @param company: A company object to be added
 	 * @throws Exception the exception
 	 * @return Response Entity of type Company
 	 **/
@@ -61,7 +60,7 @@ public class AdminService {
 	/**
 	 * @creationDate 28 October 2021
 	 * @description This function updates a company in database.
-	 * @param Company: A company object to be added
+	 * @param company: A company object to be added
 	 * @throws Exception the exception
 	 * @return Response Entity of type Company
 	 **/
@@ -73,7 +72,7 @@ public class AdminService {
 	 * @creationDate 28 October 2021
 	 * @description This function deletes a company in database by changing its
 	 *              status to false.
-	 * @param Path Variable : The id of the the company to be deleted
+	 * @param companies : The id of the the company to be deleted
 	 * @throws Exception the exception
 	 * @return Response Entity of type String
 	 **/
@@ -87,7 +86,7 @@ public class AdminService {
 	/**
 	 * @creationDate 28 October 2021
 	 * @description This function adds a hospital in database.
-	 * @param Hospital: A hospital object to be added
+	 * @param hospital: A hospital object to be added
 	 * @throws Exception the exception
 	 * @return Response Entity of type Hospital
 	 **/
@@ -98,7 +97,7 @@ public class AdminService {
 	/**
 	 * @creationDate 28 October 2021
 	 * @description This function updates a hospital in database.
-	 * @param Hospital: A hospital object to be updated
+	 * @param hospital: A hospital object to be updated
 	 * @throws Exception the exception
 	 * @return Response Entity of type Hospital
 	 **/
@@ -110,12 +109,12 @@ public class AdminService {
 	 * @creationDate 28 October 2021
 	 * @description This function deletes a hospital in database by changing its
 	 *              status to false.
-	 * @param Path Variable : The id of the the hospital to be deleted
+	 * @param hospitals : The id of the the hospital to be deleted
 	 * @throws Exception the exception
 	 * @return Response Entity of type String
 	 **/
-	public ResponseEntity<String> deleteHospital(List<Hospital> companies) {
-		return hospitalService.deleteHospital(companies);
+	public ResponseEntity<String> deleteHospital(List<Hospital> hospitals) {
+		return hospitalService.deleteHospital(hospitals);
 	}
 
 	// -------------Admin Patient Operations-------------//
@@ -123,7 +122,7 @@ public class AdminService {
 	/**
 	 * @creationDate 28 October 2021
 	 * @description This function updates a patient's detail in database.
-	 * @param Patient: A Patient object to be updated
+	 * @param patient: A Patient object to be updated
 	 * @throws Exception the exception
 	 * @return Response Entity of type Hospital
 	 **/
@@ -156,7 +155,7 @@ public class AdminService {
 	 * @creationDate 31st October 2021
 	 * @description This function deletes a patient in database by changing its
 	 *              status to false.
-	 * @param Path Variable : The id of the the patient to be deleted
+	 * @param patients : The id of the the patient to be deleted
 	 * @throws Exception the exception
 	 * @return Response Entity of type String
 	 **/
@@ -186,7 +185,7 @@ public class AdminService {
 	/**
 	 * @creationDate 28 October 2021
 	 * @description This function adds a lab in database.
-	 * @param Lab: A lab object to be added
+	 * @param lab: A lab object to be added
 	 * @throws Exception the exception
 	 * @return Response Entity of type Lab
 	 **/
@@ -197,7 +196,7 @@ public class AdminService {
 	/**
 	 * @creationDate 28 October 2021
 	 * @description This function updates a lab in database.
-	 * @param Lab: A lab object to be updated
+	 * @param lab: A lab object to be updated
 	 * @throws Exception the exception
 	 * @return Response Entity of type Lab
 	 **/
@@ -209,7 +208,7 @@ public class AdminService {
 	 * @creationDate 28 October 2021
 	 * @description This function deletes a lab in database by changing its
 	 *              status to false.
-	 * @param Path Variable : The id of the the lab to be deleted
+	 * @param labs : The id of the the lab to be deleted
 	 * @throws Exception the exception
 	 * @return Response Entity of type String
 	 **/

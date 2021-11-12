@@ -47,12 +47,15 @@ public class Lab {
     @Column
 	@NotBlank(message="province should not be empty / null")
     private String province;
-    
+
     @ManyToMany(targetEntity = Patient.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<Patient> patients = new ArrayList<Patient>();
-    
+
     @OneToMany(targetEntity = CovidTest.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CovidTest> covidTests = new ArrayList<CovidTest>();
+
+	@OneToMany(targetEntity = CovidAdminOperator.class,  cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<CovidAdminOperator> covidAdminOperators = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -148,5 +151,5 @@ public class Lab {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-    
+
 }

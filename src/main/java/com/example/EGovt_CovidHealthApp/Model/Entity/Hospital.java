@@ -77,7 +77,9 @@ public class Hospital {
     
     @OneToMany(targetEntity = MobileVaccineCar.class,  cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<MobileVaccineCar> mobileVaccineCars = new ArrayList<MobileVaccineCar>();
-    
+
+    @OneToMany(targetEntity = CovidAdminOperator.class,  cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<CovidAdminOperator> covidAdminOperators = new ArrayList<>();
     
 	public long getId() {
 		return id;

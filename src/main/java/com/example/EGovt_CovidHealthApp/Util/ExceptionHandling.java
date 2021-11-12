@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.example.EGovt_CovidHealthApp.Model.Interface.DetailedCustomResponse;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import org.springframework.web.client.HttpClientErrorException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.UnexpectedTypeException;
@@ -41,9 +42,14 @@ public class ExceptionHandling {
 			HttpMessageNotReadableException.class, MissingRequestHeaderException.class,
 			MissingPathVariableException.class, HttpRequestMethodNotSupportedException.class,
 			UnexpectedTypeException.class, MethodArgumentNotValidException.class, DataIntegrityViolationException.class,
-			RuntimeException.class, ConstraintViolationException.class, DataException.class })
-	public @ResponseBody Object handleBadRequestExpection(HttpServletRequest req, Exception ex) {
-		System.out.println("Inside Exception handler..........");
+			RuntimeException.class, ConstraintViolationException.class, DataException.class, HttpClientErrorException.class})
+	public @ResponseBody Object handleBadRequestException(HttpServletRequest req, Exception ex) {
+
+		if(ex instanceof HttpClientErrorException){
+			String msg = "Authorization Failed Error\n\n";
+			return new DetailedCustomResponse(401, HttpStatus.UNAUTHORIZED, msg+ex.getMessage(), req.getRequestURI(),
+					DateTimeUtil.getDate());
+		}
 
 		return new DetailedCustomResponse(400, HttpStatus.BAD_REQUEST, ex.getMessage(), req.getRequestURI(),
 				DateTimeUtil.getDate());

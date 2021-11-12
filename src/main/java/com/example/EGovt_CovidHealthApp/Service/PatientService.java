@@ -56,7 +56,7 @@ public class PatientService {
 	/**
 	 * @creationDate 29 October 2021
 	 * @description This function gets all the patients details from the database.
-	 * @param N/A
+	 * @param NA
 	 * @throws Exception the exception
 	 * @return Response Entity of List of Patients
 	 **/
@@ -82,7 +82,7 @@ public class PatientService {
 	/**
 	 * @creationDate 1st November 2021
 	 * @description This function gets a patient based on an id from database.
-	 * @param N/A
+	 * @param NA
 	 * @throws Exception the exception
 	 * @return Response Entity of type Patient
 	 **/
@@ -249,7 +249,7 @@ public class PatientService {
 	/**
 	 * @creationDate 1st November 2021
 	 * @description This function gets a patient based on their CNIC from database.
-	 * @param N/A
+	 * @param NA
 	 * @throws Exception the exception
 	 * @return Response Entity of type Patient
 	 **/
@@ -273,7 +273,7 @@ public class PatientService {
 	 * @creationDate 1st November 2021
 	 * @description This function checks if a patient has COVID based on their CNIC
 	 *              from database.
-	 * @param N/A
+	 * @param NA
 	 * @throws Exception the exception
 	 * @return boolean: patient status
 	 **/
@@ -301,7 +301,7 @@ public class PatientService {
 	 * @creationDate 1st November 2021
 	 * @description This function checks if a patient has been vaccinated based on
 	 *              their CNIC from database.
-	 * @param N/A
+	 * @param NA
 	 * @throws Exception the exception
 	 * @return boolean: patient status
 	 **/

@@ -15,7 +15,6 @@ public class AuthorizationUtil {
      * @throws Exception
      */
     public static void authorized(Optional<String> authToken) throws Exception {
-    	if (!authToken.isPresent()) throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
     	if (!authToken.get().equals(uuid)) throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
     }
 
