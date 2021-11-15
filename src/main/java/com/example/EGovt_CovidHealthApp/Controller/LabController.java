@@ -34,86 +34,63 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @RequestMapping("/lab")
 public class LabController {
 
-	private static final Logger LOG = LogManager.getLogger(LabController.class);
-	private final LabService labService;
+    private static final Logger LOG = LogManager.getLogger(LabController.class);
+    private final LabService labService;
 
-	public LabController(LabService labService) {
-		this.labService= labService;
-	}
+    public LabController(LabService labService) {
+        this.labService = labService;
+    }
 
     /**
+     * @param authToken: the authorization token
+     * @return list of labs
+     * @throws Exception the exception
      * @creationDate 28 October 2021
      * @description This function retrieves all the labs which are saved in database.
-     * @param Optional String:  the authorization token
-     * @throws Exception the exception
-     * @return list of labs
      **/
-	@GetMapping("")
-	public ResponseEntity<List<Lab>> getAllLabs(@RequestHeader("Authorization") Optional<String> authToken)
+    @GetMapping("")
+    public ResponseEntity<List<Lab>> getAllLabs(@RequestHeader("Authorization") String authToken)
 
-			throws Exception {
-		try {
-			AuthorizationUtil.authorized(authToken);
-		} catch (HttpClientErrorException e) {
-			LOG.info("Unable to Authorize : " + e.getMessage());
-			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-		}
-		return labService.getAllLabs();
-	}
+            throws Exception {
+
+        AuthorizationUtil.authorized(authToken);
+        return labService.getAllLabs();
+    }
 
     /**
+     * @param authToken:  the authorization token
+     * @param patientReport: A PatientReport object to be added
+     * @return Response Entity of type Lab
+     * @throws Exception the exception
      * @creationDate 28 October 2021
      * @description This function adds a PatientReport in database.
-     * @param Optional String:  the authorization token
-     * @param PatientReport: A PatientReport object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type Lab
      **/
-	@PostMapping("/{labId}/addPatientReport/{patientCnic}")
-	public ResponseEntity<Lab> addPatientReport(@RequestHeader("Authorization") Optional<String> authToken,
-			@PathVariable(value = "labId") long labId,
-			@PathVariable(value = "patientCnic") String patientCnic,
-			@Valid @RequestBody PatientReport patientReport) throws Exception {
-		try {
-			AuthorizationUtil.authorized(authToken);
-		} catch (HttpClientErrorException e) {
-			LOG.info("Unable to Authorize : " + e.getMessage());
-			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-		}
+    @PostMapping("/{labId}/addPatientReport/{patientCnic}")
+    public ResponseEntity<Lab> addPatientReport(@RequestHeader("Authorization") String authToken,
+                                                @PathVariable(value = "labId") long labId,
+                                                @PathVariable(value = "patientCnic") String patientCnic,
+                                                @Valid @RequestBody PatientReport patientReport) throws Exception {
 
-		return labService.addPatientReport(patientReport, patientCnic, labId);
-	}
-	
+        AuthorizationUtil.authorized(authToken);
+        return labService.addPatientReport(patientReport, patientCnic, labId);
+    }
+
     /**
+     * @param authToken:  the authorization token
+     * @param patientVaccination: A PatientVaccination object to be added
+     * @return Response Entity of type Lab
+     * @throws Exception the exception
      * @creationDate 28 October 2021
      * @description This function adds a PatientVaccination in database.
-     * @param Optional String:  the authorization token
-     * @param PatientVaccination: A PatientVaccination object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type Lab
      **/
-	@PostMapping("/{labId}/addPatientVaccination/{patientCnic}")
-	public ResponseEntity<Lab> addPatientVaccination(@RequestHeader("Authorization") Optional<String> authToken,
-			@PathVariable(value = "labId") long labId,
-			@PathVariable(value = "patientCnic") String patientCnic,
-			@Valid @RequestBody PatientVaccination patientVaccination) throws Exception {
-		try {
-			AuthorizationUtil.authorized(authToken);
-		} catch (HttpClientErrorException e) {
-			LOG.info("Unable to Authorize : " + e.getMessage());
-			if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-				return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-			if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-				return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-		}
+    @PostMapping("/{labId}/addPatientVaccination/{patientCnic}")
+    public ResponseEntity<Lab> addPatientVaccination(@RequestHeader("Authorization") String authToken,
+                                                     @PathVariable(value = "labId") long labId,
+                                                     @PathVariable(value = "patientCnic") String patientCnic,
+                                                     @Valid @RequestBody PatientVaccination patientVaccination) throws Exception {
 
+        AuthorizationUtil.authorized(authToken);
 		return labService.addPatientVaccination(patientVaccination, patientCnic, labId);
-	}
+    }
 
 }

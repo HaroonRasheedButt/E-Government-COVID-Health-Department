@@ -18,7 +18,7 @@ import com.example.EGovt_CovidHealthApp.Util.DateTimeUtil;
 @Service
 public class PatientVaccinationService {
 	private final PatientVaccinationRepository patientVaccinationRepository;
-	private static final Logger LOG = LogManager.getLogger(AdminService.class);
+	private static final Logger LOG = LogManager.getLogger(SuperAdminService.class);
 
 	public PatientVaccinationService(PatientVaccinationRepository patientVaccinationRepository) {
 		this.patientVaccinationRepository = patientVaccinationRepository;

@@ -2,6 +2,7 @@ package com.example.EGovt_CovidHealthApp.Controller;
 
 import com.example.EGovt_CovidHealthApp.Model.Entity.Role;
 import com.example.EGovt_CovidHealthApp.Service.RoleService;
+import com.example.EGovt_CovidHealthApp.Util.AuthorizationUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -42,17 +43,6 @@ public class RoleController {
     }
 
     /**
-     * authorizes the authentication header in the request header
-     *
-     * @param authToken the authentication token to authenticate
-     * @throws Exception
-     */
-    private void authorized(Optional<String> authToken) throws Exception {
-        if (!authToken.isPresent()) throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
-        if (!authToken.get().equals(uuid)) throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
-    }
-
-    /**
      * Gets all roles from the database.
      *
      * @param authToken the auth token
@@ -60,16 +50,9 @@ public class RoleController {
      * @throws Exception the exception
      */
     @GetMapping("")
-    public ResponseEntity<List<Role>> getAllRoles(@RequestHeader("Authorization") Optional<String> authToken) throws Exception {
-        try {
-            authorized(authToken);
-        } catch (HttpClientErrorException e) {
-            LOG.info("Unable to Authorize : " + e.getMessage());
-            if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-                return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-                return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-        }
+    public ResponseEntity<List<Role>> getAllRoles(@RequestHeader("Authorization") String authToken) throws Exception {
+
+        AuthorizationUtil.authorized(authToken);
         return roleService.getAllRoles();
     }
 
@@ -77,24 +60,17 @@ public class RoleController {
     /**
      * Create role and adds it into the databse.
      *
-     * @param authToken  the auth token
-     * @param roles the roles
+     * @param authToken the auth token
+     * @param roles     the roles
      * @return the response entity
      * @throws Exception the exception
      */
     @PostMapping("/addRole")
-    public ResponseEntity<List<Role>> createRole(@RequestHeader("Authorization") Optional<String> authToken,
-                                                         @Validated @RequestBody List<Role> roles) throws Exception {
-        try {
-            authorized(authToken);
-        } catch (HttpClientErrorException e) {
-            LOG.info("Unable to Authorize : " + e.getMessage());
-            if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-                return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-                return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-        }
-        return roleService.addRole(roles);
+    public ResponseEntity<Role> createRole(@RequestHeader("Authorization") String authToken,
+                                                 @Validated @RequestBody Role role) throws Exception {
+
+        AuthorizationUtil.authorized(authToken);
+        return roleService.addRole(role);
     }
 
     /**
@@ -106,17 +82,10 @@ public class RoleController {
      * @throws Exception the exception
      */
     @DeleteMapping("/deleteUser/{id}")
-    public ResponseEntity<Object> deleteRole(@RequestHeader("Authorization") Optional<String> authToken,
-                                                 @PathVariable Long id) throws Exception {
-        try {
-            authorized(authToken);
-        } catch (HttpClientErrorException e) {
-            LOG.info("Unable to   Authorize: " + e.getMessage());
-            if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-                return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-                return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-        }
+    public ResponseEntity<Object> deleteRole(@RequestHeader("Authorization") String authToken,
+                                             @PathVariable Long id) throws Exception {
+
+        AuthorizationUtil.authorized(authToken);
         return roleService.deleteRole(id);
     }
 
@@ -129,17 +98,9 @@ public class RoleController {
      * @throws Exception the exception
      */
     @PostMapping("/updateUserInfo")
-    public ResponseEntity<Role> updateRole(@RequestHeader("Authorization") Optional<String> authToken,
-                                                   @Validated @RequestBody Role role) throws Exception {
-        try{
-            authorized(authToken);
-        } catch (HttpClientErrorException e) {
-            LOG.info("Unable to   Authorize: " + e.getMessage());
-            if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-                return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-                return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-        }
+    public ResponseEntity<Role> updateRole(@RequestHeader("Authorization") String authToken,
+                                           @Validated @RequestBody Role role) throws Exception {
+        AuthorizationUtil.authorized(authToken);
         return roleService.updateRole(role);
     }
 

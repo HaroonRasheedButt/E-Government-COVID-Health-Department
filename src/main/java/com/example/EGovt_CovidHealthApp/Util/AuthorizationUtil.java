@@ -14,8 +14,8 @@ public class AuthorizationUtil {
      * @param authToken
      * @throws Exception
      */
-    public static void authorized(Optional<String> authToken) throws Exception {
-    	if (!authToken.get().equals(uuid)) throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
+    public static void authorized(String authToken) throws Exception {
+    	if (!authToken.equals(uuid)) throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
     }
 
 }

@@ -2,17 +2,15 @@ package com.example.EGovt_CovidHealthApp.Controller;
 
 import com.example.EGovt_CovidHealthApp.Model.Entity.Permission;
 import com.example.EGovt_CovidHealthApp.Service.PermissionService;
+import com.example.EGovt_CovidHealthApp.Util.AuthorizationUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * The type Permission controller.
@@ -41,16 +39,6 @@ public class PermissionController {
         this.permissionService = permissionService;
     }
 
-    /**
-     * authorizes the authentication header in the request header
-     *
-     * @param authToken the authentication token to authenticate
-     * @throws Exception
-     */
-    private void authorized(Optional<String> authToken) throws Exception {
-        if (!authToken.isPresent()) throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
-        if (!authToken.get().equals(uuid)) throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
-    }
 
     /**
      * Gets all permissions.
@@ -60,16 +48,9 @@ public class PermissionController {
      * @throws Exception the exception
      */
     @GetMapping("")
-    public ResponseEntity<List<Permission>> getAllPermissions(@RequestHeader("Authorization") Optional<String> authToken) throws Exception {
-        try {
-            authorized(authToken);
-        } catch (HttpClientErrorException e) {
-            LOG.info("Unable to Authorize : " + e.getMessage());
-            if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-                return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-                return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-        }
+    public ResponseEntity<List<Permission>> getAllPermissions(@RequestHeader("Authorization") String authToken) throws Exception {
+
+        AuthorizationUtil.authorized(authToken);
         return permissionService.getAllPermissions();
     }
 
@@ -82,17 +63,10 @@ public class PermissionController {
      * @throws Exception the exception
      */
     @PostMapping("/addPermission")
-    public ResponseEntity<List<Permission>> createPermission(@RequestHeader("Authorization") Optional<String> authToken,
+    public ResponseEntity<List<Permission>> createPermission(@RequestHeader("Authorization") String authToken,
                                                              @Validated @RequestBody List<Permission> permissions) throws Exception {
-        try {
-            authorized(authToken);
-        } catch (HttpClientErrorException e) {
-            LOG.info("Unable to   Authorize : " + e.getMessage());
-            if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-                return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-                return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-        }
+
+        AuthorizationUtil.authorized(authToken);
         return permissionService.addPermission(permissions);
     }
 
@@ -105,17 +79,10 @@ public class PermissionController {
      * @throws Exception the exception
      */
     @DeleteMapping("/deletePermission/{id}")
-    public ResponseEntity<Object> deletePermission(@RequestHeader("Authorization") Optional<String> authToken,
+    public ResponseEntity<Object> deletePermission(@RequestHeader("Authorization") String authToken,
                                                    @PathVariable Long id) throws Exception {
-        try {
-            authorized(authToken);
-        } catch (HttpClientErrorException e) {
-            LOG.info("Unable to   Authorize: " + e.getMessage());
-            if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-                return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-                return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-        }
+
+        AuthorizationUtil.authorized(authToken);
         return permissionService.deletePermission(id);
     }
 
@@ -128,17 +95,10 @@ public class PermissionController {
      * @throws Exception the exception
      */
     @PostMapping("/updatePermission")
-    public ResponseEntity<Permission> updatePermission(@RequestHeader("Authorization") Optional<String> authToken,
+    public ResponseEntity<Permission> updatePermission(@RequestHeader("Authorization") String authToken,
                                                        @Validated @RequestBody Permission permission) throws Exception {
-        try {
-            authorized(authToken);
-        } catch (HttpClientErrorException e) {
-            LOG.info("Unable to   Authorize: " + e.getMessage());
-            if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-                return new ResponseEntity("Authorization Key maybe Missing or Wrong", HttpStatus.NOT_FOUND);
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED)
-                return new ResponseEntity("Authorization Process Failed", HttpStatus.UNAUTHORIZED);
-        }
+
+        AuthorizationUtil.authorized(authToken);
         return permissionService.updatePermission(permission);
     }
 

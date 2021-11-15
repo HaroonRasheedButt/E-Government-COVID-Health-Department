@@ -26,7 +26,7 @@ public class LabService {
 	private final PatientService patientService;
 	private final PatientReportService patientReportService;
 	private final PatientVaccinationService patientVaccinationService;
-	private static final Logger LOG = LogManager.getLogger(AdminService.class);
+	private static final Logger LOG = LogManager.getLogger(SuperAdminService.class);
 
 	public LabService(LabRepository labRepository, PatientReportService patientReportService,
 			PatientVaccinationService patientVaccinationService, PatientService patientService,

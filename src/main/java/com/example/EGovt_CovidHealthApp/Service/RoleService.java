@@ -56,13 +56,12 @@ public class RoleService {
      * @description Save Role into database by getting values from controller
      * @creationDate 12 October 2021
      */
-    public ResponseEntity<List<Role>> addRole(List<Role> roles) {
+    public ResponseEntity<Role> addRole(Role role) {
         try {
-            for(Role role: roles){
-                role.setCreatedDate(DateTimeUtil.getDate());
-                roleRepository.save(role);
-            }
-            return ResponseEntity.ok().body(roles);
+            role.setCreatedDate(DateTimeUtil.getDate());
+            role.setStatus(true);
+            role = roleRepository.save(role);
+            return ResponseEntity.ok().body(role);
         }catch (HttpMessageNotReadableException e){
             return new ResponseEntity("Please Provide a valid input format to Save a Role!\n"+e.getMessage(), HttpStatus.BAD_REQUEST);
         }catch (Exception e) {

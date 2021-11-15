@@ -41,7 +41,7 @@ public class User {
     @Column(nullable = false)
     @Min(value=1)
     @Positive(message = "Age needs to be positive")
-    @Digits(fraction = 0, integer = 3, message="age can not be greater than 3 digits")
+    @Digits(fraction = 0, integer = 3, message="Age can not be greater than 3 digits")
     private int age;
     @Column(nullable = false)
     private String address;

@@ -31,32 +31,36 @@ public class PatientService {
 	private final PatientRepository patientRepository;
 	private final TokenRepository tokenRepository;
 	private final PatientReportService patientReportService;
-
-//	private final FeignClientCheck feignClientCheck;
 	private static final Logger LOG = LogManager.getLogger(PatientService.class);
 
 	public PatientService(JavaMailSender javaMailSender, PatientRepository patientRepository,
 			TokenRepository tokenRepository, PatientReportService patientReportService) {
 		this.patientRepository = patientRepository;
-//		this.feignClientCheck = feignClientCheck;
 		this.javaMailSender = javaMailSender;
 		this.tokenRepository = tokenRepository;
 		this.patientReportService = patientReportService;
 	}
 
-//	public ResponseEntity<List<Tags>> getTags() {
-//		try {
-//			return feignClientCheck.getTags("40dc498b-e837-4fa9-8e53-c1d51e01af15");
-//		} catch (Exception e) {
-//
-//			return null;
-//		}
-//	}
+
+	/**
+	 * Logs in the patient
+	 *
+	 * @param email
+	 * @param password
+	 * @return
+	 */
+	public ResponseEntity<String> loginPatient(String email, String password){
+		if(patientRepository.existsByEmailAndPasswordAndStatusTrue(email, password)){
+			return ResponseEntity.ok().body(("Patient has been logged in..."));
+		}else{
+			return new ResponseEntity<>("Patient email or password maybe wrong.", HttpStatus.NOT_FOUND);
+		}
+	}
+
 
 	/**
 	 * @creationDate 29 October 2021
 	 * @description This function gets all the patients details from the database.
-	 * @param NA
 	 * @throws Exception the exception
 	 * @return Response Entity of List of Patients
 	 **/
@@ -82,7 +86,7 @@ public class PatientService {
 	/**
 	 * @creationDate 1st November 2021
 	 * @description This function gets a patient based on an id from database.
-	 * @param NA
+	 * @param patientId: the id od patient
 	 * @throws Exception the exception
 	 * @return Response Entity of type Patient
 	 **/

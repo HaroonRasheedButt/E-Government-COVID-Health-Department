@@ -13,8 +13,9 @@ public interface PatientRepository extends JpaRepository<Patient, Long>{
 	List<Patient> findAllByStatusTrueOrderByCreatedDateDesc();
 	
 	Patient findByCnicAndStatusTrue(String cnic);
-	Patient findByEmailAndPassword(String email, String Password);
-	
+	Patient findByEmailAndPassword(String email, String password);
+	Boolean existsByEmailAndPasswordAndStatusTrue(String email, String password);
+
 	Long countByIsCovidTrue();
 	Long countByIsCovidTrueAndCity(String city);
 	Long countByIsCovidTrueAndProvince(String province);
@@ -24,7 +25,6 @@ public interface PatientRepository extends JpaRepository<Patient, Long>{
 	Long countByIsAliveFalseAndProvince(String province);
 	
 	Long countByPatientReports_CreatedDateBetweenAndPatientReports_TestResultsIgnoreCase(Date after, Date before, String testResult);
-	
 	Long countByPatientReports_CreatedDateBetweenAndPatientReports_TestResultsIgnoreCaseAndCityIgnoreCase(Date after, Date before, String testResult, String city);
 	Long countByPatientReports_CreatedDateBetweenAndPatientReports_TestResultsIgnoreCaseAndProvinceIgnoreCase(Date after, Date before, String testResult, String province);
 }

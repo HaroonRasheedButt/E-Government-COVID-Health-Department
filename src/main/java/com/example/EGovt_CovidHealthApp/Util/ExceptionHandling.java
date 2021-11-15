@@ -33,25 +33,37 @@ public class ExceptionHandling {
 	/**
 	 * Returns the detialed custom response upon Exception
 	 * 
-	 * @param HttpServletRequest: req
-	 * @param Exception           ex
-	 * @return DetailedCustomeResponse
+	 * @param req: HttpServletRequest
+	 * @param ex: Exception
+	 * @return DetailedCustomerResponse
 	 */
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler({ javax.validation.ConstraintViolationException.class, InvalidFormatException.class,
 			HttpMessageNotReadableException.class, MissingRequestHeaderException.class,
 			MissingPathVariableException.class, HttpRequestMethodNotSupportedException.class,
 			UnexpectedTypeException.class, MethodArgumentNotValidException.class, DataIntegrityViolationException.class,
-			RuntimeException.class, ConstraintViolationException.class, DataException.class, HttpClientErrorException.class})
+			RuntimeException.class, ConstraintViolationException.class, DataException.class})
 	public @ResponseBody Object handleBadRequestException(HttpServletRequest req, Exception ex) {
-
-		if(ex instanceof HttpClientErrorException){
-			String msg = "Authorization Failed Error\n\n";
-			return new DetailedCustomResponse(401, HttpStatus.UNAUTHORIZED, msg+ex.getMessage(), req.getRequestURI(),
-					DateTimeUtil.getDate());
-		}
 
 		return new DetailedCustomResponse(400, HttpStatus.BAD_REQUEST, ex.getMessage(), req.getRequestURI(),
 				DateTimeUtil.getDate());
 	}
+
+	/**
+	 * Returns the detailed custom response upon Failed Authorization
+	 *
+	 * @param req: HttpServletRequest
+	 * @param ex: Exception
+	 * @return DetailedCustomerResponse
+	 */
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	@ExceptionHandler({ HttpClientErrorException.class})
+	public @ResponseBody Object handleAuthorizationException(HttpServletRequest req, Exception ex) {
+
+			String msg = "Authorization Failed Error\n";
+			return new DetailedCustomResponse(401, HttpStatus.UNAUTHORIZED, msg, req.getRequestURI(),
+					DateTimeUtil.getDate());
+	}
+
+
 }

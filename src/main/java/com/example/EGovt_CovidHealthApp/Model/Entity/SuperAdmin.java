@@ -2,8 +2,11 @@ package com.example.EGovt_CovidHealthApp.Model.Entity;
 
 import lombok.Data;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
@@ -11,6 +14,7 @@ import javax.validation.constraints.Positive;
 
 @Data
 @Entity
+@Table
 public class SuperAdmin extends User{
     @Column(nullable = false, unique = true)
     @NotBlank(message="name should not be empty / null")
@@ -24,3 +28,4 @@ public class SuperAdmin extends User{
     @Max(22)
     private int gradeLevel;
 }
+

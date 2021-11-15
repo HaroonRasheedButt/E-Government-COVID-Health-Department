@@ -19,7 +19,7 @@ import com.example.EGovt_CovidHealthApp.Util.DateTimeUtil;
 @Service
 public class CompanyService {
 	private final CompanyRepository companyRepository;
-	private static final Logger LOG = LogManager.getLogger(AdminService.class);
+	private static final Logger LOG = LogManager.getLogger(CompanyService.class);
 
 	public CompanyService(CompanyRepository companyRepository) {
 		this.companyRepository = companyRepository;
