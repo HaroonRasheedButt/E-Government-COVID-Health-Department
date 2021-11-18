@@ -9,8 +9,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 @Data
-@MappedSuperclass
+@Entity
+@Table(indexes = {
+        @Index(name = "createdDate_index", columnList = "createdDate"),
+        @Index(name = "email_index", columnList = "email"),
+        @Index(name = "cnic_index", columnList = "cnic")
+})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +24,9 @@ public class User {
     @Column
     @NotBlank(message = "name can not be null / empty")
     private String name;
+    @Column(nullable = false, unique = true)
+    @NotBlank(message="name should not be empty / null")
+    private String username;
     @Column(nullable = false, unique = true)
     @Email
     @NotBlank(message = "email can not be null / empty")
@@ -61,4 +70,25 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
     private List<Role> roles = new ArrayList<>();
+    /*for patients*/
+    @Column
+    private boolean isCovid;
+    @Column
+    private boolean isVaccinated;
+
+    @OneToMany(targetEntity = PatientReport.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PatientReport> patientReports = new ArrayList<PatientReport>();
+
+    @OneToMany(targetEntity = PatientVaccination.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PatientVaccination> patientVaccination = new ArrayList<PatientVaccination>();
+
+    /*for super admin*/
+    @Column(unique = true)
+    @NotBlank(message="name should not be empty / null")
+    private String assignedPost;
+    @Column
+    @Positive(message = "It should be a positive integer!")
+    @Digits(fraction = 0, integer = 2, message= "Wrong input of available Number of beds")
+    @Max(22)
+    private int gradeLevel;
 }

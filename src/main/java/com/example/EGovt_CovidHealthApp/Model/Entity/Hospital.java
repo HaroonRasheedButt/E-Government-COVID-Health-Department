@@ -4,15 +4,7 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -22,6 +14,9 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(indexes = {
+        @Index(name = "createdDate_index", columnList = "createdDate")
+})
 public class Hospital {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,8 +64,8 @@ public class Hospital {
     private String province;
 
 
-	@ManyToMany(targetEntity = Patient.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private List<Patient> patients = new ArrayList<Patient>();
+	@ManyToMany(targetEntity = User.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private List<User> patients = new ArrayList<User>();
     
     @OneToMany(targetEntity = CovidTest.class,  cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<CovidTest> covidTests = new ArrayList<CovidTest>();
@@ -78,8 +73,8 @@ public class Hospital {
     @OneToMany(targetEntity = MobileVaccineCar.class,  cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<MobileVaccineCar> mobileVaccineCars = new ArrayList<MobileVaccineCar>();
 
-	@OneToMany(targetEntity = CovidAdminOperator.class,  cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<CovidAdminOperator> covidAdminOperators = new ArrayList<>();
+	@OneToMany(targetEntity = User.class,  cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<User> covidAdminOperators = new ArrayList<User>();
 
 
 }

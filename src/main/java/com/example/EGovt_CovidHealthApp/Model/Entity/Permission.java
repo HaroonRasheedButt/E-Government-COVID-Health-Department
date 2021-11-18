@@ -7,7 +7,9 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "permission")
+@Table(name = "permission", indexes = {
+        @Index(name = "createdDate_index", columnList = "createdDate")
+})
 public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

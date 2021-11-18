@@ -8,9 +8,10 @@ import java.util.List;
 
 @Data
 @Entity
-@Table (name = "role")
+@Table(indexes = {
+        @Index(name = "createdDate_index", columnList = "createdDate")
+})
 public class Role {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

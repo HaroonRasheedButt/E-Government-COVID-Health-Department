@@ -18,7 +18,7 @@ import com.example.EGovt_CovidHealthApp.Util.DateTimeUtil;
 @Service
 public class PatientVaccinationService {
 	private final PatientVaccinationRepository patientVaccinationRepository;
-	private static final Logger LOG = LogManager.getLogger(SuperAdminService.class);
+	private static final Logger LOG = LogManager.getLogger(PatientVaccinationService.class);
 
 	public PatientVaccinationService(PatientVaccinationRepository patientVaccinationRepository) {
 		this.patientVaccinationRepository = patientVaccinationRepository;
@@ -55,7 +55,7 @@ public class PatientVaccinationService {
 	/**
 	 * @creationDate 31st October 2021
 	 * @description This function adds a patientVaccination in database.
-	 * @param PatientVaccination: A patientVaccination object to be added
+	 * @param patientVaccination: A patientVaccination object to be added
 	 * @throws Exception the exception
 	 * @return Response Entity of type PatientVaccination
 	 **/
@@ -80,7 +80,7 @@ public class PatientVaccinationService {
 	/**
 	 * @creationDate 31st October 2021
 	 * @description This function updates a patientVaccination in database.
-	 * @param PatientVaccination: A patientVaccination object to be added
+	 * @param patientVaccination: A patientVaccination object to be added
 	 * @throws Exception the exception
 	 * @return Response Entity of type PatientVaccination
 	 **/
@@ -107,7 +107,7 @@ public class PatientVaccinationService {
 	 * @creationDate 31st October 2021
 	 * @description This function deletes a patientVaccination in database by
 	 *              changing its status to false.
-	 * @param Path Variable : The id of the the patientVaccination to be deleted
+	 * @param patientVaccinations : The list of the patientVaccination to be deleted
 	 * @throws Exception the exception
 	 * @return Response Entity of type String
 	 **/

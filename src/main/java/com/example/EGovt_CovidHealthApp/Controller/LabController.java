@@ -10,13 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 
 import com.example.EGovt_CovidHealthApp.Model.Entity.Lab;
@@ -39,6 +33,58 @@ public class LabController {
 
     public LabController(LabService labService) {
         this.labService = labService;
+    }
+
+
+
+
+
+    /**
+     * @param authToken: the authorization token
+     * @param lab:       A lab object to be added
+     * @return Response Entity of type Lab
+     * @throws Exception the exception
+     * @creationDate 28 October 2021
+     * @description This function adds a lab in database.
+     **/
+    @PostMapping("/lab/addLab")
+    public ResponseEntity<Lab> addLab(@RequestHeader("Authorization") String authToken,
+                                      @Valid @RequestBody Lab lab) throws Exception {
+
+        AuthorizationUtil.authorized(authToken);
+        return labService.addLab(lab);
+    }
+
+    /**
+     * @param authToken: the authorization token
+     * @param lab:       A lab object to be added
+     * @return Response Entity of type Lab
+     * @throws Exception the exception
+     * @creationDate 28 October 2021
+     * @description This function updates a lab in database.
+     **/
+    @PutMapping("/lab/updateLab")
+    public ResponseEntity<Lab> updateLab(@RequestHeader("Authorization") String authToken,
+                                         @Valid @RequestBody Lab lab) throws Exception {
+
+        AuthorizationUtil.authorized(authToken);
+        return labService.updateLab(lab);
+    }
+
+    /**
+     * @param authToken: the authorization token
+     * @param labs:      The labs to be deleted
+     * @return Response Entity of type String
+     * @throws Exception the exception
+     * @creationDate 28 October 2021
+     * @description This function updates a lab in database.
+     **/
+    @DeleteMapping("/lab/deleteLab")
+    public ResponseEntity<String> deleteLab(@RequestHeader("Authorization") String authToken,
+                                            @Valid @RequestBody List<Lab> labs) throws Exception {
+
+        AuthorizationUtil.authorized(authToken);
+        return labService.deleteLab(labs);
     }
 
     /**

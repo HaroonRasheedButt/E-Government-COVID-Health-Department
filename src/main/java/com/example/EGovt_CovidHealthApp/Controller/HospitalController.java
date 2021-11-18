@@ -4,21 +4,15 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.example.EGovt_CovidHealthApp.Model.Entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.EGovt_CovidHealthApp.Model.Entity.Hospital;
 import com.example.EGovt_CovidHealthApp.Model.Entity.MobileVaccineCar;
-import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
 import com.example.EGovt_CovidHealthApp.Model.Entity.PatientReport;
 import com.example.EGovt_CovidHealthApp.Model.Entity.PatientVaccination;
 import com.example.EGovt_CovidHealthApp.Service.HospitalService;
@@ -41,6 +35,57 @@ public class HospitalController {
     public HospitalController(HospitalService hospitalService) {
         this.hospitalService = hospitalService;
     }
+
+
+    /**
+     * @param authToken: the authorization token
+     * @param hospital   object to be added
+     * @return Response Entity of type Hospital
+     * @throws Exception the exception
+     * @creationDate 28 October 2021
+     * @description This function adds a hospital in database.
+     **/
+    @PostMapping("/hospital/addHospital")
+    public ResponseEntity<Hospital> addHospital(@RequestHeader("Authorization") String authToken,
+                                                @Valid @RequestBody Hospital hospital) throws Exception {
+
+        AuthorizationUtil.authorized(authToken);
+        return hospitalService.addHospital(hospital);
+    }
+
+    /**
+     * @param authToken: the authorization token
+     * @param hospital:  A hospital object to be added
+     * @return Response Entity of type Hospital
+     * @throws Exception the exception
+     * @creationDate 28 October 2021
+     * @description This function updates a hospital in database.
+     **/
+    @PutMapping("/hospital/updateHospital")
+    public ResponseEntity<Hospital> updateHospital(@RequestHeader("Authorization") String authToken,
+                                                   @Valid @RequestBody Hospital hospital) throws Exception {
+
+        AuthorizationUtil.authorized(authToken);
+        return hospitalService.updateHospital(hospital);
+    }
+
+    /**
+     * @param authToken: the authorization token
+     * @param hospitals: The id of
+     * @return Response Entity of type String
+     * @throws Exception the exception
+     * @creationDate 28 October 2021
+     * @description This function updates a hospital in database.
+     **/
+    @DeleteMapping("/hospital/deleteHospital")
+    public ResponseEntity<String> deleteHospital(@RequestHeader("Authorization") String authToken,
+                                                 @Valid @RequestBody List<Hospital> hospitals) throws Exception {
+
+        AuthorizationUtil.authorized(authToken);
+        return hospitalService.deleteHospital(hospitals);
+    }
+
+
 
     /**
      * @param authToken: the authorization token
@@ -67,33 +112,33 @@ public class HospitalController {
      * @throws Exception the exception
      * @creationDate 28 October 2021
      **/
-    @PostMapping("/{hospitalId}/addPatientReport/{patientCnic}")
+    @PostMapping("/{hospitalId}/addPatientReport/{userCnic}")
     public ResponseEntity<Hospital> addPatientReport(@RequestHeader("Authorization") String authToken,
                                                      @PathVariable(value = "hospitalId") long hospitalId,
-                                                     @PathVariable(value = "patientCnic") String patientCnic, @Valid @RequestBody PatientReport patientReport)
+                                                     @PathVariable(value = "userCnic") String userCnic, @Valid @RequestBody PatientReport patientReport)
             throws Exception {
 
         AuthorizationUtil.authorized(authToken);
-        return hospitalService.addPatientReport(patientReport, patientCnic, hospitalId);
+        return hospitalService.addPatientReport(patientReport, userCnic, hospitalId);
     }
 
     /**
      * @param authToken: the authorization token
-     * @param patientReport: Patient Report object
-     * @param patientCnic: Patient cnic
+     * @param patientReport: User Report object
+     * @param userCnic: User cnic
      * @return Response Entity of type PatientReport
      * @throws Exception the exception
      * @creationDate 28 October 2021
      * @description This function updates a MobileVaccineCar in database.
      **/
-    @PostMapping("/patient/update/patientReport")
-    public ResponseEntity<Patient> updatePatientReport(
+    @PostMapping("/user/update/patientReport")
+    public ResponseEntity<User> updatePatientReport(
             @RequestHeader("Authorization") String authToken,
-            @RequestHeader("patientCnic") String patientCnic,
+            @RequestHeader("userCnic") String userCnic,
             @Valid @RequestBody PatientReport patientReport)
             throws Exception {
         AuthorizationUtil.authorized(authToken);
-        return hospitalService.updatePatientReport(patientCnic, patientReport);
+        return hospitalService.updatePatientReport(userCnic, patientReport);
     }
 
 
@@ -105,32 +150,32 @@ public class HospitalController {
      * @creationDate 28 October 2021
      * @description This function adds a PatientVaccination in database.
      **/
-    @PostMapping("/{hospitalId}/addPatientVaccination/{patientCnic}")
+    @PostMapping("/{hospitalId}/addPatientVaccination/{userCnic}")
     public ResponseEntity<Hospital> addPatientVaccination(@RequestHeader("Authorization") String authToken,
                                                           @PathVariable(value = "hospitalId") long hospitalId,
-                                                          @PathVariable(value = "patientCnic") String patientCnic, @Valid @RequestBody PatientVaccination patientVaccination)
+                                                          @PathVariable(value = "userCnic") String userCnic, @Valid @RequestBody PatientVaccination patientVaccination)
             throws Exception {
         AuthorizationUtil.authorized(authToken);
-        return hospitalService.addPatientVaccination(patientVaccination, patientCnic, hospitalId);
+        return hospitalService.addPatientVaccination(patientVaccination, userCnic, hospitalId);
     }
 
     /**
      * @param authToken: the authorization token
-     * @param patientVaccination: Patient Vaccination Report
-     * @param patientCnic: Patient cnic
-     * @return Response Entity of type Patient
+     * @param patientVaccination: User Vaccination Report
+     * @param userCnic: User cnic
+     * @return Response Entity of type User
      * @throws Exception the exception
      * @creationDate 28 October 2021
      * @description This function updates a MobileVaccineCar in database.
      **/
-    @PostMapping("/patient/update/patientVaccination")
-    public ResponseEntity<Patient> updatePatientVaccination(
+    @PostMapping("/user/update/patientVaccination")
+    public ResponseEntity<User> updatePatientVaccination(
             @RequestHeader("Authorization") String authToken,
-            @RequestHeader("patientCnic") String patientCnic,
+            @RequestHeader("userCnic") String userCnic,
             @Valid @RequestBody PatientVaccination patientVaccination)
             throws Exception {
         AuthorizationUtil.authorized(authToken);
-        return hospitalService.updatePatientVaccination(patientCnic, patientVaccination);
+        return hospitalService.updatePatientVaccination(userCnic, patientVaccination);
     }
 
 

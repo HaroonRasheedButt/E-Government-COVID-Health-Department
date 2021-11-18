@@ -28,7 +28,6 @@ public class CompanyService {
 	/**
 	 * @creationDate 28 October 2021
 	 * @description This function gets all the companies details in database.
-	 * @param N/A
 	 * @throws Exception the exception
 	 * @return Response Entity of type Company
 	 **/
@@ -54,7 +53,7 @@ public class CompanyService {
 	/**
 	 * @creationDate 28 October 2021
 	 * @description This function adds a company in database.
-	 * @param Company: A company object to be added
+	 * @param company: A company object to be added
 	 * @throws Exception the exception
 	 * @return Response Entity of type Company
 	 **/
@@ -86,7 +85,7 @@ public class CompanyService {
 	/**
 	 * @creationDate 28 October 2021
 	 * @description This function updates a company in database.
-	 * @param Company: A company object to be added
+	 * @param company: A company object to be updated
 	 * @throws Exception the exception
 	 * @return Response Entity of type Company
 	 **/
@@ -119,7 +118,7 @@ public class CompanyService {
 	 * @creationDate 28 October 2021
 	 * @description This function deletes a company in database by changing its
 	 *              status to false.
-	 * @param Path Variable : The id of the the company to be deleted
+	 * @param companies: List of companies to be deleted
 	 * @throws Exception the exception
 	 * @return Response Entity of type String
 	 **/
@@ -144,7 +143,7 @@ public class CompanyService {
 	/**
 	 * @creationDate 28 October 2021
 	 * @description This function gets all the companies details in database.
-	 * @param N/A
+	 * @param name
 	 * @throws Exception the exception
 	 * @return Response Entity of type Company
 	 **/
@@ -170,7 +169,7 @@ public class CompanyService {
 	 * @creationDate 28 October 2021
 	 * @description This function deletes a company in database by changing its
 	 *              status to false.
-	 * @param Copmany : A company object whose remaining fields are to be calculated
+	 * @param company : A company object whose remaining fields are to be calculated
 	 * @return An object of company
 	 **/
 	private Company calculateCompanyRemainingFields(Company company) {
@@ -180,4 +179,5 @@ public class CompanyService {
 		LOG.info("Copmnay remaining fileds have been calculated!!");
 		return company;
 	}
+
 }

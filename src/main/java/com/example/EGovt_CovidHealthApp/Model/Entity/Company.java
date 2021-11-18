@@ -2,11 +2,7 @@ package com.example.EGovt_CovidHealthApp.Model.Entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -14,6 +10,10 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
 @Entity
+@Table(indexes = {
+		@Index(name = "createdDate_index", columnList = "createdDate"),
+		@Index(name = "companyName_index", columnList = "name")
+})
 public class Company {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

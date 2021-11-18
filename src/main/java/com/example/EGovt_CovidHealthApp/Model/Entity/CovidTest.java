@@ -2,16 +2,15 @@ package com.example.EGovt_CovidHealthApp.Model.Entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import lombok.Data;
 
 @Data
 @Entity
+@Table(indexes = {
+		@Index(name = "createdDate_index", columnList = "createdDate")
+})
 public class CovidTest {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -3,6 +3,8 @@ package com.example.EGovt_CovidHealthApp.Service;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.EGovt_CovidHealthApp.Model.Entity.User;
+import com.example.EGovt_CovidHealthApp.Repostiory.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.PropertyValueException;
@@ -11,29 +13,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.EGovt_CovidHealthApp.Model.Entity.Lab;
-import com.example.EGovt_CovidHealthApp.Model.Entity.Patient;
 import com.example.EGovt_CovidHealthApp.Model.Entity.PatientReport;
 import com.example.EGovt_CovidHealthApp.Model.Entity.PatientVaccination;
 import com.example.EGovt_CovidHealthApp.Repostiory.LabRepository;
-import com.example.EGovt_CovidHealthApp.Repostiory.PatientRepository;
 import com.example.EGovt_CovidHealthApp.Util.DateTimeUtil;
 
 @Service
 public class LabService {
 
 	private final LabRepository labRepository;
-	private final PatientRepository patientRepository;
-	private final PatientService patientService;
+	private final UserRepository userRepository;
+	private final UserService userService;
 	private final PatientReportService patientReportService;
 	private final PatientVaccinationService patientVaccinationService;
-	private static final Logger LOG = LogManager.getLogger(SuperAdminService.class);
+	private static final Logger LOG = LogManager.getLogger(LabService.class);
 
 	public LabService(LabRepository labRepository, PatientReportService patientReportService,
-			PatientVaccinationService patientVaccinationService, PatientService patientService,
-			PatientRepository patientRepository) {
+			PatientVaccinationService patientVaccinationService, UserService userService,
+			UserRepository userRepository) {
 		this.labRepository = labRepository;
-		this.patientRepository = patientRepository;
-		this.patientService = patientService;
+		this.userRepository = userRepository;
+		this.userService = userService;
 		this.patientReportService = patientReportService;
 		this.patientVaccinationService = patientVaccinationService;
 	}
@@ -41,7 +41,6 @@ public class LabService {
 	/**
 	 * @creationDate 31st October 2021
 	 * @description This function gets all the labs details in database.
-	 * @param N/A
 	 * @throws Exception the exception
 	 * @return Response Entity of type Lab
 	 **/
@@ -66,7 +65,7 @@ public class LabService {
 	/**
 	 * @creationDate 1st November 2021
 	 * @description This function gets a lab based on an id from database.
-	 * @param N/A
+	 * @param labId: the id of lab
 	 * @throws Exception the exception
 	 * @return Response Entity of type Lab
 	 **/
@@ -90,7 +89,7 @@ public class LabService {
 	/**
 	 * @creationDate 31st October 2021
 	 * @description This function adds a lab in database.
-	 * @param Lab: A lab object to be added
+	 * @param lab: A lab object to be added
 	 * @throws Exception the exception
 	 * @return Response Entity of type Lab
 	 **/
@@ -116,7 +115,7 @@ public class LabService {
 	/**
 	 * @creationDate 31st October 2021
 	 * @description This function updates a lab in database.
-	 * @param Lab: A lab object to be added
+	 * @param lab: A lab object to be added
 	 * @throws Exception the exception
 	 * @return Response Entity of type Lab
 	 **/
@@ -149,7 +148,7 @@ public class LabService {
 	 * @creationDate 31st October 2021
 	 * @description This function deletes a lab in database by changing its
 	 *              status to false.
-	 * @param Path Variable : The id of the the lab to be deleted
+	 * @param labs: The list od labs to be deleted
 	 * @throws Exception the exception
 	 * @return Response Entity of type String
 	 **/
@@ -171,9 +170,9 @@ public class LabService {
 	/**
 	 * @creationDate 31st October 2021
 	 * @description This function adds a patientReport in database.
-	 * @param PatientReport: A patientReport object to be added
-	 * @param PatientCnic:   A patient CNIC that is unique for every patient
-	 * @param long:          A lab id
+	 * @param patientReport: A patientReport object to be added
+	 * @param patientCnic:   A patient CNIC that is unique for every patient
+	 * @param labId: A lab id
 	 * @throws Exception the exception
 	 * @return Response Entity of type Lab
 	 **/
@@ -182,7 +181,7 @@ public class LabService {
 		try {
 			Optional<Lab> lab = labRepository.findById(labId);
 			if (lab.isPresent()) {
-				Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
+				Optional<User> patient = Optional.ofNullable(userRepository.findByCnicAndStatusTrue(patientCnic));
 				if (patient.isPresent()) {
 					// this will set the created date and status of patient Report
 					patientReport = patientReportService.addPatientReport(patientReport);
@@ -194,8 +193,8 @@ public class LabService {
 						patient.get().setCovid(false);
 					}
 
-					patient = Optional.of(patientService.updatePatient(patient.get()).getBody());
-					List<Patient> patientsOfLab = lab.get().getPatients();
+					patient = Optional.of(userService.updateUser(patient.get()).getBody());
+					List<User> patientsOfLab = lab.get().getPatients();
 
 					Integer index = patientInLabExists(patientsOfLab, patientCnic);
 					if (index >= 0) {
@@ -225,7 +224,7 @@ public class LabService {
 	/**
 	 * @creationDate 31st October 2021
 	 * @description This function adds a patientVaccination in database.
-	 * @param PatientVaccination: A patientVaccination object to be added
+	 * @param patientVaccination: A patientVaccination object to be added
 	 * @throws Exception the exception
 	 * @return Response Entity of type PatientVaccination
 	 **/
@@ -234,15 +233,15 @@ public class LabService {
 		try {
 			Optional<Lab> lab = labRepository.findById(labId);
 			if (lab.isPresent()) {
-				Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
+				Optional<User> patient = Optional.ofNullable(userRepository.findByCnicAndStatusTrue(patientCnic));
 				if (patient.isPresent()) {
 
 					// this will set the created date and status of patient Report
 					patientVaccination = patientVaccinationService.addPatientVaccination(patientVaccination);
 					patient.get().getPatientVaccination().add(patientVaccination);
 					patient.get().setVaccinated(true);
-					patient = Optional.of(patientService.updatePatient(patient.get()).getBody());
-					List<Patient> patientsOfLab = lab.get().getPatients();
+					patient = Optional.of(userService.updateUser(patient.get()).getBody());
+					List<User> patientsOfLab = lab.get().getPatients();
 
 					Integer index = patientInLabExists(patientsOfLab, patientCnic);
 					if (index >= 0) {
@@ -273,12 +272,12 @@ public class LabService {
 	 * Checks if the patient id already exist in the lab or not
 	 * 
 	 * @param patients
-	 * @param checkPatientId
+	 * @param checkPatientCnic
 	 * @return
 	 */
-	private Integer patientInLabExists(List<Patient> patients, String checkPatientCnic) {
+	private Integer patientInLabExists(List<User> patients, String checkPatientCnic) {
 		int index = 0;
-		for (Patient patient : patients) {
+		for (User patient : patients) {
 			if (patient.getCnic().equals(checkPatientCnic))
 				return index;
 

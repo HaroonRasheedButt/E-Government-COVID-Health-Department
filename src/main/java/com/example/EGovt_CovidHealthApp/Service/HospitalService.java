@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import com.example.EGovt_CovidHealthApp.Model.Entity.*;
-import com.example.EGovt_CovidHealthApp.Repostiory.CovidAdminOperatorRepository;
+import com.example.EGovt_CovidHealthApp.Repostiory.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.PropertyValueException;
@@ -16,31 +16,27 @@ import org.springframework.stereotype.Service;
 
 import com.example.EGovt_CovidHealthApp.Repostiory.HospitalRepository;
 import com.example.EGovt_CovidHealthApp.Repostiory.MobileVaccineCarRepository;
-import com.example.EGovt_CovidHealthApp.Repostiory.PatientRepository;
 import com.example.EGovt_CovidHealthApp.Util.DateTimeUtil;
 
 @Service
 public class HospitalService {
     private final HospitalRepository hospitalRepository;
-    private final PatientRepository patientRepository;
-    private final CovidAdminOperatorRepository covidAdminOperatorRepository;
+    private final UserRepository userRepository;
     private final MobileVaccineCarRepository mobileVaccineCarRepository;
-    private final PatientService patientService;
+    private final UserService patientService;
     private final PatientReportService patientReportService;
     private final PatientVaccinationService patientVaccinationService;
     private static final Logger LOG = LogManager.getLogger(HospitalService.class);
 
     public HospitalService(HospitalRepository hospitalRepository, PatientReportService patientReportService,
-                           PatientVaccinationService patientVaccinationService, PatientService patientService,
-                           MobileVaccineCarRepository mobileVaccineCarRepository, PatientRepository patientRepository,
-                           CovidAdminOperatorRepository covidAdminOperatorRepository) {
+                           PatientVaccinationService patientVaccinationService, UserService patientService,
+                           MobileVaccineCarRepository mobileVaccineCarRepository, UserRepository userRepository) {
         this.hospitalRepository = hospitalRepository;
-        this.patientRepository = patientRepository;
         this.mobileVaccineCarRepository = mobileVaccineCarRepository;
         this.patientService = patientService;
         this.patientReportService = patientReportService;
         this.patientVaccinationService = patientVaccinationService;
-        this.covidAdminOperatorRepository = covidAdminOperatorRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -195,7 +191,7 @@ public class HospitalService {
         try {
             Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
             if (hospital.isPresent()) {
-                Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
+                Optional<User> patient = Optional.ofNullable(userRepository.findByCnicAndStatusTrue(patientCnic));
                 if (patient.isPresent()) {
                     // this will set the created date and status of patient Report
                     patientReport = patientReportService.addPatientReport(patientReport);
@@ -206,17 +202,17 @@ public class HospitalService {
                     } else if (patientReport.getTestResults().toLowerCase().equals("negative")) {
                         patient.get().setCovid(false);
                     }
-                    patient = Optional.of(patientService.updatePatient(patient.get()).getBody());
-                    List<Patient> patientsOfHospital = hospital.get().getPatients();
+                    patient = Optional.of(patientService.updateUser(patient.get()).getBody());
+                    List<User> patientsOfHospital = hospital.get().getPatients();
 
                     Integer index = patientInHospitalExists(patientsOfHospital, patientCnic);
                     if (index >= 0) {
-                        LOG.info("Patient Exists in Hospital already... ");
+                        LOG.info("User Exists in Hospital already... ");
                         hospital.get().getPatients().set(index, patient.get());
                         return updateHospital(hospital.get());
 
                     } else {
-                        LOG.info("Patient does not Exists in Hospital. Adding... ");
+                        LOG.info("User does not Exists in Hospital. Adding... ");
                         hospital.get().getPatients().add(patient.get());
                         return updateHospital(hospital.get());
                     }
@@ -237,21 +233,23 @@ public class HospitalService {
     }
 
     /**
-     * @return Response Entity of type Patient
+     * @param patientCnic
+     * @param patientReport
+     * @return Response Entity of type User
      * @throws Exception the exception
      * @creationDate 1st November 2021
      * @description This function gets a patient based on their CNIC from database.
      **/
-    public ResponseEntity<Patient> updatePatientReport(String patientCnic, PatientReport patientReport) {
+    public ResponseEntity<User> updatePatientReport(String patientCnic, PatientReport patientReport) {
         try {
-            Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
+            Optional<User> patient = Optional.ofNullable(userRepository.findByCnicAndStatusTrue(patientCnic));
             if (patient.isPresent()) {
-                Integer index = patientReportExistsInPatient(patient.get().getPatientReports(), patientReport.getId());
+                Integer index = patientReportExistsInUser(patient.get().getPatientReports(), patientReport.getId());
                 if (index >= 0) {
                     patientReport = patientReportService.updatePatientReport(patientReport);
                     patient.get().getPatientReports().set(index, patientReport);
-                    patientRepository.save(patient.get());
-                    return patientService.getPatientByCnic(patientCnic);
+                    userRepository.save(patient.get());
+                    return patientService.getUserByCnic(patientCnic);
                 } else {
                     return new ResponseEntity("The Report does not belong to this patient", HttpStatus.NOT_FOUND);
                 }
@@ -270,7 +268,7 @@ public class HospitalService {
      * @param patientReportId
      * @return Integer showing
      */
-    private Integer patientReportExistsInPatient(List<PatientReport> patientReprots, long patientReportId) {
+    private Integer patientReportExistsInUser(List<PatientReport> patientReprots, long patientReportId) {
         Integer index = 0;
         for (PatientReport patientReport : patientReprots) {
             if (patientReportId == patientReport.getId())
@@ -294,24 +292,24 @@ public class HospitalService {
         try {
             Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
             if (hospital.isPresent()) {
-                Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
+                Optional<User> patient = Optional.ofNullable(userRepository.findByCnicAndStatusTrue(patientCnic));
                 if (patient.isPresent()) {
 
                     // This will set the created date and status of patient Report
                     patientVaccination = patientVaccinationService.addPatientVaccination(patientVaccination);
                     patient.get().getPatientVaccination().add(patientVaccination);
                     patient.get().setVaccinated(true);
-                    patient = Optional.of(patientService.updatePatient(patient.get()).getBody());
-                    List<Patient> patientsOfHospital = hospital.get().getPatients();
+                    patient = Optional.of(patientService.updateUser(patient.get()).getBody());
+                    List<User> patientsOfHospital = hospital.get().getPatients();
 
                     Integer index = patientInHospitalExists(patientsOfHospital, patientCnic);
                     if (index >= 0) {
-                        LOG.info("Patient Exists in Hospital already... ");
+                        LOG.info("User Exists in Hospital already... ");
                         hospital.get().getPatients().set(index, patient.get());
                         return updateHospital(hospital.get());
 
                     } else {
-                        LOG.info("Patient Exists in Hospital already... ");
+                        LOG.info("User Exists in Hospital already... ");
                         hospital.get().getPatients().add(patient.get());
                         return updateHospital(hospital.get());
                     }
@@ -335,20 +333,22 @@ public class HospitalService {
     }
 
     /**
-     * @return Response Entity of type Patient
+     * @param patientCnic
+     * @param patientVaccination
+     * @return Response Entity of type User
      * @throws Exception the exception
      * @creationDate 1st November 2021
      * @description This function gets a patient based on their CNIC from database.
      **/
-    public ResponseEntity<Patient> updatePatientVaccination(String patientCnic, PatientVaccination patientVaccination) {
+    public ResponseEntity<User> updatePatientVaccination(String patientCnic, PatientVaccination patientVaccination) {
         try {
-            Optional<Patient> patient = Optional.ofNullable(patientRepository.findByCnicAndStatusTrue(patientCnic));
+            Optional<User> patient = Optional.ofNullable(userRepository.findByCnicAndStatusTrue(patientCnic));
             if (patient.isPresent()) {
-                Integer index = patientVaccinationExistsInPatient(patient.get().getPatientVaccination(), patientVaccination.getId());
+                Integer index = patientVaccinationExistsInUser(patient.get().getPatientVaccination(), patientVaccination.getId());
                 if (index >= 0) {
                     patientVaccination = patientVaccinationService.updatePatientVaccination(patientVaccination);
                     patient.get().getPatientVaccination().set(index, patientVaccination);
-                    return patientService.getPatientByCnic(patientCnic);
+                    return patientService.getUserByCnic(patientCnic);
                 } else {
                     return new ResponseEntity("The Report does not belong to this patient", HttpStatus.NOT_FOUND);
                 }
@@ -367,7 +367,7 @@ public class HospitalService {
      * @param patientVaccinationId
      * @return
      */
-    private Integer patientVaccinationExistsInPatient(List<PatientVaccination> patientVaccinations, long patientVaccinationId) {
+    private Integer patientVaccinationExistsInUser(List<PatientVaccination> patientVaccinations, long patientVaccinationId) {
         Integer index = 0;
         for (PatientVaccination patientReport : patientVaccinations) {
             if (patientVaccinationId == patientReport.getId())
@@ -383,13 +383,13 @@ public class HospitalService {
      * Checks if the patient id already exist in the hospital or not
      *
      * @param patients
-     * @param checkPatientCnic
+     * @param checkUserCnic
      * @return
      */
-    private Integer patientInHospitalExists(List<Patient> patients, String checkPatientCnic) {
+    private Integer patientInHospitalExists(List<User> patients, String checkUserCnic) {
         int index = 0;
-        for (Patient patient : patients) {
-            if (patient.getCnic().equals(checkPatientCnic))
+        for (User patient : patients) {
+            if (patient.getCnic().equals(checkUserCnic))
                 return index;
 
             index++;
@@ -501,7 +501,7 @@ public class HospitalService {
      * @throws Exception the exception
      * @return Response Entity of List of type MobileVaccineCar
      **/
-    public ResponseEntity<List<CovidAdminOperator>> getCovidAdminOperator(long hospitalId) {
+    public ResponseEntity<List<User>> getCovidAdminOperator(long hospitalId) {
         try {
             Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
             if (hospital.isPresent()) {
@@ -527,15 +527,15 @@ public class HospitalService {
      * @throws Exception the exception
      * @return Response Entity of type MobileVaccineCar
      **/
-    public ResponseEntity<List<CovidAdminOperator>> updateCovidAdminOperator(CovidAdminOperator covidAdminOperator,
+    public ResponseEntity<List<User>> updateCovidAdminOperator(User covidAdminOperator,
                                                                          long hospitalId) {
         try {
             Optional<Hospital> hospital =  Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
             if (hospital.isPresent()) {
-                Optional<CovidAdminOperator> existingOperator = covidAdminOperatorRepository.findById(covidAdminOperator.getId());
+                Optional<User> existingOperator = userRepository.findById(covidAdminOperator.getId());
                 if (existingOperator.isPresent()) {
                     covidAdminOperator.setUpdatedDate(DateTimeUtil.getDate());
-                    covidAdminOperatorRepository.save(covidAdminOperator);
+                    userRepository.save(covidAdminOperator);
                     hospital.get().getCovidAdminOperators().add(covidAdminOperator);
                     hospital = Optional.of(updateHospital(hospital.get()).getBody());
                     return ResponseEntity.ok().body(hospital.get().getCovidAdminOperators());
@@ -565,7 +565,7 @@ public class HospitalService {
      * @throws Exception the exception
      * @return Response Entity of type CovidAdminOperator
      **/
-    public ResponseEntity<List<CovidAdminOperator>> addCovidAdminOperator(CovidAdminOperator covidAdminOperator,
+    public ResponseEntity<List<User>> addCovidAdminOperator(User covidAdminOperator,
                                                                       long hospitalId) {
         try {
             Optional<Hospital> hospital =  Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
