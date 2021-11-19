@@ -1,0 +1,79 @@
+{
+  "address": "G10/4",
+  "age": 55,
+  "alive": true,
+  "assignedPost": "Assistant director",
+  "city": "Islamabad",
+  "cnic": "3820135730123",
+  "contactNum": "+923369243618",
+  "email": "haroonrb64@gmail.com",
+  "gradeLevel": 21,
+  "id": 0,
+  "name": "Furqan",
+  "password": "abc123",
+  "postalCode": "44000",
+  "province": "Federal",
+  "status": true,
+  "username": "furqanb64"
+}
+
+
+{
+  "password": "abc123",
+  "username": "haroonrb64"
+}
+
+--------------------
+
+[
+    {
+        "id": 4,
+        "name": "Furqan",
+        "username": "furqanb64",
+        "email": "haroonrb64@gmail.com",
+        "password": "$2a$10$IPtA3hbjhJ4M3bf31iwTNu6n.C57aKxshnNU/geIvNxCX756YE5jS",
+        "createdDate": "2021-11-19T08:49:53.000+05:00",
+        "updatedDate": null,
+        "status": true,
+        "contactNum": "+923369243618",
+        "cnic": "3820135730123",
+        "age": 55,
+        "address": "G10/4",
+        "city": "Islamabad",
+        "province": "Federal",
+        "postalCode": "44000",
+        "roles": [],
+        "patientReports": [],
+        "patientVaccination": [],
+        "assignedPost": "Assistant director",
+        "gradeLevel": 21,
+        "alive": true,
+        "vaccinated": false,
+        "covid": false
+    },
+    {
+        "id": 1,
+        "name": "Haroon Rasheed",
+        "username": "haroonrb64",
+        "email": "haroonrb64@hotmail.com",
+        "password": "$2a$10$b/hfMFQUY8UCsP5g7G5wleNnbeiXZj3qsOnUxRPtqsfgs8Xi1bu/G",
+        "createdDate": "2021-11-18T15:23:18.000+05:00",
+        "updatedDate": "2021-11-18T15:06:12.423+05:00",
+        "status": true,
+        "contactNum": "+923369243618",
+        "cnic": "3820135731987",
+        "age": 12,
+        "address": "House#39, Street#139, G-13/4",
+        "city": "Islamabad",
+        "province": "Federal",
+        "postalCode": "44000",
+        "roles": [],
+        "patientReports": [],
+        "patientVaccination": [],
+        "assignedPost": "director",
+        "gradeLevel": 12,
+        "alive": true,
+        "vaccinated": true,
+        "covid": false
+    }
+]

@@ -10,6 +10,7 @@ import com.example.EGovt_CovidHealthApp.Model.Interface.JwtResponse;
 import com.example.EGovt_CovidHealthApp.Security.JwtTokenUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -32,19 +33,20 @@ import com.example.EGovt_CovidHealthApp.Service.UserService;
 @EnableSwagger2
 @RestController
 @Validated
+@CrossOrigin
 @RequestMapping("/user")
-public class UserController
-{
+public class UserController {
 
-    private final AuthenticationManager authenticationManager;
-    private final JwtTokenUtil jwtTokenUtil;
+    private AuthenticationManager authenticationManager;
+    private JwtTokenUtil jwtTokenUtil;
     private static final Logger LOG = LogManager.getLogger(UserController.class);
-    private final UserService userService;
+    @Autowired
+    private UserService userService;
+
 
     public UserController(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, UserService userService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
-        this.userService = userService;
     }
 
     /**

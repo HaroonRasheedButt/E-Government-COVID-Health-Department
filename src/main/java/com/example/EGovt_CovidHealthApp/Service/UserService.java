@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.PropertyValueException;
 import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -29,21 +30,17 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
     
-    private final JavaMailSender javaMailSender;
-    private final UserRepository userRepository;
-    private final TokenRepository tokenRepository;
-    private final PatientReportService patientReportService;
+    @Autowired
+    private JavaMailSender javaMailSender;
+    @Autowired
+    private  UserRepository userRepository;
+    @Autowired
+    private  TokenRepository tokenRepository;
+    @Autowired
+    private  PatientReportService patientReportService;
     private static final Logger LOG = LogManager.getLogger(UserService.class);
-    private final PasswordEncoder bcryptEncoder;
-
-    public UserService(JavaMailSender javaMailSender, UserRepository userRepository, TokenRepository tokenRepository, PatientReportService patientReportService, PasswordEncoder bcryptEncoder) {
-        this.javaMailSender = javaMailSender;
-        this.userRepository = userRepository;
-        this.tokenRepository = tokenRepository;
-        this.patientReportService = patientReportService;
-        this.bcryptEncoder = bcryptEncoder;
-    }
-
+    @Autowired
+    private  PasswordEncoder bcryptEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
