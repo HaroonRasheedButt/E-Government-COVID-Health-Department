@@ -135,9 +135,7 @@ public class UserController {
      * @description This function adds a user in database.
      **/
     @PostMapping("/addUser")
-    public ResponseEntity<User> addUser(@RequestHeader("Authorization") String authToken,
-                                        @Valid @RequestBody User user) throws Exception {
-        AuthorizationUtil.authorized(authToken);
+    public ResponseEntity<User> addUser(@Valid @RequestBody User user) throws Exception {
         return userService.addUser(user);
     }
 

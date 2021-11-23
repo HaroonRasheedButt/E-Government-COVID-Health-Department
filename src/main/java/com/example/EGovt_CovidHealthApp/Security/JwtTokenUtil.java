@@ -19,9 +19,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtTokenUtil implements Serializable {
 
     private static final long serialVersionUID = -2550185165626007488L;
-    public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
-
-    @Value("${jwt.secret}")
+    public static final long JWT_TOKEN_VALIDITY = 500 * 60 * 60; // 30 mins
+    @Value("${jwt.signing-key:123}")
     private String secret;
 
     //retrieve username from jwt token

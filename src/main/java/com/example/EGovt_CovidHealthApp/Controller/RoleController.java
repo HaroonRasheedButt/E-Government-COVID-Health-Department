@@ -66,10 +66,7 @@ public class RoleController {
      * @throws Exception the exception
      */
     @PostMapping("/addRole")
-    public ResponseEntity<Role> createRole(@RequestHeader("Authorization") String authToken,
-                                                 @Validated @RequestBody Role role) throws Exception {
-
-        AuthorizationUtil.authorized(authToken);
+    public ResponseEntity<Role> createRole(@Validated @RequestBody Role role) throws Exception {
         return roleService.addRole(role);
     }
 

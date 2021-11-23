@@ -63,7 +63,7 @@ public class User {
     @Column
     private String postalCode;
 
-    @ManyToMany(targetEntity = Role.class, cascade = CascadeType.MERGE)
+    @ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(
             name="user_roles",
             joinColumns = {@JoinColumn(name = "user_id")},
@@ -83,7 +83,7 @@ public class User {
     private List<PatientVaccination> patientVaccination = new ArrayList<PatientVaccination>();
 
     /*for super admin*/
-    @Column(unique = true)
+    @Column
     @NotBlank(message="name should not be empty / null")
     private String assignedPost;
     @Column
