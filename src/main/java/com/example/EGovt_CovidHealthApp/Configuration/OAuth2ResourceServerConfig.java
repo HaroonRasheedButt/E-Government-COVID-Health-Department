@@ -19,7 +19,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
             "/user/updateUser",
             "/hospital/getAllHospitals"
     );
-    private final static List<String> COVID_HOSPITAL_ADMIN_APIS = Arrays.asList(
+    private final static List<String> COVID_ADMIN_APIS = Arrays.asList(
             "/hospital/user/update/patientReport",
             "/hospital/user/update/patientVaccination",
             "/hospital/{hospitalId}/addMobileVaccineCar",
@@ -28,7 +28,12 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
             "/hospital/{hospitalId}/addPatientVaccination/{userCnic}",
             "/hospital/{hospitalId}/getMobileVaccineCars",
             "/hospital/{hospitalId}/updateMobileVaccineCar",
-            ""
+            "/hospital/updateHospital",
+            "/lab/getAllLabs",
+            "/lab/deleteLab",
+            "/lab/lab/updateLab",
+            "/lab/{labId}/addPatientReport/{patientCnic}",
+            "/lab/{labId}/addPatientVaccination/{patientCnic}"
     );
     private final static List<String> SUPER_ADMIN_APIS = Arrays.asList(
             "/user/deleteUser",
@@ -40,10 +45,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
             "company/updateCompany",
             "company/getAllCompanies",
             "/hospital/getAllHospitals",
-            "",
-            "",
-            "",
-            ""
+            "/lab/addLab,"
     );
     private final static List<String> UNRESTRICTED_APIS = Arrays.asList(
             "/user/loginUser",
@@ -60,11 +62,14 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
             "/home/stats/date/cityStats",
             "/home/stats/date/countryStats",
             "/home/stats/date/provinceStats",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "/permission",
+            "/permission/addPermission",
+            "/permission/deletePermission/{id}",
+            "/permission/updatePermission",
+            "/role",
+            "/role/addRole",
+            "/role/deleteUser/{id}",
+            "/role/updateUserInfo"
     );
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
@@ -76,8 +81,10 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
         http.
                 anonymous().disable()
                 .authorizeRequests()
-                .antMatchers("/user/getAllUsers").hasAuthority("ROLE_ADMIN")
+                .antMatchers(String.valueOf(SUPER_ADMIN_APIS)).hasAuthority("ROLE_SUPER_ADMIN")
                 .antMatchers(String.valueOf(PATIENT_APIS)).hasAuthority("ROLE_PATIENT")
+                .antMatchers(String.valueOf(COVID_ADMIN_APIS)).hasAuthority("ROLE_COVID_ADMIN")
+                .antMatchers(String.valueOf(UNRESTRICTED_APIS)).permitAll()
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 }

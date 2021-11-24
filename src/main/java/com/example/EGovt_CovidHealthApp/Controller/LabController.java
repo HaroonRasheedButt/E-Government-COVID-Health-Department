@@ -63,7 +63,7 @@ public class LabController {
      * @creationDate 28 October 2021
      * @description This function updates a lab in database.
      **/
-    @PutMapping("/lab/updateLab")
+    @PutMapping("/updateLab")
     public ResponseEntity<Lab> updateLab(@RequestHeader("Authorization") String authToken,
                                          @Valid @RequestBody Lab lab) throws Exception {
 
@@ -79,7 +79,7 @@ public class LabController {
      * @creationDate 28 October 2021
      * @description This function updates a lab in database.
      **/
-    @DeleteMapping("/lab/deleteLab")
+    @DeleteMapping("/deleteLab")
     public ResponseEntity<String> deleteLab(@RequestHeader("Authorization") String authToken,
                                             @Valid @RequestBody List<Lab> labs) throws Exception {
 
@@ -94,7 +94,7 @@ public class LabController {
      * @creationDate 28 October 2021
      * @description This function retrieves all the labs which are saved in database.
      **/
-    @GetMapping("")
+    @GetMapping("/getAllLabs")
     public ResponseEntity<List<Lab>> getAllLabs(@RequestHeader("Authorization") String authToken)
 
             throws Exception {
