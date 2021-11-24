@@ -1,0 +1,403 @@
+2021-11-24 09:56:14,799 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.0.Final
+2021-11-24 09:56:14,877 INFO o.s.b.StartupInfoLogger [main] Starting EGovtCovidHealthAppApplication using Java 1.8.0_73 on LTI-TRAINING-03 with PID 12748 (D:\Developer\E-Govt_CovidHealthDepartment\target\classes started by Haroon Rasheed in D:\Developer\E-Govt_CovidHealthDepartment)
+2021-11-24 09:56:14,924 INFO o.s.b.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-11-24 09:56:16,717 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-24 09:56:16,889 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 153 ms. Found 11 JPA repository interfaces.
+2021-11-24 09:56:17,282 INFO o.s.c.c.s.GenericScope [main] BeanFactory id=3a71b191-f7cd-3d14-afed-b3a17507ea1a
+2021-11-24 09:56:17,643 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@1945113f' of type [org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-24 09:56:17,658 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-24 09:56:18,300 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-11-24 09:56:18,316 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-11-24 09:56:18,332 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2021-11-24 09:56:18,332 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.53]
+2021-11-24 09:56:18,608 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-11-24 09:56:18,608 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3622 ms
+2021-11-24 09:56:18,905 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-24 09:56:18,999 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-24 09:56:19,340 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-24 09:56:19,387 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration boolean -> org.hibernate.type.BooleanType@39549f33
+2021-11-24 09:56:19,387 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration boolean -> org.hibernate.type.BooleanType@39549f33
+2021-11-24 09:56:19,387 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@39549f33
+2021-11-24 09:56:19,387 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@44aa2e13
+2021-11-24 09:56:19,402 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration true_false -> org.hibernate.type.TrueFalseType@5e1a986c
+2021-11-24 09:56:19,402 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration yes_no -> org.hibernate.type.YesNoType@256a0d95
+2021-11-24 09:56:19,402 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration byte -> org.hibernate.type.ByteType@43d65a81
+2021-11-24 09:56:19,402 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration byte -> org.hibernate.type.ByteType@43d65a81
+2021-11-24 09:56:19,402 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@43d65a81
+2021-11-24 09:56:19,402 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration character -> org.hibernate.type.CharacterType@7675c171
+2021-11-24 09:56:19,402 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration char -> org.hibernate.type.CharacterType@7675c171
+2021-11-24 09:56:19,402 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@7675c171
+2021-11-24 09:56:19,402 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration short -> org.hibernate.type.ShortType@15e1f8fe
+2021-11-24 09:56:19,402 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration short -> org.hibernate.type.ShortType@15e1f8fe
+2021-11-24 09:56:19,402 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Short -> org.hibernate.type.ShortType@15e1f8fe
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration integer -> org.hibernate.type.IntegerType@28ee0a3c
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration int -> org.hibernate.type.IntegerType@28ee0a3c
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@28ee0a3c
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration long -> org.hibernate.type.LongType@4b41587d
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration long -> org.hibernate.type.LongType@4b41587d
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Long -> org.hibernate.type.LongType@4b41587d
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration float -> org.hibernate.type.FloatType@7cf63b9a
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration float -> org.hibernate.type.FloatType@7cf63b9a
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Float -> org.hibernate.type.FloatType@7cf63b9a
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration double -> org.hibernate.type.DoubleType@22a260ff
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration double -> org.hibernate.type.DoubleType@22a260ff
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@22a260ff
+2021-11-24 09:56:19,418 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@634ca3e7
+2021-11-24 09:56:19,433 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@634ca3e7
+2021-11-24 09:56:19,433 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration big_integer -> org.hibernate.type.BigIntegerType@33e0c716
+2021-11-24 09:56:19,433 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@33e0c716
+2021-11-24 09:56:19,433 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration string -> org.hibernate.type.StringType@491cafec
+2021-11-24 09:56:19,433 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.String -> org.hibernate.type.StringType@491cafec
+2021-11-24 09:56:19,433 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration nstring -> org.hibernate.type.StringNVarcharType@54c60202
+2021-11-24 09:56:19,433 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@12952aff
+2021-11-24 09:56:19,433 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration url -> org.hibernate.type.UrlType@d653e41
+2021-11-24 09:56:19,433 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.net.URL -> org.hibernate.type.UrlType@d653e41
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration Duration -> org.hibernate.type.DurationType@110e9982
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.Duration -> org.hibernate.type.DurationType@110e9982
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration Instant -> org.hibernate.type.InstantType@59018eed
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.Instant -> org.hibernate.type.InstantType@59018eed
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@1625789b
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@1625789b
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration LocalDate -> org.hibernate.type.LocalDateType@1a9ec80e
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@1a9ec80e
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@14b31e37
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@14b31e37
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@650aa077
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@650aa077
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@5fffb692
+2021-11-24 09:56:19,449 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@5fffb692
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@58278366
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@58278366
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration date -> org.hibernate.type.DateType@616a06e3
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Date -> org.hibernate.type.DateType@616a06e3
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration time -> org.hibernate.type.TimeType@57fdb8a4
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Time -> org.hibernate.type.TimeType@57fdb8a4
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration timestamp -> org.hibernate.type.TimestampType@21a46ff1
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@21a46ff1
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.Date -> org.hibernate.type.TimestampType@21a46ff1
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@5aa781f2
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration calendar -> org.hibernate.type.CalendarType@38a4e2b0
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@38a4e2b0
+2021-11-24 09:56:19,465 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@38a4e2b0
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@7fe8c7db
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration calendar_time -> org.hibernate.type.CalendarTimeType@5e1a5f
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration locale -> org.hibernate.type.LocaleType@6ffd4c0d
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@6ffd4c0d
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration currency -> org.hibernate.type.CurrencyType@72557746
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@72557746
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration timezone -> org.hibernate.type.TimeZoneType@101bdd1c
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@101bdd1c
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration class -> org.hibernate.type.ClassType@2f95653f
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Class -> org.hibernate.type.ClassType@2f95653f
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@31efacad
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@31efacad
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@7d9c45ee
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration binary -> org.hibernate.type.BinaryType@4001d8c1
+2021-11-24 09:56:19,480 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration byte[] -> org.hibernate.type.BinaryType@4001d8c1
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration [B -> org.hibernate.type.BinaryType@4001d8c1
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@5bc63e20
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@5bc63e20
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@5bc63e20
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration row_version -> org.hibernate.type.RowVersionType@7742a45c
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration image -> org.hibernate.type.ImageType@7ed49a7f
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration characters -> org.hibernate.type.CharArrayType@486e9d1d
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration char[] -> org.hibernate.type.CharArrayType@486e9d1d
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration [C -> org.hibernate.type.CharArrayType@486e9d1d
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@21390938
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@21390938
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@21390938
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration text -> org.hibernate.type.TextType@7a388990
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration ntext -> org.hibernate.type.NTextType@4c319d52
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration blob -> org.hibernate.type.BlobType@b2c4a8b
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@b2c4a8b
+2021-11-24 09:56:19,496 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@101cf747
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration clob -> org.hibernate.type.ClobType@70b6db83
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@70b6db83
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration nclob -> org.hibernate.type.NClobType@370ef50b
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@370ef50b
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@4b87760e
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@5df6163a
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration serializable -> org.hibernate.type.SerializableType@2e56b4d
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration object -> org.hibernate.type.ObjectType@47a4eee2
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@47a4eee2
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@30922f8d
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@50211483
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@51ff3c4b
+2021-11-24 09:56:19,512 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@1472208d
+2021-11-24 09:56:19,527 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@35bd8bc9
+2021-11-24 09:56:19,527 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@6de004f1
+2021-11-24 09:56:19,527 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@45d56062
+2021-11-24 09:56:19,527 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@4026461d
+2021-11-24 09:56:19,621 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2021-11-24 09:56:20,184 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2021-11-24 09:56:20,294 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-11-24 09:56:20,696 DEBUG o.h.t.s.TypeConfiguration [main] Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@6bd92538] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@69a373fd]
+2021-11-24 09:56:22,055 DEBUG o.h.t.s.TypeConfiguration [main] Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@6bd92538] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@543b0737]
+2021-11-24 09:56:23,995 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-24 09:56:24,057 TRACE o.h.t.s.TypeConfiguration [main] Handling #sessionFactoryCreated from [org.hibernate.internal.SessionFactoryImpl@543b0737] for TypeConfiguration
+2021-11-24 09:56:24,057 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-24 09:56:25,577 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-24 09:56:26,870 WARN o.s.s.o.p.t.s.JwtAccessTokenConverter [main] Unable to create an RSA verifier from verifierKey (ignoreable if using MAC)
+2021-11-24 09:56:28,043 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/v2/api-docs'] with []
+2021-11-24 09:56:28,043 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/configuration/ui'] with []
+2021-11-24 09:56:28,043 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-resources/**'] with []
+2021-11-24 09:56:28,043 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/user/addUser'] with []
+2021-11-24 09:56:28,043 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/role/addRole'] with []
+2021-11-24 09:56:28,043 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-ui.html#'] with []
+2021-11-24 09:56:28,043 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/oauth/authorize**'] with []
+2021-11-24 09:56:28,043 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/login**'] with []
+2021-11-24 09:56:28,058 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/error**'] with []
+2021-11-24 09:56:28,168 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Or [Ant [pattern='/oauth/token'], Ant [pattern='/oauth/token_key'], Ant [pattern='/oauth/check_token']] with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@f252762, org.springframework.security.web.context.SecurityContextPersistenceFilter@3dad8bde, org.springframework.security.web.header.HeaderWriterFilter@6956eb58, org.springframework.security.web.authentication.logout.LogoutFilter@6f7c4e0, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2123a61c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2f82e3cf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7eea934d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5b74bb75, org.springframework.security.web.session.SessionManagementFilter@6c2e7591, org.springframework.security.web.access.ExceptionTranslationFilter@5d515e2c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@68f1b89]
+2021-11-24 09:56:28,199 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfiguration$NotOAuthRequestMatcher@7fcfe065 with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7d2baa56, org.springframework.security.web.context.SecurityContextPersistenceFilter@7533923b, org.springframework.security.web.header.HeaderWriterFilter@43cc7951, org.springframework.security.web.authentication.logout.LogoutFilter@60e5eed0, org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationProcessingFilter@43dddfdd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@446981a4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@644f6e89, org.springframework.security.web.session.SessionManagementFilter@758311ed, org.springframework.security.web.access.ExceptionTranslationFilter@5d9d8ecf, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5773f83d]
+2021-11-24 09:56:28,199 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34ea86ff, org.springframework.security.web.context.SecurityContextPersistenceFilter@1ac68548, org.springframework.security.web.header.HeaderWriterFilter@75b3ef1a, org.springframework.security.web.authentication.logout.LogoutFilter@eabecf5, com.example.EGovt_CovidHealthApp.Security.JwtRequestFilter@c2f7c63, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@417b3642, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1c3a64b6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@761b9314, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4bcf08ae, org.springframework.security.web.session.SessionManagementFilter@43e2b8da, org.springframework.security.web.access.ExceptionTranslationFilter@59bbf82e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@152dbf8e]
+2021-11-24 09:56:31,065 INFO o.s.c.c.u.InetUtils [main] Cannot determine local hostname
+2021-11-24 09:56:31,096 INFO o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration [main] Eureka HTTP Client uses RestTemplate.
+2021-11-24 09:56:33,023 INFO o.s.c.c.u.InetUtils [main] Cannot determine local hostname
+2021-11-24 09:56:33,148 WARN o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger [main] Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2021-11-24 09:56:33,413 INFO o.s.c.n.e.InstanceInfoFactory [main] Setting initial instance status as: STARTING
+2021-11-24 09:56:33,491 INFO c.n.d.DiscoveryClient [main] Initializing Eureka in region us-east-1
+2021-11-24 09:56:33,507 INFO c.n.d.s.r.a.ConfigClusterResolver [main] Resolving eureka endpoints via configuration
+2021-11-24 09:56:33,564 INFO c.n.d.DiscoveryClient [main] Disable delta property : false
+2021-11-24 09:56:33,564 INFO c.n.d.DiscoveryClient [main] Single vip registry refresh property : null
+2021-11-24 09:56:33,564 INFO c.n.d.DiscoveryClient [main] Force full registry fetch : false
+2021-11-24 09:56:33,564 INFO c.n.d.DiscoveryClient [main] Application is null : false
+2021-11-24 09:56:33,564 INFO c.n.d.DiscoveryClient [main] Registered Applications size is zero : true
+2021-11-24 09:56:33,564 INFO c.n.d.DiscoveryClient [main] Application version is -1: true
+2021-11-24 09:56:33,564 INFO c.n.d.DiscoveryClient [main] Getting all instance registry info from the eureka server
+2021-11-24 09:56:34,174 INFO c.n.d.DiscoveryClient [main] The response status is 200
+2021-11-24 09:56:34,174 INFO c.n.d.DiscoveryClient [main] Starting heartbeat executor: renew interval is: 10
+2021-11-24 09:56:34,221 INFO c.n.d.InstanceInfoReplicator [main] InstanceInfoReplicator onDemand update allowed rate per min is 4
+2021-11-24 09:56:34,221 INFO c.n.d.DiscoveryClient [main] Discovery Client initialized at timestamp 1637729794221 with initial instances count: 0
+2021-11-24 09:56:34,221 INFO o.s.c.n.e.s.EurekaServiceRegistry [main] Registering application E-HEALTH with eureka with status UP
+2021-11-24 09:56:34,221 INFO c.n.d.DiscoveryClient$3 [main] Saw local status change event StatusChangeEvent [timestamp=1637729794221, current=UP, previous=STARTING]
+2021-11-24 09:56:34,237 INFO c.n.d.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_E-HEALTH/localhost:e-health:8080: registering service...
+2021-11-24 09:56:34,237 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-11-24 09:56:34,293 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-24 09:56:34,293 INFO o.s.c.n.e.s.EurekaAutoServiceRegistration [main] Updating port to 8080
+2021-11-24 09:56:34,357 INFO c.n.d.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_E-HEALTH/localhost:e-health:8080 - registration status: 204
+2021-11-24 09:56:36,324 INFO o.s.c.c.u.InetUtils [main] Cannot determine local hostname
+2021-11-24 09:56:36,324 INFO s.d.s.w.p.DocumentationPluginsBootstrapper [main] Context refreshed
+2021-11-24 09:56:36,398 INFO s.d.s.w.p.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2021-11-24 09:56:36,429 INFO s.d.s.w.s.ApiListingReferenceScanner [main] Scanning for api listing references
+2021-11-24 09:56:37,116 INFO s.d.s.w.r.o.CachingOperationNameGenerator [main] Generating unique operation named: addPatientReportUsingPOST_1
+2021-11-24 09:56:37,116 INFO s.d.s.w.r.o.CachingOperationNameGenerator [main] Generating unique operation named: addPatientVaccinationUsingPOST_1
+2021-11-24 09:56:37,477 INFO o.s.b.StartupInfoLogger [main] Started EGovtCovidHealthAppApplication in 25.324 seconds (JVM running for 29.9)
+2021-11-24 09:56:51,301 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-24 09:56:51,302 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-11-24 09:56:51,306 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 4 ms
+2021-11-24 09:56:51,667 WARN c.e.E.S.JwtRequestFilter [http-nio-8080-exec-1] JWT Token does not begin with Bearer String
+2021-11-24 09:56:52,168 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-1] select user0_.id as id1_18_, user0_.address as address2_18_, user0_.age as age3_18_, user0_.assigned_post as assigned4_18_, user0_.city as city5_18_, user0_.cnic as cnic6_18_, user0_.contact_num as contact_7_18_, user0_.created_date as created_8_18_, user0_.email as email9_18_, user0_.grade_level as grade_l10_18_, user0_.is_alive as is_aliv11_18_, user0_.is_covid as is_covi12_18_, user0_.is_vaccinated as is_vacc13_18_, user0_.name as name14_18_, user0_.password as passwor15_18_, user0_.postal_code as postal_16_18_, user0_.province as provinc17_18_, user0_.status as status18_18_, user0_.updated_date as updated19_18_, user0_.username as usernam20_18_ from user user0_ where user0_.username=?
+2021-11-24 09:56:52,180 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-1] binding parameter [1] as [VARCHAR] - [kamran123]
+2021-11-24 09:56:52,513 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([id1_18_] : [BIGINT]) - [1]
+2021-11-24 09:56:52,541 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([address2_18_] : [VARCHAR]) - [Barakahu]
+2021-11-24 09:56:52,542 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([age3_18_] : [INTEGER]) - [25]
+2021-11-24 09:56:52,543 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([assigned4_18_] : [VARCHAR]) - [director]
+2021-11-24 09:56:52,544 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([city5_18_] : [VARCHAR]) - [Islamabad]
+2021-11-24 09:56:52,544 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([cnic6_18_] : [VARCHAR]) - [3820135736789]
+2021-11-24 09:56:52,545 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([contact_7_18_] : [VARCHAR]) - [+923369243618]
+2021-11-24 09:56:52,548 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([created_8_18_] : [TIMESTAMP]) - [2021-11-22 11:57:04.0]
+2021-11-24 09:56:52,548 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([email9_18_] : [VARCHAR]) - [haroonrb64@hotmail.com]
+2021-11-24 09:56:52,548 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([grade_l10_18_] : [INTEGER]) - [20]
+2021-11-24 09:56:52,561 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([is_aliv11_18_] : [BOOLEAN]) - [true]
+2021-11-24 09:56:52,561 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([is_covi12_18_] : [BOOLEAN]) - [false]
+2021-11-24 09:56:52,562 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([is_vacc13_18_] : [BOOLEAN]) - [false]
+2021-11-24 09:56:52,562 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([name14_18_] : [VARCHAR]) - [Kamran Abbasi]
+2021-11-24 09:56:52,563 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([passwor15_18_] : [VARCHAR]) - [$2a$10$w4HYeWs.5waopydcZqfCa.V6xiPqVH6k3/H6HQZNZ95w3Lrx7ezuG]
+2021-11-24 09:56:52,563 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([postal_16_18_] : [VARCHAR]) - [44000]
+2021-11-24 09:56:52,564 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([provinc17_18_] : [VARCHAR]) - [Federal]
+2021-11-24 09:56:52,564 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([status18_18_] : [BOOLEAN]) - [true]
+2021-11-24 09:56:52,564 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([updated19_18_] : [TIMESTAMP]) - [null]
+2021-11-24 09:56:52,565 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([usernam20_18_] : [VARCHAR]) - [kamran123]
+2021-11-24 09:56:52,604 TRACE o.h.t.CollectionType [http-nio-8080-exec-1] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientReports#1]
+2021-11-24 09:56:52,605 TRACE o.h.t.CollectionType [http-nio-8080-exec-1] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientVaccination#1]
+2021-11-24 09:56:52,606 TRACE o.h.t.CollectionType [http-nio-8080-exec-1] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.roles#1]
+2021-11-24 09:56:52,611 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-1] select roles0_.user_id as user_id1_21_0_, roles0_.role_id as role_id2_21_0_, role1_.id as id1_15_1_, role1_.created_date as created_2_15_1_, role1_.description as descript3_15_1_, role1_.name as name4_15_1_, role1_.status as status5_15_1_, role1_.updated_date as updated_6_15_1_ from user_roles roles0_ inner join role role1_ on roles0_.role_id=role1_.id where roles0_.user_id=?
+2021-11-24 09:56:52,612 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-1] binding parameter [1] as [BIGINT] - [1]
+2021-11-24 09:56:52,816 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([id1_15_1_] : [BIGINT]) - [1]
+2021-11-24 09:56:52,816 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([created_2_15_1_] : [TIMESTAMP]) - [2021-11-22 11:48:09.0]
+2021-11-24 09:56:52,817 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([descript3_15_1_] : [VARCHAR]) - [admin can read write update and delete]
+2021-11-24 09:56:52,818 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([name4_15_1_] : [VARCHAR]) - [admin]
+2021-11-24 09:56:52,818 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([status5_15_1_] : [BOOLEAN]) - [true]
+2021-11-24 09:56:52,819 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([updated_6_15_1_] : [TIMESTAMP]) - [null]
+2021-11-24 09:56:52,821 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([user_id1_21_0_] : [BIGINT]) - [1]
+2021-11-24 09:56:52,822 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-1] extracted value ([role_id2_21_0_] : [BIGINT]) - [1]
+2021-11-24 09:56:52,830 TRACE o.h.t.CollectionType [http-nio-8080-exec-1] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.Role.permissions#1]
+2021-11-24 09:57:04,189 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Disable delta property : false
+2021-11-24 09:57:04,189 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Single vip registry refresh property : null
+2021-11-24 09:57:04,189 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Force full registry fetch : false
+2021-11-24 09:57:04,189 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Application is null : false
+2021-11-24 09:57:04,189 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Registered Applications size is zero : true
+2021-11-24 09:57:04,189 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Application version is -1: false
+2021-11-24 09:57:04,189 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Getting all instance registry info from the eureka server
+2021-11-24 09:57:04,232 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] The response status is 200
+2021-11-24 09:57:09,048 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select user0_.id as id1_18_, user0_.address as address2_18_, user0_.age as age3_18_, user0_.assigned_post as assigned4_18_, user0_.city as city5_18_, user0_.cnic as cnic6_18_, user0_.contact_num as contact_7_18_, user0_.created_date as created_8_18_, user0_.email as email9_18_, user0_.grade_level as grade_l10_18_, user0_.is_alive as is_aliv11_18_, user0_.is_covid as is_covi12_18_, user0_.is_vaccinated as is_vacc13_18_, user0_.name as name14_18_, user0_.password as passwor15_18_, user0_.postal_code as postal_16_18_, user0_.province as provinc17_18_, user0_.status as status18_18_, user0_.updated_date as updated19_18_, user0_.username as usernam20_18_ from user user0_ where user0_.status=1 order by user0_.created_date desc
+2021-11-24 09:57:09,051 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([id1_18_] : [BIGINT]) - [1]
+2021-11-24 09:57:09,052 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([address2_18_] : [VARCHAR]) - [Barakahu]
+2021-11-24 09:57:09,052 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([age3_18_] : [INTEGER]) - [25]
+2021-11-24 09:57:09,052 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([assigned4_18_] : [VARCHAR]) - [director]
+2021-11-24 09:57:09,053 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([city5_18_] : [VARCHAR]) - [Islamabad]
+2021-11-24 09:57:09,053 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([cnic6_18_] : [VARCHAR]) - [3820135736789]
+2021-11-24 09:57:09,053 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([contact_7_18_] : [VARCHAR]) - [+923369243618]
+2021-11-24 09:57:09,054 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([created_8_18_] : [TIMESTAMP]) - [2021-11-22 11:57:04.0]
+2021-11-24 09:57:09,055 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([email9_18_] : [VARCHAR]) - [haroonrb64@hotmail.com]
+2021-11-24 09:57:09,056 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([grade_l10_18_] : [INTEGER]) - [20]
+2021-11-24 09:57:09,057 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([is_aliv11_18_] : [BOOLEAN]) - [true]
+2021-11-24 09:57:09,057 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([is_covi12_18_] : [BOOLEAN]) - [false]
+2021-11-24 09:57:09,058 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([is_vacc13_18_] : [BOOLEAN]) - [false]
+2021-11-24 09:57:09,059 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([name14_18_] : [VARCHAR]) - [Kamran Abbasi]
+2021-11-24 09:57:09,059 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([passwor15_18_] : [VARCHAR]) - [$2a$10$w4HYeWs.5waopydcZqfCa.V6xiPqVH6k3/H6HQZNZ95w3Lrx7ezuG]
+2021-11-24 09:57:09,060 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([postal_16_18_] : [VARCHAR]) - [44000]
+2021-11-24 09:57:09,060 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([provinc17_18_] : [VARCHAR]) - [Federal]
+2021-11-24 09:57:09,061 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([status18_18_] : [BOOLEAN]) - [true]
+2021-11-24 09:57:09,061 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([updated19_18_] : [TIMESTAMP]) - [null]
+2021-11-24 09:57:09,062 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([usernam20_18_] : [VARCHAR]) - [kamran123]
+2021-11-24 09:57:09,062 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientReports#1]
+2021-11-24 09:57:09,063 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientVaccination#1]
+2021-11-24 09:57:09,063 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.roles#1]
+2021-11-24 09:57:09,065 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select roles0_.user_id as user_id1_21_0_, roles0_.role_id as role_id2_21_0_, role1_.id as id1_15_1_, role1_.created_date as created_2_15_1_, role1_.description as descript3_15_1_, role1_.name as name4_15_1_, role1_.status as status5_15_1_, role1_.updated_date as updated_6_15_1_ from user_roles roles0_ inner join role role1_ on roles0_.role_id=role1_.id where roles0_.user_id=?
+2021-11-24 09:57:09,066 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [1]
+2021-11-24 09:57:09,067 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([id1_15_1_] : [BIGINT]) - [1]
+2021-11-24 09:57:09,068 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([created_2_15_1_] : [TIMESTAMP]) - [2021-11-22 11:48:09.0]
+2021-11-24 09:57:09,069 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([descript3_15_1_] : [VARCHAR]) - [admin can read write update and delete]
+2021-11-24 09:57:09,070 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([name4_15_1_] : [VARCHAR]) - [admin]
+2021-11-24 09:57:09,070 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([status5_15_1_] : [BOOLEAN]) - [true]
+2021-11-24 09:57:09,071 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([updated_6_15_1_] : [TIMESTAMP]) - [null]
+2021-11-24 09:57:09,073 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([user_id1_21_0_] : [BIGINT]) - [1]
+2021-11-24 09:57:09,074 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([role_id2_21_0_] : [BIGINT]) - [1]
+2021-11-24 09:57:09,075 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.Role.permissions#1]
+2021-11-24 09:57:09,077 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select permission0_.role_id as role_id1_16_0_, permission0_.permissions_id as permissi2_16_0_, permission1_.id as id1_14_1_, permission1_.created_date as created_2_14_1_, permission1_.name as name3_14_1_, permission1_.status as status4_14_1_, permission1_.updated_date as updated_5_14_1_ from role_permissions permission0_ inner join permission permission1_ on permission0_.permissions_id=permission1_.id where permission0_.role_id=?
+2021-11-24 09:57:09,078 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [1]
+2021-11-24 09:57:09,106 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select patientrep0_.user_id as user_id1_19_0_, patientrep0_.patient_reports_id as patient_2_19_0_, patientrep1_.id as id1_12_1_, patientrep1_.created_date as created_2_12_1_, patientrep1_.status as status3_12_1_, patientrep1_.test_date as test_dat4_12_1_, patientrep1_.test_results as test_res5_12_1_, patientrep1_.updated_date as updated_6_12_1_ from user_patient_reports patientrep0_ inner join patient_report patientrep1_ on patientrep0_.patient_reports_id=patientrep1_.id where patientrep0_.user_id=?
+2021-11-24 09:57:09,106 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [1]
+2021-11-24 09:57:09,157 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select patientvac0_.user_id as user_id1_20_0_, patientvac0_.patient_vaccination_id as patient_2_20_0_, patientvac1_.id as id1_13_1_, patientvac1_.created_date as created_2_13_1_, patientvac1_.status as status3_13_1_, patientvac1_.total_doses as total_do4_13_1_, patientvac1_.updated_date as updated_5_13_1_, patientvac1_.vaccinated_date as vaccinat6_13_1_, patientvac1_.vaccine_name as vaccine_7_13_1_ from user_patient_vaccination patientvac0_ inner join patient_vaccination patientvac1_ on patientvac0_.patient_vaccination_id=patientvac1_.id where patientvac0_.user_id=?
+2021-11-24 09:57:09,158 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [1]
+2021-11-24 09:57:09,186 INFO c.e.E.S.UserService [http-nio-8080-exec-3] Users successfully Retrieved : [User(id=1, name=Kamran Abbasi, username=kamran123, email=haroonrb64@hotmail.com, password=$2a$10$w4HYeWs.5waopydcZqfCa.V6xiPqVH6k3/H6HQZNZ95w3Lrx7ezuG, createdDate=2021-11-22 11:57:04.0, updatedDate=null, status=true, isAlive=true, contactNum=+923369243618, cnic=3820135736789, age=25, address=Barakahu, city=Islamabad, province=Federal, postalCode=44000, roles=[Role(id=1, name=admin, description=admin can read write update and delete, createdDate=2021-11-22 11:48:09.0, updatedDate=null, status=true, permissions=[])], isCovid=false, isVaccinated=false, patientReports=[], patientVaccination=[], assignedPost=director, gradeLevel=20)]
+2021-11-24 09:57:29,659 WARN c.e.E.S.JwtRequestFilter [http-nio-8080-exec-4] JWT Token does not begin with Bearer String
+2021-11-24 09:57:29,662 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-4] select user0_.id as id1_18_, user0_.address as address2_18_, user0_.age as age3_18_, user0_.assigned_post as assigned4_18_, user0_.city as city5_18_, user0_.cnic as cnic6_18_, user0_.contact_num as contact_7_18_, user0_.created_date as created_8_18_, user0_.email as email9_18_, user0_.grade_level as grade_l10_18_, user0_.is_alive as is_aliv11_18_, user0_.is_covid as is_covi12_18_, user0_.is_vaccinated as is_vacc13_18_, user0_.name as name14_18_, user0_.password as passwor15_18_, user0_.postal_code as postal_16_18_, user0_.province as provinc17_18_, user0_.status as status18_18_, user0_.updated_date as updated19_18_, user0_.username as usernam20_18_ from user user0_ where user0_.username=?
+2021-11-24 09:57:29,663 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-4] binding parameter [1] as [VARCHAR] - [furqanb64]
+2021-11-24 09:57:29,665 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([id1_18_] : [BIGINT]) - [2]
+2021-11-24 09:57:29,666 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([address2_18_] : [VARCHAR]) - [G10/4]
+2021-11-24 09:57:29,666 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([age3_18_] : [INTEGER]) - [55]
+2021-11-24 09:57:29,667 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([assigned4_18_] : [VARCHAR]) - [Assistant director]
+2021-11-24 09:57:29,667 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([city5_18_] : [VARCHAR]) - [Islamabad]
+2021-11-24 09:57:29,668 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([cnic6_18_] : [VARCHAR]) - [3820135730123]
+2021-11-24 09:57:29,668 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([contact_7_18_] : [VARCHAR]) - [+923369243618]
+2021-11-24 09:57:29,669 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([created_8_18_] : [TIMESTAMP]) - [2021-11-22 12:00:58.0]
+2021-11-24 09:57:29,669 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([email9_18_] : [VARCHAR]) - [haroonrb64@gmail.com]
+2021-11-24 09:57:29,670 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([grade_l10_18_] : [INTEGER]) - [21]
+2021-11-24 09:57:29,671 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([is_aliv11_18_] : [BOOLEAN]) - [true]
+2021-11-24 09:57:29,672 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([is_covi12_18_] : [BOOLEAN]) - [false]
+2021-11-24 09:57:29,673 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([is_vacc13_18_] : [BOOLEAN]) - [false]
+2021-11-24 09:57:29,674 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([name14_18_] : [VARCHAR]) - [Furqan]
+2021-11-24 09:57:29,674 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([passwor15_18_] : [VARCHAR]) - [$2a$10$4Kl0stlC7Ap6W2DNiIyJcuO2KTwHXdjslDQf8JKCRfNc3p0KNfhVK]
+2021-11-24 09:57:29,675 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([postal_16_18_] : [VARCHAR]) - [44000]
+2021-11-24 09:57:29,675 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([provinc17_18_] : [VARCHAR]) - [Federal]
+2021-11-24 09:57:29,676 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([status18_18_] : [BOOLEAN]) - [false]
+2021-11-24 09:57:29,676 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([updated19_18_] : [TIMESTAMP]) - [null]
+2021-11-24 09:57:29,677 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-4] extracted value ([usernam20_18_] : [VARCHAR]) - [furqanb64]
+2021-11-24 09:57:29,677 TRACE o.h.t.CollectionType [http-nio-8080-exec-4] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientReports#2]
+2021-11-24 09:57:29,678 TRACE o.h.t.CollectionType [http-nio-8080-exec-4] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientVaccination#2]
+2021-11-24 09:57:29,678 TRACE o.h.t.CollectionType [http-nio-8080-exec-4] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.roles#2]
+2021-11-24 09:57:29,679 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-4] select roles0_.user_id as user_id1_21_0_, roles0_.role_id as role_id2_21_0_, role1_.id as id1_15_1_, role1_.created_date as created_2_15_1_, role1_.description as descript3_15_1_, role1_.name as name4_15_1_, role1_.status as status5_15_1_, role1_.updated_date as updated_6_15_1_ from user_roles roles0_ inner join role role1_ on roles0_.role_id=role1_.id where roles0_.user_id=?
+2021-11-24 09:57:29,679 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-4] binding parameter [1] as [BIGINT] - [2]
+2021-11-24 09:59:19,090 WARN c.e.E.S.JwtRequestFilter [http-nio-8080-exec-8] JWT Token does not begin with Bearer String
+2021-11-24 09:59:19,094 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-8] select user0_.id as id1_18_, user0_.address as address2_18_, user0_.age as age3_18_, user0_.assigned_post as assigned4_18_, user0_.city as city5_18_, user0_.cnic as cnic6_18_, user0_.contact_num as contact_7_18_, user0_.created_date as created_8_18_, user0_.email as email9_18_, user0_.grade_level as grade_l10_18_, user0_.is_alive as is_aliv11_18_, user0_.is_covid as is_covi12_18_, user0_.is_vaccinated as is_vacc13_18_, user0_.name as name14_18_, user0_.password as passwor15_18_, user0_.postal_code as postal_16_18_, user0_.province as provinc17_18_, user0_.status as status18_18_, user0_.updated_date as updated19_18_, user0_.username as usernam20_18_ from user user0_ where user0_.username=?
+2021-11-24 09:59:19,096 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-8] binding parameter [1] as [VARCHAR] - [kamran123]
+2021-11-24 09:59:19,098 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([id1_18_] : [BIGINT]) - [1]
+2021-11-24 09:59:19,098 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([address2_18_] : [VARCHAR]) - [Barakahu]
+2021-11-24 09:59:19,099 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([age3_18_] : [INTEGER]) - [25]
+2021-11-24 09:59:19,099 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([assigned4_18_] : [VARCHAR]) - [director]
+2021-11-24 09:59:19,099 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([city5_18_] : [VARCHAR]) - [Islamabad]
+2021-11-24 09:59:19,100 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([cnic6_18_] : [VARCHAR]) - [3820135736789]
+2021-11-24 09:59:19,100 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([contact_7_18_] : [VARCHAR]) - [+923369243618]
+2021-11-24 09:59:19,101 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([created_8_18_] : [TIMESTAMP]) - [2021-11-22 11:57:04.0]
+2021-11-24 09:59:19,101 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([email9_18_] : [VARCHAR]) - [haroonrb64@hotmail.com]
+2021-11-24 09:59:19,102 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([grade_l10_18_] : [INTEGER]) - [20]
+2021-11-24 09:59:19,102 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([is_aliv11_18_] : [BOOLEAN]) - [true]
+2021-11-24 09:59:19,103 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([is_covi12_18_] : [BOOLEAN]) - [false]
+2021-11-24 09:59:19,103 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([is_vacc13_18_] : [BOOLEAN]) - [false]
+2021-11-24 09:59:19,104 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([name14_18_] : [VARCHAR]) - [Kamran Abbasi]
+2021-11-24 09:59:19,104 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([passwor15_18_] : [VARCHAR]) - [$2a$10$w4HYeWs.5waopydcZqfCa.V6xiPqVH6k3/H6HQZNZ95w3Lrx7ezuG]
+2021-11-24 09:59:19,105 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([postal_16_18_] : [VARCHAR]) - [44000]
+2021-11-24 09:59:19,106 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([provinc17_18_] : [VARCHAR]) - [Federal]
+2021-11-24 09:59:19,107 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([status18_18_] : [BOOLEAN]) - [true]
+2021-11-24 09:59:19,108 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([updated19_18_] : [TIMESTAMP]) - [null]
+2021-11-24 09:59:19,109 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([usernam20_18_] : [VARCHAR]) - [kamran123]
+2021-11-24 09:59:19,110 TRACE o.h.t.CollectionType [http-nio-8080-exec-8] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientReports#1]
+2021-11-24 09:59:19,111 TRACE o.h.t.CollectionType [http-nio-8080-exec-8] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientVaccination#1]
+2021-11-24 09:59:19,112 TRACE o.h.t.CollectionType [http-nio-8080-exec-8] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.roles#1]
+2021-11-24 09:59:19,113 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-8] select roles0_.user_id as user_id1_21_0_, roles0_.role_id as role_id2_21_0_, role1_.id as id1_15_1_, role1_.created_date as created_2_15_1_, role1_.description as descript3_15_1_, role1_.name as name4_15_1_, role1_.status as status5_15_1_, role1_.updated_date as updated_6_15_1_ from user_roles roles0_ inner join role role1_ on roles0_.role_id=role1_.id where roles0_.user_id=?
+2021-11-24 09:59:19,114 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-8] binding parameter [1] as [BIGINT] - [1]
+2021-11-24 09:59:19,116 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([id1_15_1_] : [BIGINT]) - [1]
+2021-11-24 09:59:19,116 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([created_2_15_1_] : [TIMESTAMP]) - [2021-11-22 11:48:09.0]
+2021-11-24 09:59:19,117 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([descript3_15_1_] : [VARCHAR]) - [admin can read write update and delete]
+2021-11-24 09:59:19,117 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([name4_15_1_] : [VARCHAR]) - [admin]
+2021-11-24 09:59:19,118 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([status5_15_1_] : [BOOLEAN]) - [true]
+2021-11-24 09:59:19,118 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([updated_6_15_1_] : [TIMESTAMP]) - [null]
+2021-11-24 09:59:19,119 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([user_id1_21_0_] : [BIGINT]) - [1]
+2021-11-24 09:59:19,119 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-8] extracted value ([role_id2_21_0_] : [BIGINT]) - [1]
+2021-11-24 09:59:19,120 TRACE o.h.t.CollectionType [http-nio-8080-exec-8] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.Role.permissions#1]
+2021-11-24 09:59:29,874 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-9] select user0_.id as id1_18_, user0_.address as address2_18_, user0_.age as age3_18_, user0_.assigned_post as assigned4_18_, user0_.city as city5_18_, user0_.cnic as cnic6_18_, user0_.contact_num as contact_7_18_, user0_.created_date as created_8_18_, user0_.email as email9_18_, user0_.grade_level as grade_l10_18_, user0_.is_alive as is_aliv11_18_, user0_.is_covid as is_covi12_18_, user0_.is_vaccinated as is_vacc13_18_, user0_.name as name14_18_, user0_.password as passwor15_18_, user0_.postal_code as postal_16_18_, user0_.province as provinc17_18_, user0_.status as status18_18_, user0_.updated_date as updated19_18_, user0_.username as usernam20_18_ from user user0_ where user0_.status=1 order by user0_.created_date desc
+2021-11-24 09:59:29,876 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([id1_18_] : [BIGINT]) - [1]
+2021-11-24 09:59:29,877 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([address2_18_] : [VARCHAR]) - [Barakahu]
+2021-11-24 09:59:29,878 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([age3_18_] : [INTEGER]) - [25]
+2021-11-24 09:59:29,879 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([assigned4_18_] : [VARCHAR]) - [director]
+2021-11-24 09:59:29,880 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([city5_18_] : [VARCHAR]) - [Islamabad]
+2021-11-24 09:59:29,880 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([cnic6_18_] : [VARCHAR]) - [3820135736789]
+2021-11-24 09:59:29,881 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([contact_7_18_] : [VARCHAR]) - [+923369243618]
+2021-11-24 09:59:29,882 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([created_8_18_] : [TIMESTAMP]) - [2021-11-22 11:57:04.0]
+2021-11-24 09:59:29,883 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([email9_18_] : [VARCHAR]) - [haroonrb64@hotmail.com]
+2021-11-24 09:59:29,883 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([grade_l10_18_] : [INTEGER]) - [20]
+2021-11-24 09:59:29,884 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([is_aliv11_18_] : [BOOLEAN]) - [true]
+2021-11-24 09:59:29,884 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([is_covi12_18_] : [BOOLEAN]) - [false]
+2021-11-24 09:59:29,885 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([is_vacc13_18_] : [BOOLEAN]) - [false]
+2021-11-24 09:59:29,885 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([name14_18_] : [VARCHAR]) - [Kamran Abbasi]
+2021-11-24 09:59:29,885 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([passwor15_18_] : [VARCHAR]) - [$2a$10$w4HYeWs.5waopydcZqfCa.V6xiPqVH6k3/H6HQZNZ95w3Lrx7ezuG]
+2021-11-24 09:59:29,886 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([postal_16_18_] : [VARCHAR]) - [44000]
+2021-11-24 09:59:29,886 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([provinc17_18_] : [VARCHAR]) - [Federal]
+2021-11-24 09:59:29,887 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([status18_18_] : [BOOLEAN]) - [true]
+2021-11-24 09:59:29,887 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([updated19_18_] : [TIMESTAMP]) - [null]
+2021-11-24 09:59:29,887 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([usernam20_18_] : [VARCHAR]) - [kamran123]
+2021-11-24 09:59:29,888 TRACE o.h.t.CollectionType [http-nio-8080-exec-9] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientReports#1]
+2021-11-24 09:59:29,888 TRACE o.h.t.CollectionType [http-nio-8080-exec-9] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientVaccination#1]
+2021-11-24 09:59:29,889 TRACE o.h.t.CollectionType [http-nio-8080-exec-9] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.roles#1]
+2021-11-24 09:59:29,890 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-9] select roles0_.user_id as user_id1_21_0_, roles0_.role_id as role_id2_21_0_, role1_.id as id1_15_1_, role1_.created_date as created_2_15_1_, role1_.description as descript3_15_1_, role1_.name as name4_15_1_, role1_.status as status5_15_1_, role1_.updated_date as updated_6_15_1_ from user_roles roles0_ inner join role role1_ on roles0_.role_id=role1_.id where roles0_.user_id=?
+2021-11-24 09:59:29,890 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-9] binding parameter [1] as [BIGINT] - [1]
+2021-11-24 09:59:29,892 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([id1_15_1_] : [BIGINT]) - [1]
+2021-11-24 09:59:29,893 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([created_2_15_1_] : [TIMESTAMP]) - [2021-11-22 11:48:09.0]
+2021-11-24 09:59:29,893 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([descript3_15_1_] : [VARCHAR]) - [admin can read write update and delete]
+2021-11-24 09:59:29,894 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([name4_15_1_] : [VARCHAR]) - [admin]
+2021-11-24 09:59:29,895 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([status5_15_1_] : [BOOLEAN]) - [true]
+2021-11-24 09:59:29,896 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([updated_6_15_1_] : [TIMESTAMP]) - [null]
+2021-11-24 09:59:29,898 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([user_id1_21_0_] : [BIGINT]) - [1]
+2021-11-24 09:59:29,899 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-9] extracted value ([role_id2_21_0_] : [BIGINT]) - [1]
+2021-11-24 09:59:29,900 TRACE o.h.t.CollectionType [http-nio-8080-exec-9] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.Role.permissions#1]
+2021-11-24 09:59:29,901 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-9] select permission0_.role_id as role_id1_16_0_, permission0_.permissions_id as permissi2_16_0_, permission1_.id as id1_14_1_, permission1_.created_date as created_2_14_1_, permission1_.name as name3_14_1_, permission1_.status as status4_14_1_, permission1_.updated_date as updated_5_14_1_ from role_permissions permission0_ inner join permission permission1_ on permission0_.permissions_id=permission1_.id where permission0_.role_id=?
+2021-11-24 09:59:29,902 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-9] binding parameter [1] as [BIGINT] - [1]
+2021-11-24 09:59:29,905 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-9] select patientrep0_.user_id as user_id1_19_0_, patientrep0_.patient_reports_id as patient_2_19_0_, patientrep1_.id as id1_12_1_, patientrep1_.created_date as created_2_12_1_, patientrep1_.status as status3_12_1_, patientrep1_.test_date as test_dat4_12_1_, patientrep1_.test_results as test_res5_12_1_, patientrep1_.updated_date as updated_6_12_1_ from user_patient_reports patientrep0_ inner join patient_report patientrep1_ on patientrep0_.patient_reports_id=patientrep1_.id where patientrep0_.user_id=?
+2021-11-24 09:59:29,906 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-9] binding parameter [1] as [BIGINT] - [1]
+2021-11-24 09:59:29,910 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-9] select patientvac0_.user_id as user_id1_20_0_, patientvac0_.patient_vaccination_id as patient_2_20_0_, patientvac1_.id as id1_13_1_, patientvac1_.created_date as created_2_13_1_, patientvac1_.status as status3_13_1_, patientvac1_.total_doses as total_do4_13_1_, patientvac1_.updated_date as updated_5_13_1_, patientvac1_.vaccinated_date as vaccinat6_13_1_, patientvac1_.vaccine_name as vaccine_7_13_1_ from user_patient_vaccination patientvac0_ inner join patient_vaccination patientvac1_ on patientvac0_.patient_vaccination_id=patientvac1_.id where patientvac0_.user_id=?
+2021-11-24 09:59:29,911 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-9] binding parameter [1] as [BIGINT] - [1]
+2021-11-24 09:59:29,915 INFO c.e.E.S.UserService [http-nio-8080-exec-9] Users successfully Retrieved : [User(id=1, name=Kamran Abbasi, username=kamran123, email=haroonrb64@hotmail.com, password=$2a$10$w4HYeWs.5waopydcZqfCa.V6xiPqVH6k3/H6HQZNZ95w3Lrx7ezuG, createdDate=2021-11-22 11:57:04.0, updatedDate=null, status=true, isAlive=true, contactNum=+923369243618, cnic=3820135736789, age=25, address=Barakahu, city=Islamabad, province=Federal, postalCode=44000, roles=[Role(id=1, name=admin, description=admin can read write update and delete, createdDate=2021-11-22 11:48:09.0, updatedDate=null, status=true, permissions=[])], isCovid=false, isVaccinated=false, patientReports=[], patientVaccination=[], assignedPost=director, gradeLevel=20)]
+2021-11-24 10:01:33,586 INFO c.n.d.s.r.a.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2021-11-24 10:06:33,593 INFO c.n.d.s.r.a.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2021-11-24 10:11:33,616 INFO c.n.d.s.r.a.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2021-11-24 10:16:33,643 INFO c.n.d.s.r.a.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2021-11-24 10:21:33,656 INFO c.n.d.s.r.a.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2021-11-24 10:26:33,662 INFO c.n.d.s.r.a.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2021-11-24 10:31:33,677 INFO c.n.d.s.r.a.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2021-11-24 10:36:33,689 INFO c.n.d.s.r.a.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2021-11-24 10:41:33,696 INFO c.n.d.s.r.a.ConfigClusterResolver [AsyncResolver-bootstrap-executor-0] Resolving eureka endpoints via configuration
+2021-11-24 10:45:08,923 INFO o.s.c.n.e.s.EurekaServiceRegistry [SpringApplicationShutdownHook] Unregistering application E-HEALTH with eureka with status DOWN
+2021-11-24 10:45:08,923 INFO c.n.d.DiscoveryClient$3 [SpringApplicationShutdownHook] Saw local status change event StatusChangeEvent [timestamp=1637732708923, current=DOWN, previous=UP]
+2021-11-24 10:45:08,923 INFO c.n.d.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_E-HEALTH/localhost:e-health:8080: registering service...
+2021-11-24 10:45:08,954 INFO c.n.d.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_E-HEALTH/localhost:e-health:8080 - registration status: 204
+2021-11-24 10:45:10,529 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-24 10:45:10,529 TRACE o.h.t.s.TypeConfiguration [SpringApplicationShutdownHook] Handling #sessionFactoryClosed from [org.hibernate.internal.SessionFactoryImpl@543b0737] for TypeConfiguration
+2021-11-24 10:45:10,529 DEBUG o.h.t.s.TypeConfiguration$Scope [SpringApplicationShutdownHook] Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@62f04840] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@543b0737]
+2021-11-24 10:45:10,576 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2021-11-24 10:45:10,591 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2021-11-24 10:45:10,607 INFO c.n.d.DiscoveryClient [SpringApplicationShutdownHook] Shutting down DiscoveryClient ...
+2021-11-24 10:45:13,707 INFO c.n.d.DiscoveryClient [SpringApplicationShutdownHook] Unregistering ...
+2021-11-24 10:45:14,006 INFO c.n.d.DiscoveryClient [SpringApplicationShutdownHook] DiscoveryClient_E-HEALTH/localhost:e-health:8080 - deregister  status: 200
+2021-11-24 10:45:14,021 INFO c.n.d.DiscoveryClient [SpringApplicationShutdownHook] Completed shut down of DiscoveryClient
