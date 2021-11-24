@@ -166,7 +166,7 @@ public class UserController {
      * @creationDate 28 October 2021
      * @description This function deletes a user in database.
      **/
-    @DeleteMapping("/user/deleteUser")
+    @DeleteMapping("/deleteUser")
     public ResponseEntity<String> deleteUser(@RequestHeader("Authorization") String authToken,
                                              @Valid @RequestBody List<User> users) throws Exception {
 
@@ -182,7 +182,7 @@ public class UserController {
      * @creationDate 28 October 2021
      * @description This function updates a user in database.
      **/
-    @PutMapping("/user/updateUser")
+    @PutMapping("/updateUser")
     public ResponseEntity<User> updateUser(@RequestHeader("Authorization") String authToken,
                                            @Valid @RequestBody User user) throws Exception {
 

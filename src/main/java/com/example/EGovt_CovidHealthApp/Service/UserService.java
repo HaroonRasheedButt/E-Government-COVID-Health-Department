@@ -2,6 +2,8 @@ package com.example.EGovt_CovidHealthApp.Service;
 
 import com.example.EGovt_CovidHealthApp.Model.Entity.Token;
 import com.example.EGovt_CovidHealthApp.Model.Entity.User;
+import com.example.EGovt_CovidHealthApp.Model.Interface.DetailedCustomResponse;
+import com.example.EGovt_CovidHealthApp.Model.Pojo.NoRecordFoundException;
 import com.example.EGovt_CovidHealthApp.Repostiory.TokenRepository;
 import com.example.EGovt_CovidHealthApp.Repostiory.UserRepository;
 import com.example.EGovt_CovidHealthApp.Util.DateTimeUtil;
@@ -71,23 +73,26 @@ public class UserService implements UserDetailsService {
      * @return Response Entity of List of Users
      **/
     public ResponseEntity<List<User>> getAllUsers() {
-        try {
-            Optional<List<User>> users = Optional
-                    .of(userRepository.findAllByStatusTrueOrderByCreatedDateDesc());
-            if (users.isPresent()) {
-                LOG.info("Users successfully Retrieved : " + users.get());
-                return ResponseEntity.ok().body(users.get());
+//try{
+            List<User> users = userRepository.findAllByStatusTrueOrderByCreatedDateDesc();
+            if (!users.isEmpty()) {
+                LOG.info("Users successfully Retrieved : " + users);
+                return ResponseEntity.ok().body(users);
             } else {
-                LOG.info("Users Not found in the database: " + users.get());
-                return new ResponseEntity("Chat Not Found", HttpStatus.NOT_FOUND);
+                LOG.info("Users Not found in the database: " + users);
+                throw new NoRecordFoundException("Users Not found in the database");
             }
-        } catch (Exception e) {
-            // TODO: handle exception
-            LOG.info("Exception caught while retrieving Users data : \n" + e.getMessage());
-            return new ResponseEntity("Error retrieving all users!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-
-    }
+//        catch (NoRecordFoundException e) {
+//            // TODO: handle exception
+//
+//        }
+//        catch (Exception e) {
+//            // TODO: handle exception
+//            LOG.info("Exception caught while retrieving Users data : \n" + e.getMessage());
+//            return new ResponseEntity("Error retrieving all users!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
     /**
      * @creationDate 1st November 2021

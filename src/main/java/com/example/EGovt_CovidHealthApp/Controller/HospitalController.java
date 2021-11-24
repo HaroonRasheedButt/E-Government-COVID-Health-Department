@@ -45,7 +45,7 @@ public class HospitalController {
      * @creationDate 28 October 2021
      * @description This function adds a hospital in database.
      **/
-    @PostMapping("/hospital/addHospital")
+    @PostMapping("/addHospital")
     public ResponseEntity<Hospital> addHospital(@RequestHeader("Authorization") String authToken,
                                                 @Valid @RequestBody Hospital hospital) throws Exception {
 
@@ -61,7 +61,7 @@ public class HospitalController {
      * @creationDate 28 October 2021
      * @description This function updates a hospital in database.
      **/
-    @PutMapping("/hospital/updateHospital")
+    @PutMapping("/updateHospital")
     public ResponseEntity<Hospital> updateHospital(@RequestHeader("Authorization") String authToken,
                                                    @Valid @RequestBody Hospital hospital) throws Exception {
 
@@ -77,7 +77,7 @@ public class HospitalController {
      * @creationDate 28 October 2021
      * @description This function updates a hospital in database.
      **/
-    @DeleteMapping("/hospital/deleteHospital")
+    @DeleteMapping("/deleteHospital")
     public ResponseEntity<String> deleteHospital(@RequestHeader("Authorization") String authToken,
                                                  @Valid @RequestBody List<Hospital> hospitals) throws Exception {
 
@@ -95,7 +95,7 @@ public class HospitalController {
      * @description This function retrieves all the hospitals which are saved in
      * database.
      **/
-    @GetMapping("")
+    @GetMapping("/getAllHospitals")
     public ResponseEntity<List<Hospital>> getAllHospitals(@RequestHeader("Authorization") String authToken)
             throws Exception {
 

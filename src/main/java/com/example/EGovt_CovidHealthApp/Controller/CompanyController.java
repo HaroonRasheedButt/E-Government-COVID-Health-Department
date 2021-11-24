@@ -35,7 +35,7 @@ public class CompanyController {
      * @throws Exception the exception
      * @creationDate 28 October 2021
      **/
-    @GetMapping("/company/getAllcompanies")
+    @GetMapping("/getAllcompanies")
     public ResponseEntity<List<Company>> getAllCompanies(@RequestHeader("Authorization") String authToken) throws Exception {
         AuthorizationUtil.authorized(authToken);
         return companyService.getAllCompanies();
@@ -49,7 +49,7 @@ public class CompanyController {
      * @creationDate 28 October 2021
      * @description This function adds a company in database.
      **/
-    @PostMapping("/company/addCompany")
+    @PostMapping("/addCompany")
     public ResponseEntity<Company> addCompany(@RequestHeader("Authorization") String authToken,
                                               @Valid @RequestBody Company company) throws Exception {
 
@@ -65,7 +65,7 @@ public class CompanyController {
      * @creationDate 28 October 2021
      * @description This function updates a company in database.
      **/
-    @PutMapping("/company/updateCompany")
+    @PutMapping("/updateCompany")
     public ResponseEntity<Company> updateCompany(@RequestHeader("Authorization") String authToken,
                                                  @Valid @RequestBody Company company) throws Exception {
 
@@ -81,7 +81,7 @@ public class CompanyController {
      * @creationDate 28 October 2021
      * @description This function updates a company in database.
      **/
-    @DeleteMapping("/company/deleteCompany")
+    @DeleteMapping("/deleteCompany")
     public ResponseEntity<String> deleteCompany(@RequestHeader("Authorization") String authToken,
                                                 @Valid @RequestBody List<Company> companies) throws Exception {
 
