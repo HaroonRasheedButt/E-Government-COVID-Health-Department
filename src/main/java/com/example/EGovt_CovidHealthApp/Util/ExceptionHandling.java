@@ -1,7 +1,8 @@
 package com.example.EGovt_CovidHealthApp.Util;
 
+import com.example.EGovt_CovidHealthApp.Model.Interface.DetailedCustomResponse;
 import com.example.EGovt_CovidHealthApp.Model.Pojo.NoRecordFoundException;
-import org.hibernate.exception.ConstraintViolationException;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.hibernate.exception.DataException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -14,12 +15,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
-import com.example.EGovt_CovidHealthApp.Model.Interface.DetailedCustomResponse;
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.web.client.HttpClientErrorException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 import javax.validation.UnexpectedTypeException;
 
 /**
@@ -43,7 +42,7 @@ public class ExceptionHandling {
             HttpMessageNotReadableException.class, MissingRequestHeaderException.class,
             MissingPathVariableException.class, HttpRequestMethodNotSupportedException.class,
             UnexpectedTypeException.class, MethodArgumentNotValidException.class, DataIntegrityViolationException.class,
-            RuntimeException.class, ConstraintViolationException.class, DataException.class})
+            RuntimeException.class, ConstraintViolationException.class, DataException.class, org.hibernate.exception.ConstraintViolationException.class})
     public @ResponseBody
     Object handleBadRequestException(HttpServletRequest req, Exception ex) {
 

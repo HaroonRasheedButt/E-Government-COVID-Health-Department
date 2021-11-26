@@ -1,32 +1,33 @@
 package com.example.EGovt_CovidHealthApp.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-
 import com.example.EGovt_CovidHealthApp.Model.Entity.*;
+import com.example.EGovt_CovidHealthApp.Model.Interface.DetailedCustomResponse;
+import com.example.EGovt_CovidHealthApp.Repostiory.HospitalRepository;
+import com.example.EGovt_CovidHealthApp.Repostiory.MobileVaccineCarRepository;
 import com.example.EGovt_CovidHealthApp.Repostiory.UserRepository;
+import com.example.EGovt_CovidHealthApp.Util.DateTimeUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.PropertyValueException;
-import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.example.EGovt_CovidHealthApp.Repostiory.HospitalRepository;
-import com.example.EGovt_CovidHealthApp.Repostiory.MobileVaccineCarRepository;
-import com.example.EGovt_CovidHealthApp.Util.DateTimeUtil;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class HospitalService {
+    private static final Logger LOG = LogManager.getLogger(HospitalService.class);
     private final HospitalRepository hospitalRepository;
     private final UserRepository userRepository;
     private final MobileVaccineCarRepository mobileVaccineCarRepository;
     private final UserService patientService;
     private final PatientReportService patientReportService;
     private final PatientVaccinationService patientVaccinationService;
-    private static final Logger LOG = LogManager.getLogger(HospitalService.class);
 
     public HospitalService(HospitalRepository hospitalRepository, PatientReportService patientReportService,
                            PatientVaccinationService patientVaccinationService, UserService patientService,
@@ -45,21 +46,21 @@ public class HospitalService {
      * @creationDate 31st October 2021
      * @description This function gets all the hospitals details in database.
      **/
-    public ResponseEntity<List<Hospital>> getAllHospitals() {
+    public ResponseEntity<DetailedCustomResponse> getAllHospitals(HttpServletRequest req) {
         try {
             Optional<List<Hospital>> hospitals = Optional
                     .of(hospitalRepository.findAllByStatusTrueOrderByCreatedDateDesc());
             if (hospitals.isPresent()) {
-                LOG.info("Hospitals successfully Retrieved : " + hospitals.get());
-                return ResponseEntity.ok().body(hospitals.get());
+                LOG.info("Hospitals successfully Retrieved : {}", hospitals.get());
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.OK, "Hospitals successfully Retrieved", req.getRequestURI(), DateTimeUtil.getDate(), hospitals.get()));
             } else {
-                LOG.info("Hospitals Not found in the database: " + hospitals.get());
-                return new ResponseEntity("Chat Not Found", HttpStatus.NOT_FOUND);
+                LOG.info("Hospitals Not found in the database: {}", hospitals.get());
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.OK, "Hospitals Not Found in database", req.getRequestURI(), DateTimeUtil.getDate(), null));
             }
         } catch (Exception e) {
             // TODO: handle exception
-            LOG.info("Exception caught while retrieving hospitals data : \n" + e.getMessage());
-            return new ResponseEntity("Error retrieving all hospitals!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOG.info("Exception caught while retrieving hospitals data : \n {}", e.getMessage());
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Error retrieving all hospitals!\n" + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
         }
 
     }
@@ -70,19 +71,19 @@ public class HospitalService {
      * @creationDate 1st November 2021
      * @description This function gets a hospital based on an id from database.
      **/
-    public ResponseEntity<Hospital> getHospitalById(long hospitalId) {
+    public ResponseEntity<DetailedCustomResponse> getHospitalById(HttpServletRequest req, long hospitalId) {
         try {
             Optional<Hospital> hospital = hospitalRepository.findById(hospitalId);
             if (hospital.isPresent()) {
                 LOG.info("Hospital found by id.");
-                return ResponseEntity.ok().body(hospital.get());
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.OK, "Hospital Found by id", req.getRequestURI(), DateTimeUtil.getDate(), hospital.get()));
             } else {
                 LOG.info("Hospital not found");
-                return new ResponseEntity("Hospital Not Found", HttpStatus.NOT_FOUND);
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.NOT_FOUND, "Hospital Not Found by id", req.getRequestURI(), DateTimeUtil.getDate(), null));
             }
         } catch (Exception e) {
-            LOG.info("Exception caught in get all hospital. Unable to get all hospitals.");
-            return new ResponseEntity("Unable to get hospital by id\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOG.info("Exception caught in get all hospital. Unable to find hospital by id.");
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Exception caught in get all hospital. Unable to find hospital by id.\n" + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
         }
 
     }
@@ -94,27 +95,26 @@ public class HospitalService {
      * @creationDate 31st October 2021
      * @description This function adds a hospital in database.
      **/
-    public ResponseEntity<Hospital> addHospital(Hospital hospital) {
+    public ResponseEntity<DetailedCustomResponse> addHospital(HttpServletRequest req, Hospital hospital) {
         try {
             hospital.setCreatedDate(DateTimeUtil.getDate());
             hospital.setStatus(true);
-            hospitalRepository.save(hospital);
-            LOG.info("Hospitals successfully added to the database: " + hospital);
-            return ResponseEntity.ok().body(hospital);
+            hospital = hospitalRepository.save(hospital);
+            LOG.info("Hospitals successfully added to the database: {}", hospital);
+            return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.OK, "Hospitals successfully Added to Database", req.getRequestURI(), DateTimeUtil.getDate(), hospital));
         } catch (PropertyValueException e) {
-            LOG.info("The syntax of the hospital object is invalid : " + hospital + e.getMessage());
-            return new ResponseEntity("Please send a valid object to add into the databse!\n" + e.getMessage(),
-                    HttpStatus.BAD_REQUEST);
-        } catch (ConstraintViolationException e) {
+            LOG.info("The syntax of the hospital object is invalid : {}", hospital + e.getMessage());
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Please send a valid object to add into the databse!\n" + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
+
+        } catch (DataIntegrityViolationException e) {
             // TODO: handle exception
-            LOG.info("Error.... Duplicate entry for a unique value!! : " + hospital + "\n" + e.getMessage());
-            return new ResponseEntity("Error adding a patient into database!\n" + e.getMessage(),
-                    HttpStatus.BAD_REQUEST);
+            LOG.info("Error.... Duplicate entry for a unique value or something is maybe null!! : {} ", hospital + "\n" + e.getMessage());
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Error adding a hospital into database. Duplicate entry for a unique value or something is maybe null!\n" + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             // TODO: handle exception
-            LOG.info("Error while saving the hospital object to database  : " + hospital + e.getMessage());
-            return new ResponseEntity("Error adding a hospital into database!\n" + e.getMessage(),
-                    HttpStatus.BAD_REQUEST);
+            LOG.info("Error while saving the hospital object to database  : {}", hospital + e.getMessage());
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Error adding a hospital into database!\n" + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
+
         }
     }
 
@@ -125,28 +125,27 @@ public class HospitalService {
      * @creationDate 31st October 2021
      * @description This function updates a hospital in database.
      **/
-    public ResponseEntity<Hospital> updateHospital(Hospital hospital) {
+    public ResponseEntity<DetailedCustomResponse> updateHospital(HttpServletRequest req, Hospital hospital) {
         try {
             Optional<Hospital> exists = hospitalRepository.findById(hospital.getId());
             if (exists.isPresent()) {
                 hospital.setUpdatedDate(DateTimeUtil.getDate());
                 hospitalRepository.save(hospital);
-                LOG.info("Hospitals successfully updated in the database: " + hospital);
-                return ResponseEntity.ok().body(hospital);
+                LOG.info("Hospitals successfully updated in the database: {}", hospital);
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.OK, "Hospitals successfully updated in Database", req.getRequestURI(), DateTimeUtil.getDate(), hospital));
             } else {
                 LOG.info("Hospital could not be updated because the id could not be found  : ");
-                return new ResponseEntity("Compnay of this id does not exist. Please update a existing record!",
-                        HttpStatus.ACCEPTED);
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.NOT_FOUND, "Failed to update the hospital. The hospital of this id does not exist", req.getRequestURI(), DateTimeUtil.getDate(), hospital));
             }
 
         } catch (PropertyValueException e) {
-            LOG.info("The syntax of the hospital object is invalid : " + hospital + e.getMessage());
-            return new ResponseEntity("Please send a valid object to update from the databse!\n" + e.getMessage(),
-                    HttpStatus.BAD_REQUEST);
+            LOG.info("The syntax of the hospital object is invalid : {}", hospital + e.getMessage());
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Please send a valid object to update from the database!\n" + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
+
         } catch (Exception e) {
             // TODO: handle exception
-            LOG.info("Error while saving the hospital object to database  : " + hospital + e.getMessage());
-            return new ResponseEntity("Error updating hospital!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOG.info("Error while saving the hospital object to database  : {}", hospital + e.getMessage());
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Error while saving the hospital object to database\n" + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -158,35 +157,34 @@ public class HospitalService {
      * @description This function deletes a hospital in database by changing its
      * status to false.
      **/
-    public ResponseEntity<String> deleteHospital(List<Hospital> hospitals) {
+    public ResponseEntity<DetailedCustomResponse> deleteHospital(HttpServletRequest req, List<Hospital> hospitals) {
         try {
             for (Hospital hospital : hospitals) {
                 if (Objects.isNull(hospital.getId()))
-                    return new ResponseEntity(
-                            "Please provide the ID of hospital, having email : " + hospital.getEmail(),
-                            HttpStatus.PARTIAL_CONTENT);
+                    return new ResponseEntity(new DetailedCustomResponse(206, HttpStatus.PARTIAL_CONTENT, "Please provide the ID of hospital, having email : " + hospital.getEmail(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.PARTIAL_CONTENT);
+
                 hospital.setStatus(false);
                 hospitalRepository.save(hospital);
             }
             LOG.info("Hospitals deleted successfully bu turning their status to false!");
-            return ResponseEntity.ok().body("hospitals successfully deleted");
+            return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.OK, "Hospitals deleted successfully bu changing their status to false!", req.getRequestURI(), DateTimeUtil.getDate(), hospitals));
         } catch (Exception e) {
             // TODO: handle exception
-            LOG.info("Error while deleting the hospital object from database  : " + e.getMessage());
-            return new ResponseEntity("Error while deleting hospitals!\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOG.info("Error while deleting the hospital object from database  : \n{}", e.getMessage());
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Error while deleting the hospital object from database\n" + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
         }
     }
 
     /**
      * @param patientReport: A patientReport object to be added
      * @param patientCnic:   A patient CNIC that is unique for every patient
-     * @param hospitalId: A hospital id
+     * @param hospitalId:    A hospital id
      * @return Response Entity of type Hospital
      * @throws Exception the exception
      * @creationDate 31st October 2021
      * @description This function adds a patientReport in database.
      **/
-    public ResponseEntity<Hospital> addPatientReport(PatientReport patientReport, String patientCnic, long hospitalId) {
+    public ResponseEntity<DetailedCustomResponse> addPatientReport(HttpServletRequest req, PatientReport patientReport, String patientCnic, long hospitalId) {
 
         try {
             Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
@@ -202,33 +200,30 @@ public class HospitalService {
                     } else if (patientReport.getTestResults().toLowerCase().equals("negative")) {
                         patient.get().setCovid(false);
                     }
-                    patient = Optional.of(patientService.updateUser(patient.get()).getBody());
+                    // type casting the response object into the User class
+                    patient = Optional.of((User) (patientService.updateUser(req, patient.get()).getBody().getData()));
                     List<User> patientsOfHospital = hospital.get().getPatients();
 
                     Integer index = patientInHospitalExists(patientsOfHospital, patientCnic);
                     if (index >= 0) {
                         LOG.info("User Exists in Hospital already... ");
                         hospital.get().getPatients().set(index, patient.get());
-                        return updateHospital(hospital.get());
+                        return updateHospital(req, hospital.get());
 
                     } else {
                         LOG.info("User does not Exists in Hospital. Adding... ");
                         hospital.get().getPatients().add(patient.get());
-                        return updateHospital(hospital.get());
+                        return updateHospital(req, hospital.get());
                     }
 
                 } else {
-                    return new ResponseEntity("The patient of this id does not exist. Please enter a valid ID.",
-                            HttpStatus.NOT_FOUND);
+                    return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.NOT_FOUND, "The patient of this id does not exist. Please enter a valid ID.", req.getRequestURI(), DateTimeUtil.getDate(), hospital));
                 }
             } else {
-                return new ResponseEntity("The hospital of this id does not exist. Please enter a valid ID.",
-                        HttpStatus.NOT_FOUND);
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.NOT_FOUND, "The patient of this id does not exist. Please enter a valid ID.", req.getRequestURI(), DateTimeUtil.getDate(), hospital));
             }
         } catch (Exception e) {
-            return new ResponseEntity(
-                    "Error while error adding the patient report to the database. \n" + e.getMessage(),
-                    HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Error while error adding the patient report to the database. \n" + e.getMessage() + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -240,7 +235,7 @@ public class HospitalService {
      * @creationDate 1st November 2021
      * @description This function gets a patient based on their CNIC from database.
      **/
-    public ResponseEntity<User> updatePatientReport(String patientCnic, PatientReport patientReport) {
+    public ResponseEntity<DetailedCustomResponse> updatePatientReport(HttpServletRequest req, String patientCnic, PatientReport patientReport) {
         try {
             Optional<User> patient = Optional.ofNullable(userRepository.findByCnicAndStatusTrue(patientCnic));
             if (patient.isPresent()) {
@@ -249,15 +244,15 @@ public class HospitalService {
                     patientReport = patientReportService.updatePatientReport(patientReport);
                     patient.get().getPatientReports().set(index, patientReport);
                     userRepository.save(patient.get());
-                    return patientService.getUserByCnic(patientCnic);
+                    return patientService.getUserByCnic(req, patientCnic);
                 } else {
-                    return new ResponseEntity("The Report does not belong to this patient", HttpStatus.NOT_FOUND);
+                    return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.NOT_FOUND, "The Report does not belong to this patient", req.getRequestURI(), DateTimeUtil.getDate(), null));
                 }
             } else {
-                return new ResponseEntity("The patient of this cnic does not exist", HttpStatus.NOT_FOUND);
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.NOT_FOUND, "The patient of this cnic does not exist", req.getRequestURI(), DateTimeUtil.getDate(), null));
             }
         } catch (Exception e) {
-            return new ResponseEntity("Error while updating patient report.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Error while error updating the patient report. \n" + e.getMessage() + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -287,8 +282,8 @@ public class HospitalService {
      * @creationDate 31st October 2021
      * @description This function adds a patientVaccination in database.
      **/
-    public ResponseEntity<Hospital> addPatientVaccination(PatientVaccination patientVaccination, String patientCnic,
-                                                          long hospitalId) {
+    public ResponseEntity<DetailedCustomResponse> addPatientVaccination(HttpServletRequest req, PatientVaccination patientVaccination, String patientCnic,
+                                                                        long hospitalId) {
         try {
             Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
             if (hospital.isPresent()) {
@@ -299,19 +294,19 @@ public class HospitalService {
                     patientVaccination = patientVaccinationService.addPatientVaccination(patientVaccination);
                     patient.get().getPatientVaccination().add(patientVaccination);
                     patient.get().setVaccinated(true);
-                    patient = Optional.of(patientService.updateUser(patient.get()).getBody());
+                    patient = Optional.of((User) patientService.updateUser(req, patient.get()).getBody().getData());
                     List<User> patientsOfHospital = hospital.get().getPatients();
 
                     Integer index = patientInHospitalExists(patientsOfHospital, patientCnic);
                     if (index >= 0) {
                         LOG.info("User Exists in Hospital already... ");
                         hospital.get().getPatients().set(index, patient.get());
-                        return updateHospital(hospital.get());
+                        return updateHospital(req, hospital.get());
 
                     } else {
                         LOG.info("User Exists in Hospital already... ");
                         hospital.get().getPatients().add(patient.get());
-                        return updateHospital(hospital.get());
+                        return updateHospital(req, hospital.get());
                     }
 
                 } else {
@@ -340,7 +335,7 @@ public class HospitalService {
      * @creationDate 1st November 2021
      * @description This function gets a patient based on their CNIC from database.
      **/
-    public ResponseEntity<User> updatePatientVaccination(String patientCnic, PatientVaccination patientVaccination) {
+    public ResponseEntity<DetailedCustomResponse> updatePatientVaccination(HttpServletRequest req, String patientCnic, PatientVaccination patientVaccination) {
         try {
             Optional<User> patient = Optional.ofNullable(userRepository.findByCnicAndStatusTrue(patientCnic));
             if (patient.isPresent()) {
@@ -348,15 +343,16 @@ public class HospitalService {
                 if (index >= 0) {
                     patientVaccination = patientVaccinationService.updatePatientVaccination(patientVaccination);
                     patient.get().getPatientVaccination().set(index, patientVaccination);
-                    return patientService.getUserByCnic(patientCnic);
+                    return patientService.getUserByCnic(req, patientCnic);
                 } else {
-                    return new ResponseEntity("The Report does not belong to this patient", HttpStatus.NOT_FOUND);
+                    return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.NOT_FOUND, "The Report does not belong to this patient", req.getRequestURI(), DateTimeUtil.getDate(), null));
                 }
             } else {
-                return new ResponseEntity("The patient of this cnic does not exist", HttpStatus.NOT_FOUND);
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.NOT_FOUND, "The patient of this cnic does not exist", req.getRequestURI(), DateTimeUtil.getDate(), null));
+
             }
         } catch (Exception e) {
-            return new ResponseEntity("Error while updating patient report.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Error while error adding the patient report to the database. \n" + e.getMessage() + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -405,21 +401,18 @@ public class HospitalService {
      * @creationDate 31st October 2021
      * @description This function gets the list of mobileVaccineCar against a particular hospital.
      **/
-    public ResponseEntity<List<MobileVaccineCar>> getMobileVaccineCars(long hospitalId) {
+    public ResponseEntity<DetailedCustomResponse> getMobileVaccineCars(HttpServletRequest req, long hospitalId) {
         try {
             Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
             if (hospital.isPresent()) {
-                return ResponseEntity.ok().body(hospital.get().getMobileVaccineCars());
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.OK, "Mobile vaccine Cars Found", req.getRequestURI(), DateTimeUtil.getDate(), hospital.get().getMobileVaccineCars()));
             } else {
                 LOG.info("The hospital of this id does not exist. Please enter a valid ID.");
-                return new ResponseEntity("The hospital of this id does not exist. Please enter a valid ID.",
-                        HttpStatus.NOT_FOUND);
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.NOT_FOUND, "The hospital of this id does not exist. Please enter a valid ID.", req.getRequestURI(), DateTimeUtil.getDate(), null));
             }
         } catch (Exception e) {
-            LOG.info("Error while error adding the mobile vaccine car to the database. \n" + e.getMessage());
-            return new ResponseEntity(
-                    "Error while error adding the  mobile vaccine car to the database. \n" + e.getMessage(),
-                    HttpStatus.BAD_REQUEST);
+            LOG.info("Error while error adding the mobile vaccine car to the database. \n{}", e.getMessage());
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Error while error adding the mobile vaccine car to the database. \n" + e.getMessage() + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -430,7 +423,7 @@ public class HospitalService {
      * @creationDate 31st October 2021
      * @description This function updates a Mobile Vaccine Car in database.
      **/
-    public ResponseEntity<List<MobileVaccineCar>> updateMobileVaccineCar(MobileVaccineCar mobileVaccineCar,
+    public ResponseEntity<DetailedCustomResponse> updateMobileVaccineCar(HttpServletRequest req, MobileVaccineCar mobileVaccineCar,
                                                                          long hospitalId) {
         try {
             Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
@@ -440,24 +433,20 @@ public class HospitalService {
                     mobileVaccineCar.setUpdatedDate(DateTimeUtil.getDate());
                     mobileVaccineCarRepository.save(mobileVaccineCar);
                     hospital.get().getMobileVaccineCars().add(mobileVaccineCar);
-                    hospital = Optional.of(updateHospital(hospital.get()).getBody());
-                    return ResponseEntity.ok().body(hospital.get().getMobileVaccineCars());
+                    hospital = Optional.of((Hospital) updateHospital(req, hospital.get()).getBody().getData());
+                    return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.OK, "Mobile Vaccine cars updated.", req.getRequestURI(), DateTimeUtil.getDate(), hospital.get().getMobileVaccineCars()));
                 } else {
                     LOG.info("The Mobile vaccine car of this id does not exist. Please enter a valid ID.");
-                    return new ResponseEntity(
-                            "The Mobile vaccine car of this id does not exist. Please enter a valid ID.",
-                            HttpStatus.NOT_FOUND);
+                    return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.NOT_FOUND, "The Mobile vaccine car of this id does not exist. Please enter a valid ID.", req.getRequestURI(), DateTimeUtil.getDate(), null));
                 }
             } else {
                 LOG.info("The hospital of this id does not exist. Please enter a valid ID.");
-                return new ResponseEntity("The hospital of this id does not exist. Please enter a valid ID.",
-                        HttpStatus.NOT_FOUND);
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.NOT_FOUND, "The hospital of this id does not exist. Please enter a valid ID.", req.getRequestURI(), DateTimeUtil.getDate(), null));
             }
         } catch (Exception e) {
-            LOG.info("Error while error adding the mobile vaccine car to the database. \n" + e.getMessage());
-            return new ResponseEntity(
-                    "Error while error adding the  mobile vaccine car to the database. \n" + e.getMessage(),
-                    HttpStatus.BAD_REQUEST);
+            LOG.info("Error while error updating the mobile vaccine car in the database. \n{}" , e.getMessage());
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Error while error updating the mobile vaccine car in the database. \n" + e.getMessage() + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
+
         }
     }
 
@@ -468,7 +457,7 @@ public class HospitalService {
      * @creationDate 31st October 2021
      * @description This function adds a mobileVaccineCar in database.
      **/
-    public ResponseEntity<List<MobileVaccineCar>> addMobileVaccineCar(MobileVaccineCar mobileVaccineCar,
+    public ResponseEntity<DetailedCustomResponse> addMobileVaccineCar(HttpServletRequest req, MobileVaccineCar mobileVaccineCar,
                                                                       long hospitalId) {
         try {
             Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
@@ -476,116 +465,114 @@ public class HospitalService {
                 mobileVaccineCar.setCreatedDate(DateTimeUtil.getDate());
                 mobileVaccineCar.setStatus(true);
                 hospital.get().getMobileVaccineCars().add(mobileVaccineCar);
-                hospital = Optional.of(updateHospital(hospital.get()).getBody());
-                return ResponseEntity.ok().body(hospital.get().getMobileVaccineCars());
+                hospital = Optional.of((Hospital) updateHospital(req, hospital.get()).getBody().getData());
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.OK, "Mobile Vaccine cars added.", req.getRequestURI(), DateTimeUtil.getDate(), hospital.get().getMobileVaccineCars()));
             } else {
                 LOG.info("The hospital of this id does not exist. Please enter a valid ID.");
-                return new ResponseEntity("The hospital of this id does not exist. Please enter a valid ID.",
-                        HttpStatus.NOT_FOUND);
+                return ResponseEntity.ok(new DetailedCustomResponse(200, HttpStatus.NOT_FOUND, "The hospital of this id does not exist. Please enter a valid ID.", req.getRequestURI(), DateTimeUtil.getDate(), null));
             }
         } catch (Exception e) {
             LOG.info("Error while error adding the mobile vaccine car to the database. \n" + e.getMessage());
-            return new ResponseEntity(
-                    "Error while error adding the  mobile vaccine car to the database. \n" + e.getMessage(),
-                    HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new DetailedCustomResponse(404, HttpStatus.BAD_REQUEST, "Error while error adding the mobile vaccine car in the database. \n" + e.getMessage() + e.getMessage(), req.getRequestURI(), DateTimeUtil.getDate(), null), HttpStatus.BAD_REQUEST);
+
         }
     }
 
 
-    /*-------Hosptial Admin Operator Operations-----*/
+//    /*-------Hosptial Admin Operator Operations-----*/
 
-    /**
-     * @creationDate 31st October 2021
-     * @description This function gets the list of mobileVaccineCar against a particular hospital.
-     * @param hospitalId: a hospital id
-     * @throws Exception the exception
-     * @return Response Entity of List of type MobileVaccineCar
-     **/
-    public ResponseEntity<List<User>> getCovidAdminOperator(long hospitalId) {
-        try {
-            Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
-            if (hospital.isPresent()) {
-                return ResponseEntity.ok().body(hospital.get().getCovidAdminOperators());
-            } else {
-                LOG.info("The hospital of this id does not exist. Please enter a valid ID.");
-                return new ResponseEntity("The hospital of this id does not exist. Please enter a valid ID.",
-                        HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            LOG.info("Error while error getting the  covid admin operator from the database. \n" + e.getMessage());
-            return new ResponseEntity(
-                    "Error while error getting the  covid admin operator from the database. \n" + e.getMessage(),
-                    HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    /**
-     * @creationDate 31st October 2021
-     * @description This function updates a Mobile Vaccine Car in database.
-     * @param covidAdminOperator: A mobileVaccineCar object to be added
-     * @param hospitalId: a hospital id
-     * @throws Exception the exception
-     * @return Response Entity of type MobileVaccineCar
-     **/
-    public ResponseEntity<List<User>> updateCovidAdminOperator(User covidAdminOperator,
-                                                                         long hospitalId) {
-        try {
-            Optional<Hospital> hospital =  Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
-            if (hospital.isPresent()) {
-                Optional<User> existingOperator = userRepository.findById(covidAdminOperator.getId());
-                if (existingOperator.isPresent()) {
-                    covidAdminOperator.setUpdatedDate(DateTimeUtil.getDate());
-                    userRepository.save(covidAdminOperator);
-                    hospital.get().getCovidAdminOperators().add(covidAdminOperator);
-                    hospital = Optional.of(updateHospital(hospital.get()).getBody());
-                    return ResponseEntity.ok().body(hospital.get().getCovidAdminOperators());
-                } else {
-                    LOG.info("The Covid Admin Operator of this id does not exist. Please enter a valid ID.");
-                    return new ResponseEntity(
-                            "The  Covid Admin Operator of this id does not exist. Please enter a valid ID.",
-                            HttpStatus.NOT_FOUND);
-                }
-            } else {
-                LOG.info("The hospital of this id does not exist. Please enter a valid ID.");
-                return new ResponseEntity("The hospital of this id does not exist. Please enter a valid ID.",
-                        HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            LOG.info("Error while error adding the Covid Admin Operator to the database. \n" + e.getMessage());
-            return new ResponseEntity(
-                    "Error while error adding the  Covid Admin Operator to the database. \n" + e.getMessage(),
-                    HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    /**
-     * @creationDate 31st October 2021
-     * @description This function adds a covidAdminOperator in database.
-     * @param covidAdminOperator: A patientVaccination object to be added
-     * @throws Exception the exception
-     * @return Response Entity of type CovidAdminOperator
-     **/
-    public ResponseEntity<List<User>> addCovidAdminOperator(User covidAdminOperator,
-                                                                      long hospitalId) {
-        try {
-            Optional<Hospital> hospital =  Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
-            if (hospital.isPresent()) {
-                covidAdminOperator.setCreatedDate(DateTimeUtil.getDate());
-                covidAdminOperator.setStatus(true);
-                hospital.get().getCovidAdminOperators().add(covidAdminOperator);
-                hospital = Optional.of(updateHospital(hospital.get()).getBody());
-                return ResponseEntity.ok().body(hospital.get().getCovidAdminOperators());
-            } else {
-                LOG.info("The hospital of this id does not exist. Please enter a valid ID.");
-                return new ResponseEntity("The hospital of this id does not exist. Please enter a valid ID.",
-                        HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            LOG.info("Error while error adding the covid admin operator to the database. \n" + e.getMessage());
-            return new ResponseEntity(
-                    "Error while error adding the covid admin operator to the database. \n" + e.getMessage(),
-                    HttpStatus.BAD_REQUEST);
-        }
-    }
+//    /**
+//     * @creationDate 31st October 2021
+//     * @description This function gets the list of mobileVaccineCar against a particular hospital.
+//     * @param hospitalId: a hospital id
+//     * @throws Exception the exception
+//     * @return Response Entity of List of type MobileVaccineCar
+//     **/
+//    public ResponseEntity<List<User>> getCovidAdminOperator(long hospitalId) {
+//        try {
+//            Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
+//            if (hospital.isPresent()) {
+//                return ResponseEntity.ok().body(hospital.get().getCovidAdminOperators());
+//            } else {
+//                LOG.info("The hospital of this id does not exist. Please enter a valid ID.");
+//                return new ResponseEntity("The hospital of this id does not exist. Please enter a valid ID.",
+//                        HttpStatus.NOT_FOUND);
+//            }
+//        } catch (Exception e) {
+//            LOG.info("Error while error getting the  covid admin operator from the database. \n" + e.getMessage());
+//            return new ResponseEntity(
+//                    "Error while error getting the  covid admin operator from the database. \n" + e.getMessage(),
+//                    HttpStatus.BAD_REQUEST);
+//        }
+//    }
+//
+//    /**
+//     * @creationDate 31st October 2021
+//     * @description This function updates a Mobile Vaccine Car in database.
+//     * @param covidAdminOperator: A mobileVaccineCar object to be added
+//     * @param hospitalId: a hospital id
+//     * @throws Exception the exception
+//     * @return Response Entity of type MobileVaccineCar
+//     **/
+//    public ResponseEntity<List<User>> updateCovidAdminOperator(User covidAdminOperator,
+//                                                                         long hospitalId) {
+//        try {
+//            Optional<Hospital> hospital =  Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
+//            if (hospital.isPresent()) {
+//                Optional<User> existingOperator = userRepository.findById(covidAdminOperator.getId());
+//                if (existingOperator.isPresent()) {
+//                    covidAdminOperator.setUpdatedDate(DateTimeUtil.getDate());
+//                    userRepository.save(covidAdminOperator);
+//                    hospital.get().getCovidAdminOperators().add(covidAdminOperator);
+//                    hospital = Optional.of(updateHospital(hospital.get()).getBody());
+//                    return ResponseEntity.ok().body(hospital.get().getCovidAdminOperators());
+//                } else {
+//                    LOG.info("The Covid Admin Operator of this id does not exist. Please enter a valid ID.");
+//                    return new ResponseEntity(
+//                            "The  Covid Admin Operator of this id does not exist. Please enter a valid ID.",
+//                            HttpStatus.NOT_FOUND);
+//                }
+//            } else {
+//                LOG.info("The hospital of this id does not exist. Please enter a valid ID.");
+//                return new ResponseEntity("The hospital of this id does not exist. Please enter a valid ID.",
+//                        HttpStatus.NOT_FOUND);
+//            }
+//        } catch (Exception e) {
+//            LOG.info("Error while error adding the Covid Admin Operator to the database. \n" + e.getMessage());
+//            return new ResponseEntity(
+//                    "Error while error adding the  Covid Admin Operator to the database. \n" + e.getMessage(),
+//                    HttpStatus.BAD_REQUEST);
+//        }
+//    }
+//
+//    /**
+//     * @creationDate 31st October 2021
+//     * @description This function adds a covidAdminOperator in database.
+//     * @param covidAdminOperator: A patientVaccination object to be added
+//     * @throws Exception the exception
+//     * @return Response Entity of type CovidAdminOperator
+//     **/
+//    public ResponseEntity<List<User>> addCovidAdminOperator(User covidAdminOperator,
+//                                                                      long hospitalId) {
+//        try {
+//            Optional<Hospital> hospital =  Optional.ofNullable(hospitalRepository.findByIdAndStatusTrue(hospitalId));
+//            if (hospital.isPresent()) {
+//                covidAdminOperator.setCreatedDate(DateTimeUtil.getDate());
+//                covidAdminOperator.setStatus(true);
+//                hospital.get().getCovidAdminOperators().add(covidAdminOperator);
+//                hospital = Optional.of(updateHospital(hospital.get()).getBody());
+//                return ResponseEntity.ok().body(hospital.get().getCovidAdminOperators());
+//            } else {
+//                LOG.info("The hospital of this id does not exist. Please enter a valid ID.");
+//                return new ResponseEntity("The hospital of this id does not exist. Please enter a valid ID.",
+//                        HttpStatus.NOT_FOUND);
+//            }
+//        } catch (Exception e) {
+//            LOG.info("Error while error adding the covid admin operator to the database. \n" + e.getMessage());
+//            return new ResponseEntity(
+//                    "Error while error adding the covid admin operator to the database. \n" + e.getMessage(),
+//                    HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
 }

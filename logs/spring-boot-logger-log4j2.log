@@ -1,192 +1,573 @@
-2021-11-24 17:43:08,916 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.0.Final
-2021-11-24 17:43:09,171 INFO o.s.b.StartupInfoLogger [main] Starting EGovtCovidHealthAppApplication using Java 1.8.0_73 on LTI-TRAINING-03 with PID 15480 (D:\Developer\E-Govt_CovidHealthDepartment\target\classes started by Haroon Rasheed in D:\Developer\E-Govt_CovidHealthDepartment)
-2021-11-24 17:43:09,261 INFO o.s.b.SpringApplication [main] No active profile set, falling back to default profiles: default
-2021-11-24 17:43:29,583 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-11-24 17:43:29,931 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 308 ms. Found 11 JPA repository interfaces.
-2021-11-24 17:43:30,784 INFO o.s.c.c.s.GenericScope [main] BeanFactory id=3a71b191-f7cd-3d14-afed-b3a17507ea1a
-2021-11-24 17:43:31,442 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@41184371' of type [org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-11-24 17:43:31,458 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-11-24 17:43:32,353 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
-2021-11-24 17:43:32,369 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2021-11-24 17:43:32,369 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2021-11-24 17:43:32,369 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.53]
-2021-11-24 17:43:32,790 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2021-11-24 17:43:32,790 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 21892 ms
-2021-11-24 17:43:33,385 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-11-24 17:43:33,620 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-11-24 17:43:34,029 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-11-24 17:43:34,122 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration boolean -> org.hibernate.type.BooleanType@601eb4af
-2021-11-24 17:43:34,122 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration boolean -> org.hibernate.type.BooleanType@601eb4af
-2021-11-24 17:43:34,122 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@601eb4af
-2021-11-24 17:43:34,122 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@44e4cb76
-2021-11-24 17:43:34,122 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration true_false -> org.hibernate.type.TrueFalseType@773c2214
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration yes_no -> org.hibernate.type.YesNoType@6ee88e21
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration byte -> org.hibernate.type.ByteType@217235f5
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration byte -> org.hibernate.type.ByteType@217235f5
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@217235f5
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration character -> org.hibernate.type.CharacterType@697a0948
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration char -> org.hibernate.type.CharacterType@697a0948
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@697a0948
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration short -> org.hibernate.type.ShortType@5234b61a
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration short -> org.hibernate.type.ShortType@5234b61a
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Short -> org.hibernate.type.ShortType@5234b61a
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration integer -> org.hibernate.type.IntegerType@16d0e521
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration int -> org.hibernate.type.IntegerType@16d0e521
-2021-11-24 17:43:34,138 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@16d0e521
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration long -> org.hibernate.type.LongType@1c297897
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration long -> org.hibernate.type.LongType@1c297897
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Long -> org.hibernate.type.LongType@1c297897
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration float -> org.hibernate.type.FloatType@237add
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration float -> org.hibernate.type.FloatType@237add
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Float -> org.hibernate.type.FloatType@237add
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration double -> org.hibernate.type.DoubleType@7889b4b9
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration double -> org.hibernate.type.DoubleType@7889b4b9
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@7889b4b9
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@7f977fba
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@7f977fba
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration big_integer -> org.hibernate.type.BigIntegerType@480cbe2e
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@480cbe2e
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration string -> org.hibernate.type.StringType@67f9cb52
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.String -> org.hibernate.type.StringType@67f9cb52
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration nstring -> org.hibernate.type.StringNVarcharType@2ee39e73
-2021-11-24 17:43:34,154 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@24876a7e
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration url -> org.hibernate.type.UrlType@2eda2062
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.net.URL -> org.hibernate.type.UrlType@2eda2062
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration Duration -> org.hibernate.type.DurationType@4cffd3fd
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.Duration -> org.hibernate.type.DurationType@4cffd3fd
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration Instant -> org.hibernate.type.InstantType@62d40e31
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.Instant -> org.hibernate.type.InstantType@62d40e31
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@372461a9
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@372461a9
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration LocalDate -> org.hibernate.type.LocalDateType@126f8f24
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@126f8f24
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@662be9f7
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@662be9f7
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@7c11d32
-2021-11-24 17:43:34,169 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@7c11d32
-2021-11-24 17:43:34,185 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@31f77791
-2021-11-24 17:43:34,185 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@31f77791
-2021-11-24 17:43:34,185 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@25974207
-2021-11-24 17:43:34,185 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@25974207
-2021-11-24 17:43:34,185 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration date -> org.hibernate.type.DateType@66d25ba9
-2021-11-24 17:43:34,185 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Date -> org.hibernate.type.DateType@66d25ba9
-2021-11-24 17:43:34,185 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration time -> org.hibernate.type.TimeType@266e9dda
-2021-11-24 17:43:34,185 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Time -> org.hibernate.type.TimeType@266e9dda
-2021-11-24 17:43:34,185 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration timestamp -> org.hibernate.type.TimestampType@7db40fd5
-2021-11-24 17:43:34,185 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@7db40fd5
-2021-11-24 17:43:34,185 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.Date -> org.hibernate.type.TimestampType@7db40fd5
-2021-11-24 17:43:34,185 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@19ae2ee5
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration calendar -> org.hibernate.type.CalendarType@118acf70
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@118acf70
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@118acf70
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@11f23203
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration calendar_time -> org.hibernate.type.CalendarTimeType@2cfe272f
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration locale -> org.hibernate.type.LocaleType@646427f7
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@646427f7
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration currency -> org.hibernate.type.CurrencyType@31da0434
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@31da0434
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration timezone -> org.hibernate.type.TimeZoneType@74960e9d
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@74960e9d
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration class -> org.hibernate.type.ClassType@7926352f
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Class -> org.hibernate.type.ClassType@7926352f
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@d5e575c
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@d5e575c
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@14fc9bd
-2021-11-24 17:43:34,200 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration binary -> org.hibernate.type.BinaryType@6aa5974e
-2021-11-24 17:43:34,217 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration byte[] -> org.hibernate.type.BinaryType@6aa5974e
-2021-11-24 17:43:34,217 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration [B -> org.hibernate.type.BinaryType@6aa5974e
-2021-11-24 17:43:34,220 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@1129829c
-2021-11-24 17:43:34,221 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@1129829c
-2021-11-24 17:43:34,221 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@1129829c
-2021-11-24 17:43:34,223 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration row_version -> org.hibernate.type.RowVersionType@4c319d52
-2021-11-24 17:43:34,224 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration image -> org.hibernate.type.ImageType@2d28fb02
-2021-11-24 17:43:34,225 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration characters -> org.hibernate.type.CharArrayType@7f2c57fe
-2021-11-24 17:43:34,225 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration char[] -> org.hibernate.type.CharArrayType@7f2c57fe
-2021-11-24 17:43:34,226 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration [C -> org.hibernate.type.CharArrayType@7f2c57fe
-2021-11-24 17:43:34,227 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@3dbd7107
-2021-11-24 17:43:34,227 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@3dbd7107
-2021-11-24 17:43:34,228 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@3dbd7107
-2021-11-24 17:43:34,228 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration text -> org.hibernate.type.TextType@26d5a317
-2021-11-24 17:43:34,229 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration ntext -> org.hibernate.type.NTextType@559af296
-2021-11-24 17:43:34,231 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration blob -> org.hibernate.type.BlobType@268c030f
-2021-11-24 17:43:34,232 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@268c030f
-2021-11-24 17:43:34,233 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@1b24ea2a
-2021-11-24 17:43:34,235 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration clob -> org.hibernate.type.ClobType@47df5041
-2021-11-24 17:43:34,236 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@47df5041
-2021-11-24 17:43:34,238 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration nclob -> org.hibernate.type.NClobType@224c7de4
-2021-11-24 17:43:34,238 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@224c7de4
-2021-11-24 17:43:34,239 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@805e72e
-2021-11-24 17:43:34,240 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@60bf494c
-2021-11-24 17:43:34,243 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration serializable -> org.hibernate.type.SerializableType@6de004f1
-2021-11-24 17:43:34,247 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration object -> org.hibernate.type.ObjectType@77cca767
-2021-11-24 17:43:34,247 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@77cca767
-2021-11-24 17:43:34,249 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@23444a36
-2021-11-24 17:43:34,249 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@31a136a6
-2021-11-24 17:43:34,250 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@30a9e3db
-2021-11-24 17:43:34,251 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@2f9b21d6
-2021-11-24 17:43:34,251 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@2e0fdbe9
-2021-11-24 17:43:34,252 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@16a3cc88
-2021-11-24 17:43:34,253 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@696b52bc
-2021-11-24 17:43:34,253 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@1f884bd6
-2021-11-24 17:43:34,389 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
-2021-11-24 17:43:37,254 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
-2021-11-24 17:43:37,491 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2021-11-24 17:43:39,550 DEBUG o.h.t.s.TypeConfiguration [main] Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@1e721583] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@79f5a6ed]
-2021-11-24 17:43:40,621 DEBUG o.h.t.s.TypeConfiguration [main] Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@1e721583] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@67d5ac2f]
-2021-11-24 17:43:43,851 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-11-24 17:43:43,883 TRACE o.h.t.s.TypeConfiguration [main] Handling #sessionFactoryCreated from [org.hibernate.internal.SessionFactoryImpl@67d5ac2f] for TypeConfiguration
-2021-11-24 17:43:43,883 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-11-24 17:43:45,198 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-11-24 17:43:46,162 WARN o.s.s.o.p.t.s.JwtAccessTokenConverter [main] Unable to create an RSA verifier from verifierKey (ignoreable if using MAC)
-2021-11-24 17:43:47,156 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/v2/api-docs'] with []
-2021-11-24 17:43:47,156 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/configuration/ui'] with []
-2021-11-24 17:43:47,156 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-resources/**'] with []
-2021-11-24 17:43:47,156 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/user/addUser'] with []
-2021-11-24 17:43:47,156 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/role/addRole'] with []
-2021-11-24 17:43:47,156 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-ui.html#'] with []
-2021-11-24 17:43:47,156 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/oauth/authorize**'] with []
-2021-11-24 17:43:47,156 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/login**'] with []
-2021-11-24 17:43:47,156 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/error**'] with []
-2021-11-24 17:43:47,281 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Or [Ant [pattern='/oauth/token'], Ant [pattern='/oauth/token_key'], Ant [pattern='/oauth/check_token']] with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@77ad2767, org.springframework.security.web.context.SecurityContextPersistenceFilter@511a307e, org.springframework.security.web.header.HeaderWriterFilter@1d7af82, org.springframework.security.web.authentication.logout.LogoutFilter@34fcc5e3, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@60e5eed0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@10d97b64, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@8b1bfdf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e460ca1, org.springframework.security.web.session.SessionManagementFilter@2fd8b081, org.springframework.security.web.access.ExceptionTranslationFilter@3a44993c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@c14bbab]
-2021-11-24 17:43:47,312 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfiguration$NotOAuthRequestMatcher@42a7e7e1 with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@e2d9923, org.springframework.security.web.context.SecurityContextPersistenceFilter@c31419f, org.springframework.security.web.header.HeaderWriterFilter@7cc3a7f7, org.springframework.security.web.authentication.logout.LogoutFilter@745c8a04, org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationProcessingFilter@59bbf82e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@43dddfdd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22c0344e, org.springframework.security.web.session.SessionManagementFilter@210e2f2f, org.springframework.security.web.access.ExceptionTranslationFilter@4840ec68, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@334d825c]
-2021-11-24 17:43:47,328 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@67e21ea2, org.springframework.security.web.context.SecurityContextPersistenceFilter@4946dfde, org.springframework.security.web.header.HeaderWriterFilter@1ac2829e, org.springframework.security.web.authentication.logout.LogoutFilter@5e663ab, com.example.EGovt_CovidHealthApp.Security.JwtRequestFilter@31de27c, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@4b74a67a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@77972964, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@794f937a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2184962c, org.springframework.security.web.session.SessionManagementFilter@7a7f2247, org.springframework.security.web.access.ExceptionTranslationFilter@626b9092, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1b82f62a]
-2021-11-24 17:43:49,867 INFO o.s.c.c.u.InetUtils [main] Cannot determine local hostname
-2021-11-24 17:43:49,913 INFO o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration [main] Eureka HTTP Client uses RestTemplate.
-2021-11-24 17:43:51,857 INFO o.s.c.c.u.InetUtils [main] Cannot determine local hostname
-2021-11-24 17:43:51,998 WARN o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger [main] Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2021-11-24 17:43:52,138 INFO o.s.c.n.e.InstanceInfoFactory [main] Setting initial instance status as: STARTING
-2021-11-24 17:43:52,496 INFO c.n.d.DiscoveryClient [main] Initializing Eureka in region us-east-1
-2021-11-24 17:43:52,512 INFO c.n.d.s.r.a.ConfigClusterResolver [main] Resolving eureka endpoints via configuration
-2021-11-24 17:43:52,559 INFO c.n.d.DiscoveryClient [main] Disable delta property : false
-2021-11-24 17:43:52,559 INFO c.n.d.DiscoveryClient [main] Single vip registry refresh property : null
-2021-11-24 17:43:52,559 INFO c.n.d.DiscoveryClient [main] Force full registry fetch : false
-2021-11-24 17:43:52,559 INFO c.n.d.DiscoveryClient [main] Application is null : false
-2021-11-24 17:43:52,559 INFO c.n.d.DiscoveryClient [main] Registered Applications size is zero : true
-2021-11-24 17:43:52,559 INFO c.n.d.DiscoveryClient [main] Application version is -1: true
-2021-11-24 17:43:52,559 INFO c.n.d.DiscoveryClient [main] Getting all instance registry info from the eureka server
-2021-11-24 17:43:54,034 INFO c.n.d.DiscoveryClient [main] The response status is 200
-2021-11-24 17:43:54,034 INFO c.n.d.DiscoveryClient [main] Starting heartbeat executor: renew interval is: 10
-2021-11-24 17:43:54,034 INFO c.n.d.InstanceInfoReplicator [main] InstanceInfoReplicator onDemand update allowed rate per min is 4
-2021-11-24 17:43:54,034 INFO c.n.d.DiscoveryClient [main] Discovery Client initialized at timestamp 1637757834034 with initial instances count: 0
-2021-11-24 17:43:54,050 INFO o.s.c.n.e.s.EurekaServiceRegistry [main] Registering application E-HEALTH with eureka with status UP
-2021-11-24 17:43:54,050 INFO c.n.d.DiscoveryClient$3 [main] Saw local status change event StatusChangeEvent [timestamp=1637757834050, current=UP, previous=STARTING]
-2021-11-24 17:43:54,050 INFO c.n.d.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_E-HEALTH/localhost:e-health:8080: registering service...
-2021-11-24 17:43:54,050 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2021-11-24 17:43:54,097 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
-2021-11-24 17:43:54,097 INFO o.s.c.n.e.s.EurekaAutoServiceRegistration [main] Updating port to 8080
-2021-11-24 17:43:54,600 INFO c.n.d.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_E-HEALTH/localhost:e-health:8080 - registration status: 204
-2021-11-24 17:43:55,971 INFO o.s.c.c.u.InetUtils [main] Cannot determine local hostname
-2021-11-24 17:43:55,971 INFO s.d.s.w.p.DocumentationPluginsBootstrapper [main] Context refreshed
-2021-11-24 17:43:56,143 INFO s.d.s.w.p.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
-2021-11-24 17:43:56,174 INFO s.d.s.w.s.ApiListingReferenceScanner [main] Scanning for api listing references
-2021-11-24 17:43:57,497 INFO s.d.s.w.r.o.CachingOperationNameGenerator [main] Generating unique operation named: addPatientReportUsingPOST_1
-2021-11-24 17:43:57,497 INFO s.d.s.w.r.o.CachingOperationNameGenerator [main] Generating unique operation named: addPatientVaccinationUsingPOST_1
-2021-11-24 17:43:58,250 INFO o.s.b.StartupInfoLogger [main] Started EGovtCovidHealthAppApplication in 55.976 seconds (JVM running for 84.898)
-2021-11-24 17:44:24,039 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Disable delta property : false
-2021-11-24 17:44:24,039 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Single vip registry refresh property : null
-2021-11-24 17:44:24,039 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Force full registry fetch : false
-2021-11-24 17:44:24,040 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Application is null : false
-2021-11-24 17:44:24,040 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Registered Applications size is zero : true
-2021-11-24 17:44:24,041 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Application version is -1: false
-2021-11-24 17:44:24,041 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Getting all instance registry info from the eureka server
-2021-11-24 17:44:24,115 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] The response status is 200
+2021-11-25 17:37:19,855 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.0.Final
+2021-11-25 17:37:20,058 INFO o.s.b.StartupInfoLogger [main] Starting EGovtCovidHealthAppApplication using Java 1.8.0_73 on LTI-TRAINING-03 with PID 15948 (D:\Developer\E-Govt_CovidHealthDepartment\target\classes started by Haroon Rasheed in D:\Developer\E-Govt_CovidHealthDepartment)
+2021-11-25 17:37:20,074 INFO o.s.b.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-11-25 17:37:23,941 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-25 17:37:24,145 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 187 ms. Found 11 JPA repository interfaces.
+2021-11-25 17:37:24,721 INFO o.s.c.c.s.GenericScope [main] BeanFactory id=5938b5bb-f1f3-3b9c-93cd-d4a7b2fd6579
+2021-11-25 17:37:25,438 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@27329d2a' of type [org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-25 17:37:25,454 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-25 17:37:25,954 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-11-25 17:37:25,970 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-11-25 17:37:25,970 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2021-11-25 17:37:25,970 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.53]
+2021-11-25 17:37:26,267 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-11-25 17:37:26,267 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 6052 ms
+2021-11-25 17:37:26,751 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-25 17:37:26,892 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-25 17:37:27,939 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-25 17:37:28,064 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration boolean -> org.hibernate.type.BooleanType@4b55ff0a
+2021-11-25 17:37:28,064 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration boolean -> org.hibernate.type.BooleanType@4b55ff0a
+2021-11-25 17:37:28,064 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@4b55ff0a
+2021-11-25 17:37:28,064 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@2f3928ac
+2021-11-25 17:37:28,064 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration true_false -> org.hibernate.type.TrueFalseType@44f0ff2b
+2021-11-25 17:37:28,064 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration yes_no -> org.hibernate.type.YesNoType@43d65a81
+2021-11-25 17:37:28,064 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration byte -> org.hibernate.type.ByteType@51cab489
+2021-11-25 17:37:28,064 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration byte -> org.hibernate.type.ByteType@51cab489
+2021-11-25 17:37:28,064 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@51cab489
+2021-11-25 17:37:28,064 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration character -> org.hibernate.type.CharacterType@6ee88e21
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration char -> org.hibernate.type.CharacterType@6ee88e21
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@6ee88e21
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration short -> org.hibernate.type.ShortType@6b8d54da
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration short -> org.hibernate.type.ShortType@6b8d54da
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Short -> org.hibernate.type.ShortType@6b8d54da
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration integer -> org.hibernate.type.IntegerType@18d47df0
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration int -> org.hibernate.type.IntegerType@18d47df0
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@18d47df0
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration long -> org.hibernate.type.LongType@265a094b
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration long -> org.hibernate.type.LongType@265a094b
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Long -> org.hibernate.type.LongType@265a094b
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration float -> org.hibernate.type.FloatType@50b734c4
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration float -> org.hibernate.type.FloatType@50b734c4
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Float -> org.hibernate.type.FloatType@50b734c4
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration double -> org.hibernate.type.DoubleType@b14b60a
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration double -> org.hibernate.type.DoubleType@b14b60a
+2021-11-25 17:37:28,080 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@b14b60a
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@6274f21c
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@6274f21c
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration big_integer -> org.hibernate.type.BigIntegerType@4fa86cb8
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@4fa86cb8
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration string -> org.hibernate.type.StringType@76a7fcbd
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.String -> org.hibernate.type.StringType@76a7fcbd
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration nstring -> org.hibernate.type.StringNVarcharType@446e7065
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@7f5614f9
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration url -> org.hibernate.type.UrlType@73608eb0
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.net.URL -> org.hibernate.type.UrlType@73608eb0
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration Duration -> org.hibernate.type.DurationType@76973a6
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.Duration -> org.hibernate.type.DurationType@76973a6
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration Instant -> org.hibernate.type.InstantType@c4d2c44
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.Instant -> org.hibernate.type.InstantType@c4d2c44
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@5f6b53ed
+2021-11-25 17:37:28,096 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@5f6b53ed
+2021-11-25 17:37:28,111 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration LocalDate -> org.hibernate.type.LocalDateType@5c48b72c
+2021-11-25 17:37:28,111 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@5c48b72c
+2021-11-25 17:37:28,111 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@457a5b2d
+2021-11-25 17:37:28,111 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@457a5b2d
+2021-11-25 17:37:28,111 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@243bf087
+2021-11-25 17:37:28,111 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@243bf087
+2021-11-25 17:37:28,111 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@7fbf26fc
+2021-11-25 17:37:28,111 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@7fbf26fc
+2021-11-25 17:37:28,111 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@6d293993
+2021-11-25 17:37:28,111 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@6d293993
+2021-11-25 17:37:28,111 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration date -> org.hibernate.type.DateType@57fdb8a4
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Date -> org.hibernate.type.DateType@57fdb8a4
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration time -> org.hibernate.type.TimeType@21a46ff1
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Time -> org.hibernate.type.TimeType@21a46ff1
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration timestamp -> org.hibernate.type.TimestampType@5efe47fd
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@5efe47fd
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.Date -> org.hibernate.type.TimestampType@5efe47fd
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@38a4e2b0
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration calendar -> org.hibernate.type.CalendarType@541afb85
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@541afb85
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@541afb85
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@19ae2ee5
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration calendar_time -> org.hibernate.type.CalendarTimeType@9fe720a
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration locale -> org.hibernate.type.LocaleType@f723cdb
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@f723cdb
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration currency -> org.hibernate.type.CurrencyType@6221b13b
+2021-11-25 17:37:28,127 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@6221b13b
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration timezone -> org.hibernate.type.TimeZoneType@3dc68586
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@3dc68586
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration class -> org.hibernate.type.ClassType@38029686
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Class -> org.hibernate.type.ClassType@38029686
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@5d124d29
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@5d124d29
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@4001d8c1
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration binary -> org.hibernate.type.BinaryType@2fc49538
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration byte[] -> org.hibernate.type.BinaryType@2fc49538
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration [B -> org.hibernate.type.BinaryType@2fc49538
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@14fc9bd
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@14fc9bd
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@14fc9bd
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration row_version -> org.hibernate.type.RowVersionType@619c93ca
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration image -> org.hibernate.type.ImageType@5e5ddfbc
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration characters -> org.hibernate.type.CharArrayType@1a531422
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration char[] -> org.hibernate.type.CharArrayType@1a531422
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration [C -> org.hibernate.type.CharArrayType@1a531422
+2021-11-25 17:37:28,142 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@72fbf94d
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@72fbf94d
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@72fbf94d
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration text -> org.hibernate.type.TextType@6db328f8
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration ntext -> org.hibernate.type.NTextType@b2c4a8b
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration blob -> org.hibernate.type.BlobType@4a6c0f38
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@4a6c0f38
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@70b6db83
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration clob -> org.hibernate.type.ClobType@370ef50b
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@370ef50b
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration nclob -> org.hibernate.type.NClobType@2d313c8c
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@2d313c8c
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@7c1503a3
+2021-11-25 17:37:28,158 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@2a0ea492
+2021-11-25 17:37:28,174 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration serializable -> org.hibernate.type.SerializableType@805e72e
+2021-11-25 17:37:28,189 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration object -> org.hibernate.type.ObjectType@35bd8bc9
+2021-11-25 17:37:28,189 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@35bd8bc9
+2021-11-25 17:37:28,189 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@4026461d
+2021-11-25 17:37:28,189 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@191c6e13
+2021-11-25 17:37:28,189 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@7436364d
+2021-11-25 17:37:28,189 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@1a8e9ed9
+2021-11-25 17:37:28,189 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@68ea253b
+2021-11-25 17:37:28,189 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@12fcb2c3
+2021-11-25 17:37:28,189 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@57bd6a8f
+2021-11-25 17:37:28,189 DEBUG o.h.t.BasicTypeRegistry [main] Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@39ab5ef7
+2021-11-25 17:37:30,231 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2021-11-25 17:37:31,691 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2021-11-25 17:37:31,831 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-11-25 17:37:32,831 DEBUG o.h.t.s.TypeConfiguration [main] Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@173511ff] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@6df11e91]
+2021-11-25 17:37:33,499 DEBUG o.h.t.s.TypeConfiguration [main] Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@173511ff] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@7757a37f]
+2021-11-25 17:37:36,987 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-25 17:37:37,018 TRACE o.h.t.s.TypeConfiguration [main] Handling #sessionFactoryCreated from [org.hibernate.internal.SessionFactoryImpl@7757a37f] for TypeConfiguration
+2021-11-25 17:37:37,018 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-25 17:37:38,519 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-25 17:37:39,318 WARN o.s.s.o.p.t.s.JwtAccessTokenConverter [main] Unable to create an RSA verifier from verifierKey (ignoreable if using MAC)
+2021-11-25 17:37:40,220 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/v2/api-docs'] with []
+2021-11-25 17:37:40,220 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/configuration/ui'] with []
+2021-11-25 17:37:40,220 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-resources/**'] with []
+2021-11-25 17:37:40,220 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/user/addUser'] with []
+2021-11-25 17:37:40,220 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/role/addRole'] with []
+2021-11-25 17:37:40,220 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/swagger-ui.html#'] with []
+2021-11-25 17:37:40,220 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/oauth/authorize**'] with []
+2021-11-25 17:37:40,220 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/login**'] with []
+2021-11-25 17:37:40,220 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Ant [pattern='/error**'] with []
+2021-11-25 17:37:40,298 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure Or [Ant [pattern='/oauth/token'], Ant [pattern='/oauth/token_key'], Ant [pattern='/oauth/check_token']] with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7ffc4195, org.springframework.security.web.context.SecurityContextPersistenceFilter@f833223, org.springframework.security.web.header.HeaderWriterFilter@2a349a73, org.springframework.security.web.authentication.logout.LogoutFilter@10d97b64, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@69356aca, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3f6a9ba0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6b6606d1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ce760af, org.springframework.security.web.session.SessionManagementFilter@542754be, org.springframework.security.web.access.ExceptionTranslationFilter@1361e880, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@483ed60e]
+2021-11-25 17:37:40,314 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfiguration$NotOAuthRequestMatcher@20a116a0 with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6dbdeb69, org.springframework.security.web.context.SecurityContextPersistenceFilter@4a0c04ab, org.springframework.security.web.header.HeaderWriterFilter@c14bbab, org.springframework.security.web.authentication.logout.LogoutFilter@5d9d8ecf, org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationProcessingFilter@571c7572, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@453439e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2d33795c, org.springframework.security.web.session.SessionManagementFilter@72c5064f, org.springframework.security.web.access.ExceptionTranslationFilter@2aac87ab, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@303db609]
+2021-11-25 17:37:40,314 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@e2d9923, org.springframework.security.web.context.SecurityContextPersistenceFilter@1e38e8b6, org.springframework.security.web.header.HeaderWriterFilter@325e03b, org.springframework.security.web.authentication.logout.LogoutFilter@1ac68548, com.example.EGovt_CovidHealthApp.Security.JwtRequestFilter@1f70bce5, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1c3a64b6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@59bbf82e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@75b3ef1a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@554e9509, org.springframework.security.web.session.SessionManagementFilter@3911fec8, org.springframework.security.web.access.ExceptionTranslationFilter@237c8718, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@42a7e7e1]
+2021-11-25 17:37:42,883 INFO o.s.c.c.u.InetUtils [main] Cannot determine local hostname
+2021-11-25 17:37:42,914 INFO o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration [main] Eureka HTTP Client uses RestTemplate.
+2021-11-25 17:37:44,887 INFO o.s.c.c.u.InetUtils [main] Cannot determine local hostname
+2021-11-25 17:37:45,264 WARN o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger [main] Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2021-11-25 17:37:45,493 INFO o.s.c.n.e.InstanceInfoFactory [main] Setting initial instance status as: STARTING
+2021-11-25 17:37:45,884 INFO c.n.d.DiscoveryClient [main] Initializing Eureka in region us-east-1
+2021-11-25 17:37:45,884 INFO c.n.d.s.r.a.ConfigClusterResolver [main] Resolving eureka endpoints via configuration
+2021-11-25 17:37:45,930 INFO c.n.d.DiscoveryClient [main] Disable delta property : false
+2021-11-25 17:37:45,930 INFO c.n.d.DiscoveryClient [main] Single vip registry refresh property : null
+2021-11-25 17:37:45,930 INFO c.n.d.DiscoveryClient [main] Force full registry fetch : false
+2021-11-25 17:37:45,930 INFO c.n.d.DiscoveryClient [main] Application is null : false
+2021-11-25 17:37:45,930 INFO c.n.d.DiscoveryClient [main] Registered Applications size is zero : true
+2021-11-25 17:37:45,930 INFO c.n.d.DiscoveryClient [main] Application version is -1: true
+2021-11-25 17:37:45,930 INFO c.n.d.DiscoveryClient [main] Getting all instance registry info from the eureka server
+2021-11-25 17:37:46,634 INFO c.n.d.DiscoveryClient [main] The response status is 200
+2021-11-25 17:37:46,634 INFO c.n.d.DiscoveryClient [main] Starting heartbeat executor: renew interval is: 10
+2021-11-25 17:37:46,634 INFO c.n.d.InstanceInfoReplicator [main] InstanceInfoReplicator onDemand update allowed rate per min is 4
+2021-11-25 17:37:46,649 INFO c.n.d.DiscoveryClient [main] Discovery Client initialized at timestamp 1637843866649 with initial instances count: 0
+2021-11-25 17:37:46,649 INFO o.s.c.n.e.s.EurekaServiceRegistry [main] Registering application E-HEALTH with eureka with status UP
+2021-11-25 17:37:46,665 INFO c.n.d.DiscoveryClient$3 [main] Saw local status change event StatusChangeEvent [timestamp=1637843866665, current=UP, previous=STARTING]
+2021-11-25 17:37:46,665 INFO c.n.d.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_E-HEALTH/localhost:e-health:8080: registering service...
+2021-11-25 17:37:46,665 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-11-25 17:37:46,774 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-25 17:37:46,790 INFO o.s.c.n.e.s.EurekaAutoServiceRegistration [main] Updating port to 8080
+2021-11-25 17:37:46,899 INFO c.n.d.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_E-HEALTH/localhost:e-health:8080 - registration status: 204
+2021-11-25 17:37:48,661 INFO o.s.c.c.u.InetUtils [main] Cannot determine local hostname
+2021-11-25 17:37:48,661 INFO s.d.s.w.p.DocumentationPluginsBootstrapper [main] Context refreshed
+2021-11-25 17:37:48,740 INFO s.d.s.w.p.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2021-11-25 17:37:48,771 INFO s.d.s.w.s.ApiListingReferenceScanner [main] Scanning for api listing references
+2021-11-25 17:37:49,413 INFO s.d.s.w.r.o.CachingOperationNameGenerator [main] Generating unique operation named: addPatientReportUsingPOST_1
+2021-11-25 17:37:49,413 INFO s.d.s.w.r.o.CachingOperationNameGenerator [main] Generating unique operation named: addPatientVaccinationUsingPOST_1
+2021-11-25 17:37:49,674 INFO o.s.b.StartupInfoLogger [main] Started EGovtCovidHealthAppApplication in 33.225 seconds (JVM running for 44.559)
+2021-11-25 17:38:16,652 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Disable delta property : false
+2021-11-25 17:38:16,652 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Single vip registry refresh property : null
+2021-11-25 17:38:16,652 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Force full registry fetch : false
+2021-11-25 17:38:16,652 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Application is null : false
+2021-11-25 17:38:16,653 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Registered Applications size is zero : true
+2021-11-25 17:38:16,653 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Application version is -1: false
+2021-11-25 17:38:16,653 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] Getting all instance registry info from the eureka server
+2021-11-25 17:38:16,833 INFO c.n.d.DiscoveryClient [DiscoveryClient-CacheRefreshExecutor-0] The response status is 200
+2021-11-25 17:38:59,928 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-25 17:38:59,929 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-11-25 17:38:59,932 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 2 ms
+2021-11-25 17:39:00,315 WARN c.e.E.S.JwtRequestFilter [http-nio-8080-exec-2] JWT Token does not begin with Bearer String
+2021-11-25 17:39:00,791 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-2] select user0_.id as id1_18_, user0_.address as address2_18_, user0_.age as age3_18_, user0_.assigned_post as assigned4_18_, user0_.city as city5_18_, user0_.cnic as cnic6_18_, user0_.contact_num as contact_7_18_, user0_.created_date as created_8_18_, user0_.email as email9_18_, user0_.grade_level as grade_l10_18_, user0_.is_alive as is_aliv11_18_, user0_.is_covid as is_covi12_18_, user0_.is_vaccinated as is_vacc13_18_, user0_.name as name14_18_, user0_.password as passwor15_18_, user0_.postal_code as postal_16_18_, user0_.province as provinc17_18_, user0_.status as status18_18_, user0_.updated_date as updated19_18_, user0_.username as usernam20_18_ from user user0_ where user0_.username=?
+2021-11-25 17:39:00,802 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-2] binding parameter [1] as [VARCHAR] - [kamran123]
+2021-11-25 17:39:00,907 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([id1_18_] : [BIGINT]) - [1]
+2021-11-25 17:39:00,924 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([address2_18_] : [VARCHAR]) - [Barakahu]
+2021-11-25 17:39:00,926 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([age3_18_] : [INTEGER]) - [25]
+2021-11-25 17:39:00,927 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([assigned4_18_] : [VARCHAR]) - [director]
+2021-11-25 17:39:00,928 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([city5_18_] : [VARCHAR]) - [Islamabad]
+2021-11-25 17:39:00,929 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([cnic6_18_] : [VARCHAR]) - [3820135736789]
+2021-11-25 17:39:00,930 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([contact_7_18_] : [VARCHAR]) - [+923369243618]
+2021-11-25 17:39:00,933 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([created_8_18_] : [TIMESTAMP]) - [2021-11-22 11:57:04.0]
+2021-11-25 17:39:00,935 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([email9_18_] : [VARCHAR]) - [haroonrb64@hotmail.com]
+2021-11-25 17:39:00,936 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([grade_l10_18_] : [INTEGER]) - [20]
+2021-11-25 17:39:00,938 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([is_aliv11_18_] : [BOOLEAN]) - [true]
+2021-11-25 17:39:00,938 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([is_covi12_18_] : [BOOLEAN]) - [false]
+2021-11-25 17:39:00,939 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([is_vacc13_18_] : [BOOLEAN]) - [false]
+2021-11-25 17:39:00,940 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([name14_18_] : [VARCHAR]) - [Kamran Abbasi]
+2021-11-25 17:39:00,940 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([passwor15_18_] : [VARCHAR]) - [$2a$10$w4HYeWs.5waopydcZqfCa.V6xiPqVH6k3/H6HQZNZ95w3Lrx7ezuG]
+2021-11-25 17:39:00,940 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([postal_16_18_] : [VARCHAR]) - [44000]
+2021-11-25 17:39:00,941 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([provinc17_18_] : [VARCHAR]) - [Federal]
+2021-11-25 17:39:00,941 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([status18_18_] : [BOOLEAN]) - [true]
+2021-11-25 17:39:00,942 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([updated19_18_] : [TIMESTAMP]) - [null]
+2021-11-25 17:39:00,942 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([usernam20_18_] : [VARCHAR]) - [kamran123]
+2021-11-25 17:39:00,960 TRACE o.h.t.CollectionType [http-nio-8080-exec-2] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientReports#1]
+2021-11-25 17:39:00,961 TRACE o.h.t.CollectionType [http-nio-8080-exec-2] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientVaccination#1]
+2021-11-25 17:39:00,962 TRACE o.h.t.CollectionType [http-nio-8080-exec-2] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.roles#1]
+2021-11-25 17:39:00,967 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-2] select roles0_.user_id as user_id1_21_0_, roles0_.role_id as role_id2_21_0_, role1_.id as id1_15_1_, role1_.created_date as created_2_15_1_, role1_.description as descript3_15_1_, role1_.name as name4_15_1_, role1_.status as status5_15_1_, role1_.updated_date as updated_6_15_1_ from user_roles roles0_ inner join role role1_ on roles0_.role_id=role1_.id where roles0_.user_id=?
+2021-11-25 17:39:00,968 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-2] binding parameter [1] as [BIGINT] - [1]
+2021-11-25 17:39:01,274 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([id1_15_1_] : [BIGINT]) - [1]
+2021-11-25 17:39:01,275 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([created_2_15_1_] : [TIMESTAMP]) - [2021-11-22 11:48:09.0]
+2021-11-25 17:39:01,277 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([descript3_15_1_] : [VARCHAR]) - [admin can read write update and delete]
+2021-11-25 17:39:01,278 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([name4_15_1_] : [VARCHAR]) - [admin]
+2021-11-25 17:39:01,279 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([status5_15_1_] : [BOOLEAN]) - [true]
+2021-11-25 17:39:01,279 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([updated_6_15_1_] : [TIMESTAMP]) - [null]
+2021-11-25 17:39:01,281 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([user_id1_21_0_] : [BIGINT]) - [1]
+2021-11-25 17:39:01,281 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-2] extracted value ([role_id2_21_0_] : [BIGINT]) - [1]
+2021-11-25 17:39:01,287 TRACE o.h.t.CollectionType [http-nio-8080-exec-2] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.Role.permissions#1]
+2021-11-25 17:39:15,667 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select user0_.id as id1_18_, user0_.address as address2_18_, user0_.age as age3_18_, user0_.assigned_post as assigned4_18_, user0_.city as city5_18_, user0_.cnic as cnic6_18_, user0_.contact_num as contact_7_18_, user0_.created_date as created_8_18_, user0_.email as email9_18_, user0_.grade_level as grade_l10_18_, user0_.is_alive as is_aliv11_18_, user0_.is_covid as is_covi12_18_, user0_.is_vaccinated as is_vacc13_18_, user0_.name as name14_18_, user0_.password as passwor15_18_, user0_.postal_code as postal_16_18_, user0_.province as provinc17_18_, user0_.status as status18_18_, user0_.updated_date as updated19_18_, user0_.username as usernam20_18_ from user user0_ where user0_.status=1 order by user0_.created_date desc
+2021-11-25 17:39:15,669 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([id1_18_] : [BIGINT]) - [4]
+2021-11-25 17:39:15,670 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([address2_18_] : [VARCHAR]) - [G13/4]
+2021-11-25 17:39:15,670 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([age3_18_] : [INTEGER]) - [22]
+2021-11-25 17:39:15,671 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([assigned4_18_] : [VARCHAR]) - [Assistant director]
+2021-11-25 17:39:15,671 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([city5_18_] : [VARCHAR]) - [Islamabad]
+2021-11-25 17:39:15,671 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([cnic6_18_] : [VARCHAR]) - [3820135731987]
+2021-11-25 17:39:15,672 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([contact_7_18_] : [VARCHAR]) - [+923369243618]
+2021-11-25 17:39:15,673 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([created_8_18_] : [TIMESTAMP]) - [2021-11-23 14:21:45.0]
+2021-11-25 17:39:15,673 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([email9_18_] : [VARCHAR]) - [sendtokamran0@gmail.com]
+2021-11-25 17:39:15,673 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([grade_l10_18_] : [INTEGER]) - [21]
+2021-11-25 17:39:15,674 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([is_aliv11_18_] : [BOOLEAN]) - [true]
+2021-11-25 17:39:15,674 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([is_covi12_18_] : [BOOLEAN]) - [false]
+2021-11-25 17:39:15,674 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([is_vacc13_18_] : [BOOLEAN]) - [false]
+2021-11-25 17:39:15,675 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([name14_18_] : [VARCHAR]) - [Haroon]
+2021-11-25 17:39:15,675 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([passwor15_18_] : [VARCHAR]) - [abc123]
+2021-11-25 17:39:15,676 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([postal_16_18_] : [VARCHAR]) - [44000]
+2021-11-25 17:39:15,676 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([provinc17_18_] : [VARCHAR]) - [Federal]
+2021-11-25 17:39:15,676 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([status18_18_] : [BOOLEAN]) - [true]
+2021-11-25 17:39:15,677 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([updated19_18_] : [TIMESTAMP]) - [2021-11-25 16:31:25.0]
+2021-11-25 17:39:15,677 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([usernam20_18_] : [VARCHAR]) - [haroonrb64]
+2021-11-25 17:39:15,678 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([id1_18_] : [BIGINT]) - [2]
+2021-11-25 17:39:15,678 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([address2_18_] : [VARCHAR]) - [G10/4]
+2021-11-25 17:39:15,680 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([age3_18_] : [INTEGER]) - [55]
+2021-11-25 17:39:15,681 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([assigned4_18_] : [VARCHAR]) - [Assistant director]
+2021-11-25 17:39:15,682 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([city5_18_] : [VARCHAR]) - [Islamabad]
+2021-11-25 17:39:15,683 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([cnic6_18_] : [VARCHAR]) - [3820135730123]
+2021-11-25 17:39:15,684 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([contact_7_18_] : [VARCHAR]) - [+923369243618]
+2021-11-25 17:39:15,684 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([created_8_18_] : [TIMESTAMP]) - [2021-11-22 12:00:58.0]
+2021-11-25 17:39:15,685 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([email9_18_] : [VARCHAR]) - [haroonrb64@gmail.com]
+2021-11-25 17:39:15,686 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([grade_l10_18_] : [INTEGER]) - [21]
+2021-11-25 17:39:15,687 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([is_aliv11_18_] : [BOOLEAN]) - [true]
+2021-11-25 17:39:15,687 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([is_covi12_18_] : [BOOLEAN]) - [false]
+2021-11-25 17:39:15,688 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([is_vacc13_18_] : [BOOLEAN]) - [false]
+2021-11-25 17:39:15,688 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([name14_18_] : [VARCHAR]) - [Furqan]
+2021-11-25 17:39:15,688 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([passwor15_18_] : [VARCHAR]) - [$2a$10$4Kl0stlC7Ap6W2DNiIyJcuO2KTwHXdjslDQf8JKCRfNc3p0KNfhVK]
+2021-11-25 17:39:15,689 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([postal_16_18_] : [VARCHAR]) - [44000]
+2021-11-25 17:39:15,689 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([provinc17_18_] : [VARCHAR]) - [Federal]
+2021-11-25 17:39:15,689 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([status18_18_] : [BOOLEAN]) - [true]
+2021-11-25 17:39:15,690 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([updated19_18_] : [TIMESTAMP]) - [null]
+2021-11-25 17:39:15,690 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([usernam20_18_] : [VARCHAR]) - [furqanb64]
+2021-11-25 17:39:15,690 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([id1_18_] : [BIGINT]) - [1]
+2021-11-25 17:39:15,691 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([address2_18_] : [VARCHAR]) - [Barakahu]
+2021-11-25 17:39:15,691 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([age3_18_] : [INTEGER]) - [25]
+2021-11-25 17:39:15,692 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([assigned4_18_] : [VARCHAR]) - [director]
+2021-11-25 17:39:15,692 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([city5_18_] : [VARCHAR]) - [Islamabad]
+2021-11-25 17:39:15,692 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([cnic6_18_] : [VARCHAR]) - [3820135736789]
+2021-11-25 17:39:15,693 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([contact_7_18_] : [VARCHAR]) - [+923369243618]
+2021-11-25 17:39:15,693 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([created_8_18_] : [TIMESTAMP]) - [2021-11-22 11:57:04.0]
+2021-11-25 17:39:15,693 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([email9_18_] : [VARCHAR]) - [haroonrb64@hotmail.com]
+2021-11-25 17:39:15,694 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([grade_l10_18_] : [INTEGER]) - [20]
+2021-11-25 17:39:15,694 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([is_aliv11_18_] : [BOOLEAN]) - [true]
+2021-11-25 17:39:15,695 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([is_covi12_18_] : [BOOLEAN]) - [false]
+2021-11-25 17:39:15,696 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([is_vacc13_18_] : [BOOLEAN]) - [false]
+2021-11-25 17:39:15,697 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([name14_18_] : [VARCHAR]) - [Kamran Abbasi]
+2021-11-25 17:39:15,697 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([passwor15_18_] : [VARCHAR]) - [$2a$10$w4HYeWs.5waopydcZqfCa.V6xiPqVH6k3/H6HQZNZ95w3Lrx7ezuG]
+2021-11-25 17:39:15,698 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([postal_16_18_] : [VARCHAR]) - [44000]
+2021-11-25 17:39:15,699 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([provinc17_18_] : [VARCHAR]) - [Federal]
+2021-11-25 17:39:15,700 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([status18_18_] : [BOOLEAN]) - [true]
+2021-11-25 17:39:15,701 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([updated19_18_] : [TIMESTAMP]) - [null]
+2021-11-25 17:39:15,701 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([usernam20_18_] : [VARCHAR]) - [kamran123]
+2021-11-25 17:39:15,702 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientReports#4]
+2021-11-25 17:39:15,703 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientVaccination#4]
+2021-11-25 17:39:15,704 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.roles#4]
+2021-11-25 17:39:15,705 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientReports#2]
+2021-11-25 17:39:15,705 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientVaccination#2]
+2021-11-25 17:39:15,706 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.roles#2]
+2021-11-25 17:39:15,706 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientReports#1]
+2021-11-25 17:39:15,707 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientVaccination#1]
+2021-11-25 17:39:15,708 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.roles#1]
+2021-11-25 17:39:15,709 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select roles0_.user_id as user_id1_21_0_, roles0_.role_id as role_id2_21_0_, role1_.id as id1_15_1_, role1_.created_date as created_2_15_1_, role1_.description as descript3_15_1_, role1_.name as name4_15_1_, role1_.status as status5_15_1_, role1_.updated_date as updated_6_15_1_ from user_roles roles0_ inner join role role1_ on roles0_.role_id=role1_.id where roles0_.user_id=?
+2021-11-25 17:39:15,710 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [1]
+2021-11-25 17:39:15,764 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([id1_15_1_] : [BIGINT]) - [1]
+2021-11-25 17:39:15,765 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([created_2_15_1_] : [TIMESTAMP]) - [2021-11-22 11:48:09.0]
+2021-11-25 17:39:15,766 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([descript3_15_1_] : [VARCHAR]) - [admin can read write update and delete]
+2021-11-25 17:39:15,766 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([name4_15_1_] : [VARCHAR]) - [admin]
+2021-11-25 17:39:15,767 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([status5_15_1_] : [BOOLEAN]) - [true]
+2021-11-25 17:39:15,767 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([updated_6_15_1_] : [TIMESTAMP]) - [null]
+2021-11-25 17:39:15,768 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([user_id1_21_0_] : [BIGINT]) - [1]
+2021-11-25 17:39:15,768 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([role_id2_21_0_] : [BIGINT]) - [1]
+2021-11-25 17:39:15,769 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.Role.permissions#1]
+2021-11-25 17:39:15,769 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select roles0_.user_id as user_id1_21_0_, roles0_.role_id as role_id2_21_0_, role1_.id as id1_15_1_, role1_.created_date as created_2_15_1_, role1_.description as descript3_15_1_, role1_.name as name4_15_1_, role1_.status as status5_15_1_, role1_.updated_date as updated_6_15_1_ from user_roles roles0_ inner join role role1_ on roles0_.role_id=role1_.id where roles0_.user_id=?
+2021-11-25 17:39:15,770 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [2]
+2021-11-25 17:39:15,772 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select roles0_.user_id as user_id1_21_0_, roles0_.role_id as role_id2_21_0_, role1_.id as id1_15_1_, role1_.created_date as created_2_15_1_, role1_.description as descript3_15_1_, role1_.name as name4_15_1_, role1_.status as status5_15_1_, role1_.updated_date as updated_6_15_1_ from user_roles roles0_ inner join role role1_ on roles0_.role_id=role1_.id where roles0_.user_id=?
+2021-11-25 17:39:15,772 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [4]
+2021-11-25 17:39:15,774 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([id1_15_1_] : [BIGINT]) - [3]
+2021-11-25 17:39:15,775 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([created_2_15_1_] : [TIMESTAMP]) - [null]
+2021-11-25 17:39:15,775 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([descript3_15_1_] : [VARCHAR]) - [null]
+2021-11-25 17:39:15,776 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([name4_15_1_] : [VARCHAR]) - [PATIENT]
+2021-11-25 17:39:15,777 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([status5_15_1_] : [BOOLEAN]) - [false]
+2021-11-25 17:39:15,777 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([updated_6_15_1_] : [TIMESTAMP]) - [null]
+2021-11-25 17:39:15,778 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([user_id1_21_0_] : [BIGINT]) - [4]
+2021-11-25 17:39:15,778 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-3] extracted value ([role_id2_21_0_] : [BIGINT]) - [3]
+2021-11-25 17:39:15,779 TRACE o.h.t.CollectionType [http-nio-8080-exec-3] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.Role.permissions#3]
+2021-11-25 17:39:15,781 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select permission0_.role_id as role_id1_16_0_, permission0_.permissions_id as permissi2_16_0_, permission1_.id as id1_14_1_, permission1_.created_date as created_2_14_1_, permission1_.name as name3_14_1_, permission1_.status as status4_14_1_, permission1_.updated_date as updated_5_14_1_ from role_permissions permission0_ inner join permission permission1_ on permission0_.permissions_id=permission1_.id where permission0_.role_id=?
+2021-11-25 17:39:15,782 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [3]
+2021-11-25 17:39:16,345 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select patientrep0_.user_id as user_id1_19_0_, patientrep0_.patient_reports_id as patient_2_19_0_, patientrep1_.id as id1_12_1_, patientrep1_.created_date as created_2_12_1_, patientrep1_.status as status3_12_1_, patientrep1_.test_date as test_dat4_12_1_, patientrep1_.test_results as test_res5_12_1_, patientrep1_.updated_date as updated_6_12_1_ from user_patient_reports patientrep0_ inner join patient_report patientrep1_ on patientrep0_.patient_reports_id=patientrep1_.id where patientrep0_.user_id=?
+2021-11-25 17:39:16,346 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [4]
+2021-11-25 17:39:16,515 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select patientvac0_.user_id as user_id1_20_0_, patientvac0_.patient_vaccination_id as patient_2_20_0_, patientvac1_.id as id1_13_1_, patientvac1_.created_date as created_2_13_1_, patientvac1_.status as status3_13_1_, patientvac1_.total_doses as total_do4_13_1_, patientvac1_.updated_date as updated_5_13_1_, patientvac1_.vaccinated_date as vaccinat6_13_1_, patientvac1_.vaccine_name as vaccine_7_13_1_ from user_patient_vaccination patientvac0_ inner join patient_vaccination patientvac1_ on patientvac0_.patient_vaccination_id=patientvac1_.id where patientvac0_.user_id=?
+2021-11-25 17:39:16,516 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [4]
+2021-11-25 17:39:16,633 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select patientrep0_.user_id as user_id1_19_0_, patientrep0_.patient_reports_id as patient_2_19_0_, patientrep1_.id as id1_12_1_, patientrep1_.created_date as created_2_12_1_, patientrep1_.status as status3_12_1_, patientrep1_.test_date as test_dat4_12_1_, patientrep1_.test_results as test_res5_12_1_, patientrep1_.updated_date as updated_6_12_1_ from user_patient_reports patientrep0_ inner join patient_report patientrep1_ on patientrep0_.patient_reports_id=patientrep1_.id where patientrep0_.user_id=?
+2021-11-25 17:39:16,633 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [2]
+2021-11-25 17:39:16,635 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select patientvac0_.user_id as user_id1_20_0_, patientvac0_.patient_vaccination_id as patient_2_20_0_, patientvac1_.id as id1_13_1_, patientvac1_.created_date as created_2_13_1_, patientvac1_.status as status3_13_1_, patientvac1_.total_doses as total_do4_13_1_, patientvac1_.updated_date as updated_5_13_1_, patientvac1_.vaccinated_date as vaccinat6_13_1_, patientvac1_.vaccine_name as vaccine_7_13_1_ from user_patient_vaccination patientvac0_ inner join patient_vaccination patientvac1_ on patientvac0_.patient_vaccination_id=patientvac1_.id where patientvac0_.user_id=?
+2021-11-25 17:39:16,635 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [2]
+2021-11-25 17:39:16,637 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select permission0_.role_id as role_id1_16_0_, permission0_.permissions_id as permissi2_16_0_, permission1_.id as id1_14_1_, permission1_.created_date as created_2_14_1_, permission1_.name as name3_14_1_, permission1_.status as status4_14_1_, permission1_.updated_date as updated_5_14_1_ from role_permissions permission0_ inner join permission permission1_ on permission0_.permissions_id=permission1_.id where permission0_.role_id=?
+2021-11-25 17:39:16,638 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [1]
+2021-11-25 17:39:16,639 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select patientrep0_.user_id as user_id1_19_0_, patientrep0_.patient_reports_id as patient_2_19_0_, patientrep1_.id as id1_12_1_, patientrep1_.created_date as created_2_12_1_, patientrep1_.status as status3_12_1_, patientrep1_.test_date as test_dat4_12_1_, patientrep1_.test_results as test_res5_12_1_, patientrep1_.updated_date as updated_6_12_1_ from user_patient_reports patientrep0_ inner join patient_report patientrep1_ on patientrep0_.patient_reports_id=patientrep1_.id where patientrep0_.user_id=?
+2021-11-25 17:39:16,640 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [1]
+2021-11-25 17:39:16,642 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-3] select patientvac0_.user_id as user_id1_20_0_, patientvac0_.patient_vaccination_id as patient_2_20_0_, patientvac1_.id as id1_13_1_, patientvac1_.created_date as created_2_13_1_, patientvac1_.status as status3_13_1_, patientvac1_.total_doses as total_do4_13_1_, patientvac1_.updated_date as updated_5_13_1_, patientvac1_.vaccinated_date as vaccinat6_13_1_, patientvac1_.vaccine_name as vaccine_7_13_1_ from user_patient_vaccination patientvac0_ inner join patient_vaccination patientvac1_ on patientvac0_.patient_vaccination_id=patientvac1_.id where patientvac0_.user_id=?
+2021-11-25 17:39:16,642 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-3] binding parameter [1] as [BIGINT] - [1]
+2021-11-25 17:39:16,646 INFO c.e.E.S.UserService [http-nio-8080-exec-3] Users successfully Retrieved : [User(id=4, name=Haroon, username=haroonrb64, email=sendtokamran0@gmail.com, password=abc123, createdDate=2021-11-23 14:21:45.0, updatedDate=2021-11-25 16:31:25.0, status=true, isAlive=true, contactNum=+923369243618, cnic=3820135731987, age=22, address=G13/4, city=Islamabad, province=Federal, postalCode=44000, roles=[Role(id=3, name=PATIENT, description=null, createdDate=null, updatedDate=null, status=false, permissions=[])], isCovid=false, isVaccinated=false, patientReports=[], patientVaccination=[], assignedPost=Assistant director, gradeLevel=21), User(id=2, name=Furqan, username=furqanb64, email=haroonrb64@gmail.com, password=$2a$10$4Kl0stlC7Ap6W2DNiIyJcuO2KTwHXdjslDQf8JKCRfNc3p0KNfhVK, createdDate=2021-11-22 12:00:58.0, updatedDate=null, status=true, isAlive=true, contactNum=+923369243618, cnic=3820135730123, age=55, address=G10/4, city=Islamabad, province=Federal, postalCode=44000, roles=[], isCovid=false, isVaccinated=false, patientReports=[], patientVaccination=[], assignedPost=Assistant director, gradeLevel=21), User(id=1, name=Kamran Abbasi, username=kamran123, email=haroonrb64@hotmail.com, password=$2a$10$w4HYeWs.5waopydcZqfCa.V6xiPqVH6k3/H6HQZNZ95w3Lrx7ezuG, createdDate=2021-11-22 11:57:04.0, updatedDate=null, status=true, isAlive=true, contactNum=+923369243618, cnic=3820135736789, age=25, address=Barakahu, city=Islamabad, province=Federal, postalCode=44000, roles=[Role(id=1, name=admin, description=admin can read write update and delete, createdDate=2021-11-22 11:48:09.0, updatedDate=null, status=true, permissions=[])], isCovid=false, isVaccinated=false, patientReports=[], patientVaccination=[], assignedPost=director, gradeLevel=20)]
+2021-11-25 17:40:28,676 WARN c.e.E.S.JwtRequestFilter [http-nio-8080-exec-6] JWT Token does not begin with Bearer String
+2021-11-25 17:40:29,067 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-6] select user0_.id as id1_18_0_, user0_.address as address2_18_0_, user0_.age as age3_18_0_, user0_.assigned_post as assigned4_18_0_, user0_.city as city5_18_0_, user0_.cnic as cnic6_18_0_, user0_.contact_num as contact_7_18_0_, user0_.created_date as created_8_18_0_, user0_.email as email9_18_0_, user0_.grade_level as grade_l10_18_0_, user0_.is_alive as is_aliv11_18_0_, user0_.is_covid as is_covi12_18_0_, user0_.is_vaccinated as is_vacc13_18_0_, user0_.name as name14_18_0_, user0_.password as passwor15_18_0_, user0_.postal_code as postal_16_18_0_, user0_.province as provinc17_18_0_, user0_.status as status18_18_0_, user0_.updated_date as updated19_18_0_, user0_.username as usernam20_18_0_, roles1_.user_id as user_id1_21_1_, role2_.id as role_id2_21_1_, role2_.id as id1_15_2_, role2_.created_date as created_2_15_2_, role2_.description as descript3_15_2_, role2_.name as name4_15_2_, role2_.status as status5_15_2_, role2_.updated_date as updated_6_15_2_ from user user0_ left outer join user_roles roles1_ on user0_.id=roles1_.user_id left outer join role role2_ on roles1_.role_id=role2_.id where user0_.id=?
+2021-11-25 17:40:29,068 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-6] binding parameter [1] as [BIGINT] - [4]
+2021-11-25 17:40:29,071 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([id1_15_2_] : [BIGINT]) - [3]
+2021-11-25 17:40:29,072 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([address2_18_0_] : [VARCHAR]) - [G13/4]
+2021-11-25 17:40:29,072 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([age3_18_0_] : [INTEGER]) - [22]
+2021-11-25 17:40:29,073 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([assigned4_18_0_] : [VARCHAR]) - [Assistant director]
+2021-11-25 17:40:29,074 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([city5_18_0_] : [VARCHAR]) - [Islamabad]
+2021-11-25 17:40:29,075 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([cnic6_18_0_] : [VARCHAR]) - [3820135731987]
+2021-11-25 17:40:29,075 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([contact_7_18_0_] : [VARCHAR]) - [+923369243618]
+2021-11-25 17:40:29,076 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([created_8_18_0_] : [TIMESTAMP]) - [2021-11-23 14:21:45.0]
+2021-11-25 17:40:29,077 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([email9_18_0_] : [VARCHAR]) - [sendtokamran0@gmail.com]
+2021-11-25 17:40:29,078 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([grade_l10_18_0_] : [INTEGER]) - [21]
+2021-11-25 17:40:29,079 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([is_aliv11_18_0_] : [BOOLEAN]) - [true]
+2021-11-25 17:40:29,080 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([is_covi12_18_0_] : [BOOLEAN]) - [false]
+2021-11-25 17:40:29,082 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([is_vacc13_18_0_] : [BOOLEAN]) - [false]
+2021-11-25 17:40:29,083 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([name14_18_0_] : [VARCHAR]) - [Haroon]
+2021-11-25 17:40:29,084 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([passwor15_18_0_] : [VARCHAR]) - [abc123]
+2021-11-25 17:40:29,085 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([postal_16_18_0_] : [VARCHAR]) - [44000]
+2021-11-25 17:40:29,086 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([provinc17_18_0_] : [VARCHAR]) - [Federal]
+2021-11-25 17:40:29,086 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([status18_18_0_] : [BOOLEAN]) - [true]
+2021-11-25 17:40:29,087 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([updated19_18_0_] : [TIMESTAMP]) - [2021-11-25 16:31:25.0]
+2021-11-25 17:40:29,088 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([usernam20_18_0_] : [VARCHAR]) - [haroonrb64]
+2021-11-25 17:40:29,089 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([created_2_15_2_] : [TIMESTAMP]) - [null]
+2021-11-25 17:40:29,089 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([descript3_15_2_] : [VARCHAR]) - [null]
+2021-11-25 17:40:29,090 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([name4_15_2_] : [VARCHAR]) - [PATIENT]
+2021-11-25 17:40:29,091 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([status5_15_2_] : [BOOLEAN]) - [false]
+2021-11-25 17:40:29,091 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([updated_6_15_2_] : [TIMESTAMP]) - [null]
+2021-11-25 17:40:29,092 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([user_id1_21_1_] : [BIGINT]) - [4]
+2021-11-25 17:40:29,093 TRACE o.h.t.d.s.BasicExtractor [http-nio-8080-exec-6] extracted value ([role_id2_21_1_] : [BIGINT]) - [3]
+2021-11-25 17:40:29,094 TRACE o.h.t.CollectionType [http-nio-8080-exec-6] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientReports#4]
+2021-11-25 17:40:29,095 TRACE o.h.t.CollectionType [http-nio-8080-exec-6] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.User.patientVaccination#4]
+2021-11-25 17:40:29,096 TRACE o.h.t.CollectionType [http-nio-8080-exec-6] Created collection wrapper: [com.example.EGovt_CovidHealthApp.Model.Entity.Role.permissions#3]
+2021-11-25 17:40:29,102 INFO c.e.E.S.UserService [http-nio-8080-exec-6] User found by id.
+2021-11-25 17:40:29,106 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-6] select permission0_.role_id as role_id1_16_0_, permission0_.permissions_id as permissi2_16_0_, permission1_.id as id1_14_1_, permission1_.created_date as created_2_14_1_, permission1_.name as name3_14_1_, permission1_.status as status4_14_1_, permission1_.updated_date as updated_5_14_1_ from role_permissions permission0_ inner join permission permission1_ on permission0_.permissions_id=permission1_.id where permission0_.role_id=?
+2021-11-25 17:40:29,106 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-6] binding parameter [1] as [BIGINT] - [3]
+2021-11-25 17:40:29,108 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-6] select patientrep0_.user_id as user_id1_19_0_, patientrep0_.patient_reports_id as patient_2_19_0_, patientrep1_.id as id1_12_1_, patientrep1_.created_date as created_2_12_1_, patientrep1_.status as status3_12_1_, patientrep1_.test_date as test_dat4_12_1_, patientrep1_.test_results as test_res5_12_1_, patientrep1_.updated_date as updated_6_12_1_ from user_patient_reports patientrep0_ inner join patient_report patientrep1_ on patientrep0_.patient_reports_id=patientrep1_.id where patientrep0_.user_id=?
+2021-11-25 17:40:29,109 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-6] binding parameter [1] as [BIGINT] - [4]
+2021-11-25 17:40:29,112 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-6] select patientvac0_.user_id as user_id1_20_0_, patientvac0_.patient_vaccination_id as patient_2_20_0_, patientvac1_.id as id1_13_1_, patientvac1_.created_date as created_2_13_1_, patientvac1_.status as status3_13_1_, patientvac1_.total_doses as total_do4_13_1_, patientvac1_.updated_date as updated_5_13_1_, patientvac1_.vaccinated_date as vaccinat6_13_1_, patientvac1_.vaccine_name as vaccine_7_13_1_ from user_patient_vaccination patientvac0_ inner join patient_vaccination patientvac1_ on patientvac0_.patient_vaccination_id=patientvac1_.id where patientvac0_.user_id=?
+2021-11-25 17:40:29,112 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-6] binding parameter [1] as [BIGINT] - [4]
+2021-11-25 17:40:42,083 WARN c.e.E.S.JwtRequestFilter [http-nio-8080-exec-7] JWT Token does not begin with Bearer String
+2021-11-25 17:40:42,089 DEBUG o.h.e.j.s.SqlStatementLogger [http-nio-8080-exec-7] select user0_.id as id1_18_0_, user0_.address as address2_18_0_, user0_.age as age3_18_0_, user0_.assigned_post as assigned4_18_0_, user0_.city as city5_18_0_, user0_.cnic as cnic6_18_0_, user0_.contact_num as contact_7_18_0_, user0_.created_date as created_8_18_0_, user0_.email as email9_18_0_, user0_.grade_level as grade_l10_18_0_, user0_.is_alive as is_aliv11_18_0_, user0_.is_covid as is_covi12_18_0_, user0_.is_vaccinated as is_vacc13_18_0_, user0_.name as name14_18_0_, user0_.password as passwor15_18_0_, user0_.postal_code as postal_16_18_0_, user0_.province as provinc17_18_0_, user0_.status as status18_18_0_, user0_.updated_date as updated19_18_0_, user0_.username as usernam20_18_0_, roles1_.user_id as user_id1_21_1_, role2_.id as role_id2_21_1_, role2_.id as id1_15_2_, role2_.created_date as created_2_15_2_, role2_.description as descript3_15_2_, role2_.name as name4_15_2_, role2_.status as status5_15_2_, role2_.updated_date as updated_6_15_2_ from user user0_ left outer join user_roles roles1_ on user0_.id=roles1_.user_id left outer join role role2_ on roles1_.role_id=role2_.id where user0_.id=?
+2021-11-25 17:40:42,091 TRACE o.h.t.d.s.BasicBinder [http-nio-8080-exec-7] binding parameter [1] as [BIGINT] - [5]
+2021-11-25 17:40:42,096 INFO c.e.E.S.UserService [http-nio-8080-exec-7] User not found
+2021-11-25 17:41:55,315 INFO o.s.c.n.e.s.EurekaServiceRegistry [SpringApplicationShutdownHook] Unregistering application E-HEALTH with eureka with status DOWN
+2021-11-25 17:41:55,315 INFO c.n.d.DiscoveryClient$3 [SpringApplicationShutdownHook] Saw local status change event StatusChangeEvent [timestamp=1637844115315, current=DOWN, previous=UP]
+2021-11-25 17:41:55,315 INFO c.n.d.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_E-HEALTH/localhost:e-health:8080: registering service...
+2021-11-25 17:41:55,554 INFO c.n.d.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_E-HEALTH/localhost:e-health:8080 - registration status: 204
+2021-11-25 17:41:57,256 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-25 17:41:57,256 TRACE o.h.t.s.TypeConfiguration [SpringApplicationShutdownHook] Handling #sessionFactoryClosed from [org.hibernate.internal.SessionFactoryImpl@7757a37f] for TypeConfiguration
+2021-11-25 17:41:57,256 DEBUG o.h.t.s.TypeConfiguration$Scope [SpringApplicationShutdownHook] Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@377f1941] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@7757a37f]
+2021-11-25 17:41:57,287 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2021-11-25 17:41:57,303 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2021-11-25 17:41:57,303 INFO c.n.d.DiscoveryClient [SpringApplicationShutdownHook] Shutting down DiscoveryClient ...
+2021-11-25 17:42:00,330 INFO c.n.d.DiscoveryClient [SpringApplicationShutdownHook] Unregistering ...
+2021-11-25 17:42:01,275 INFO c.n.d.s.t.d.RedirectingEurekaHttpClient [SpringApplicationShutdownHook] Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=I/O error on DELETE request for "http://localhost:8761/eureka/apps/E-HEALTH/localhost:e-health:8080": Connection reset; nested exception is java.net.SocketException: Connection reset stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8761/eureka/apps/E-HEALTH/localhost:e-health:8080": Connection reset; nested exception is java.net.SocketException: Connection reset
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:602)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:87)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:972)
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:948)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:347)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:177)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:184)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:177)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:390)
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:200)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(SocketInputStream.java:209)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at org.apache.http.impl.io.SessionInputBufferImpl.streamRead(SessionInputBufferImpl.java:137)
+	at org.apache.http.impl.io.SessionInputBufferImpl.fillBuffer(SessionInputBufferImpl.java:153)
+	at org.apache.http.impl.io.SessionInputBufferImpl.readLine(SessionInputBufferImpl.java:280)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:138)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:56)
+	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:259)
+	at org.apache.http.impl.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:163)
+	at org.apache.http.impl.conn.CPoolProxy.receiveResponseHeader(CPoolProxy.java:157)
+	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:273)
+	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:125)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:272)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	... 39 more
+
+2021-11-25 17:42:01,275 WARN c.n.d.s.t.d.RetryableEurekaHttpClient [SpringApplicationShutdownHook] Request execution failed with message: I/O error on DELETE request for "http://localhost:8761/eureka/apps/E-HEALTH/localhost:e-health:8080": Connection reset; nested exception is java.net.SocketException: Connection reset
+2021-11-25 17:42:05,384 INFO c.n.d.s.t.d.RedirectingEurekaHttpClient [SpringApplicationShutdownHook] Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on DELETE request for "http://localhost:8761/eureka/apps/E-HEALTH/localhost:e-health:8080": Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8761/eureka/apps/E-HEALTH/localhost:e-health:8080": Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:602)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:87)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:972)
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:948)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:347)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:177)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:184)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:177)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:390)
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:200)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
+	... 40 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 53 more
+
+2021-11-25 17:42:05,384 WARN c.n.d.s.t.d.RetryableEurekaHttpClient [SpringApplicationShutdownHook] Request execution failed with message: I/O error on DELETE request for "http://localhost:8761/eureka/apps/E-HEALTH/localhost:e-health:8080": Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect; nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+2021-11-25 17:42:05,384 ERROR c.n.d.DiscoveryClient [SpringApplicationShutdownHook] DiscoveryClient_E-HEALTH/localhost:e-health:8080 - de-registration failedCannot execute request on any known server
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-1.10.16.jar:1.10.16]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-1.10.16.jar:1.10.16]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-1.10.16.jar:1.10.16]
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77) ~[eureka-client-1.10.16.jar:1.10.16]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-1.10.16.jar:1.10.16]
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:972) ~[eureka-client-1.10.16.jar:1.10.16]
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:948) ~[eureka-client-1.10.16.jar:1.10.16]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389) ~[spring-beans-5.3.10.jar:5.3.10]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:347) ~[spring-beans-5.3.10.jar:5.3.10]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:177) ~[spring-beans-5.3.10.jar:5.3.10]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:184) ~[spring-beans-5.3.10.jar:5.3.10]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:177) ~[spring-beans-5.3.10.jar:5.3.10]
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:390) ~[spring-cloud-context-3.0.3.jar:3.0.3]
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136) ~[spring-cloud-context-3.0.3.jar:3.0.3]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:200) ~[spring-beans-5.3.10.jar:5.3.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-5.3.10.jar:5.3.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-5.3.10.jar:5.3.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1152) ~[spring-beans-5.3.10.jar:5.3.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-5.3.10.jar:5.3.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1145) ~[spring-beans-5.3.10.jar:5.3.10]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106) ~[spring-context-5.3.10.jar:5.3.10]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075) ~[spring-context-5.3.10.jar:5.3.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172) ~[spring-boot-2.5.5.jar:2.5.5]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021) ~[spring-context-5.3.10.jar:5.3.10]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137) ~[spring-boot-2.5.5.jar:2.5.5]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_73]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106) [spring-boot-2.5.5.jar:2.5.5]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_73]
+2021-11-25 17:42:05,525 INFO c.n.d.DiscoveryClient [SpringApplicationShutdownHook] Completed shut down of DiscoveryClient

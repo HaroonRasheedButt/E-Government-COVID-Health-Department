@@ -71,6 +71,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
             "/role/deleteUser/{id}",
             "/role/updateUserInfo"
     );
+
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
         resources.resourceId("api");
@@ -78,8 +79,8 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.
-                anonymous().disable()
+        http
+                .anonymous().disable()
                 .authorizeRequests()
                 .antMatchers(String.valueOf(SUPER_ADMIN_APIS)).hasAuthority("ROLE_SUPER_ADMIN")
                 .antMatchers(String.valueOf(PATIENT_APIS)).hasAuthority("ROLE_PATIENT")

@@ -9,7 +9,7 @@ import org.springframework.mail.javamail.JavaMailSender;
  * @author Haroon Rasheed
  *
  */
-public class MailUtil {
+public class    MailUtil {
 	private final JavaMailSender javaMailSender;
 
     /**

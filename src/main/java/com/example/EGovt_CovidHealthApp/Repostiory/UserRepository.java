@@ -12,8 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
     User findByCnicAndStatusTrue(String cnic);
-    User findByEmailAndPassword(String email, String password);
-    Boolean existsByEmailAndPasswordAndStatusTrue(String email, String password);
 
     Long countByIsCovidTrue();
     Long countByIsCovidTrueAndCity(String city);

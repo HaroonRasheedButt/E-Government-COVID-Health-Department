@@ -25,24 +25,19 @@ public class CompanyController {
     }
 
 
-
-
     /**
      * This function retrieves all the companies which are saved in database.
      *
-     * @param authToken: the authorization token
      * @return list of companies
      * @throws Exception the exception
      * @creationDate 28 October 2021
      **/
-    @GetMapping("/getAllcompanies")
+    @GetMapping("/getAllCompanies")
     public ResponseEntity<List<Company>> getAllCompanies(@RequestHeader("Authorization") String authToken) throws Exception {
-        AuthorizationUtil.authorized(authToken);
         return companyService.getAllCompanies();
     }
 
     /**
-     * @param authToken: the authorization token
      * @param company:   A company object to be added
      * @return Response Entity of type Company
      * @throws Exception the exception
@@ -50,15 +45,11 @@ public class CompanyController {
      * @description This function adds a company in database.
      **/
     @PostMapping("/addCompany")
-    public ResponseEntity<Company> addCompany(@RequestHeader("Authorization") String authToken,
-                                              @Valid @RequestBody Company company) throws Exception {
-
-        AuthorizationUtil.authorized(authToken);
+    public ResponseEntity<Company> addCompany(@Valid @RequestBody Company company) throws Exception {
         return companyService.addCompany(company);
     }
 
     /**
-     * @param authToken: the authorization token
      * @param company:   A company object to be added
      * @return Response Entity of type Company
      * @throws Exception the exception
@@ -66,15 +57,11 @@ public class CompanyController {
      * @description This function updates a company in database.
      **/
     @PutMapping("/updateCompany")
-    public ResponseEntity<Company> updateCompany(@RequestHeader("Authorization") String authToken,
-                                                 @Valid @RequestBody Company company) throws Exception {
-
-        AuthorizationUtil.authorized(authToken);
+    public ResponseEntity<Company> updateCompany(@Valid @RequestBody Company company) throws Exception {
         return companyService.updateCompany(company);
     }
 
     /**
-     * @param authToken: the authorization token
      * @param companies  : List of all companies
      * @return Response Entity of type String
      * @throws Exception the exception
@@ -82,15 +69,11 @@ public class CompanyController {
      * @description This function updates a company in database.
      **/
     @DeleteMapping("/deleteCompany")
-    public ResponseEntity<String> deleteCompany(@RequestHeader("Authorization") String authToken,
-                                                @Valid @RequestBody List<Company> companies) throws Exception {
-
-        AuthorizationUtil.authorized(authToken);
+    public ResponseEntity<String> deleteCompany(@Valid @RequestBody List<Company> companies) throws Exception {
         return companyService.deleteCompany(companies);
     }
 
     /**
-     * @param authToken: the authorization token
      * @return An object of company
      * @throws Exception the exception
      * @creationDate 28 October 2021
@@ -98,12 +81,9 @@ public class CompanyController {
      * database.
      **/
     @GetMapping("/status")
-    public ResponseEntity<Company> findByCompnayName(@RequestHeader("Authorization") String authToken,
-                                                     @RequestHeader("companyName") String name)
+    public ResponseEntity<Company> findByCompanyName(@RequestHeader("companyName") String name)
 
             throws Exception {
-
-        AuthorizationUtil.authorized(authToken);
         return companyService.findCompanyByName(name);
     }
 }
